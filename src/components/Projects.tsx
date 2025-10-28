@@ -31,7 +31,7 @@ export default function Projects({ theme }: ProjectsProps) {
       technologies: ['Flutter', 'Supabase', 'MQTT'],
       image:
         'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=400&fit=crop',
-      link: 'https://github.com/votre-username/solibox',
+      link: 'https://github.com/Foula34/solibox_app',
     },
     {
       title: 'Solibox Landing',
