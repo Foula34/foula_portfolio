@@ -1,187 +1,319 @@
-import { Briefcase, GraduationCap, Award, Heart } from 'lucide-react';
+import { Briefcase, GraduationCap, Award, Heart, Calendar, MapPin } from 'lucide-react';
+import { useState } from 'react';
 
 interface ExperienceProps {
   theme: 'light' | 'dark';
 }
 
 export default function Experience({ theme }: ExperienceProps) {
+  const [activeTab, setActiveTab] = useState<'experience' | 'education'>('experience');
+
   const experiences = [
     {
-      company: 'Orange',
-      role: 'Stagiaire',
+      company: 'Orange Digital Center',
+      role: 'Stagiaire Développeur',
       period: '07/2025 - 11/2025',
-      description: 'Développement d\'une application web et mobile innovante.',
-    },
-    {
-      company: 'Fata School',
-      role: 'Bénévole',
-      period: '07/2024 - Actuel',
-      description: 'Promotion de Fata.dev, sensibilisation à l\'apprentissage du code.',
+      location: 'Conakry, Guinée',
+      description: 'Développement d\'une application web et mobile innovante pour l\'orientation universitaire.',
+      achievements: [
+        'Conception et développement d\'EduWay',
+        'Collaboration avec une équipe multidisciplinaire',
+        'Intégration d\'APIs et bases de données',
+      ],
     },
     {
       company: 'Asis Tech',
       role: 'Formateur',
       period: '05/2025 - Actuel',
-      description: 'Animation de sessions et accompagnement en bureautique et numérique.',
+      location: 'Conakry, Guinée',
+      description: 'Animation de sessions de formation en bureautique et numérique.',
+      achievements: [
+        'Formation de 50+ apprenants',
+        'Création de supports pédagogiques',
+        'Accompagnement individualisé',
+      ],
+    },
+    {
+      company: 'Fata School',
+      role: 'Bénévole',
+      period: '07/2024 - Actuel',
+      location: 'Guinée',
+      description: 'Promotion de l\'apprentissage du code et sensibilisation à Fata.dev.',
+      achievements: [
+        'Organisation d\'événements communautaires',
+        'Mentorat de jeunes développeurs',
+        'Contribution à l\'écosystème tech local',
+      ],
     },
   ];
 
   const education = [
-    'Université Gamal Abdel Nasser de Conakry — Génie Informatique (en cours)',
-    'Baccalauréat Scientifique (Mathématiques) — Mention Bien',
+    {
+      school: 'Université Gamal Abdel Nasser',
+      degree: 'Licence en Génie Informatique',
+      period: '2023 - En cours',
+      location: 'Conakry, Guinée',
+      description: 'Formation en développement logiciel, réseaux et cybersécurité.',
+    },
+    {
+      school: 'Lycée Technique',
+      degree: 'Baccalauréat Scientifique',
+      period: '2023',
+      location: 'Mamou, Guinée',
+      description: 'Mention Bien - Spécialité Mathématiques',
+    },
   ];
 
   const certifications = [
-    'Flutter (Nimba Hub)',
-    'React, JavaScript',
-    'Git & GitHub',
-    'Google Cybersecurity (en cours)',
+    { name: 'Flutter Development', provider: 'Nimba Hub', year: '2024' },
+    { name: 'Google Cybersecurity', provider: 'Google', year: 'En cours' },
+    { name: 'React & JavaScript', provider: 'Auto-formation', year: 'En cours' },
+    { name: 'Git & GitHub', provider: 'Coursera', year: '2025' },
   ];
 
   const interests = [
-    'Nouvelles technologies',
-    'Cybersécurité',
-    'Innovation',
-    'Formation',
-    'Lecture',
-    'Sport & Cinéma',
+    {  name: 'Nouvelles technologies' },
+    { name: 'Cybersécurité' },
+    { name: 'Innovation' },
+    { name: 'Formation' },
+    { name: 'Lecture' },
+    { name: 'Sport' },
+    { name: 'Cinéma' },
   ];
 
   return (
     <section
       id="experience"
-      className={`py-20 px-4 transition-colors duration-300 ${
-        theme === 'dark' ? 'bg-slate-900' : 'bg-gray-50'
+      className={`py-24 px-6 transition-colors duration-300 ${
+        theme === 'dark' ? 'bg-slate-950' : 'bg-gray-50'
       }`}
     >
-      <div className="max-w-6xl mx-auto">
-        <h2
-          className={`text-4xl md:text-5xl font-bold mb-12 text-center ${
-            theme === 'dark' ? 'text-white' : 'text-slate-900'
-          }`}
-        >
-          Mon <span className="text-orange-500">parcours</span>
-        </h2>
+      <div className="max-w-7xl mx-auto">
+        {/* En-tête */}
+        <div className="text-center mb-20">
+          <span className={`inline-block px-4 py-2 rounded-full text-sm font-medium mb-4 ${
+            theme === 'dark' 
+              ? 'bg-orange-500/10 text-orange-400 border border-orange-500/20' 
+              : 'bg-orange-50 text-orange-600 border border-orange-100'
+          }`}>
+            Parcours
+          </span>
+          <h2
+            className={`text-4xl md:text-5xl lg:text-6xl font-bold ${
+              theme === 'dark' ? 'text-white' : 'text-slate-900'
+            }`}
+          >
+            Mon <span className="text-orange-500">parcours</span>
+          </h2>
+        </div>
 
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
-          <div>
-            <div className="flex items-center mb-6">
-              <div className="p-3 bg-orange-500 rounded-lg mr-4">
-                <Briefcase size={28} className="text-white" />
-              </div>
-              <h3
-                className={`text-2xl font-bold ${
-                  theme === 'dark' ? 'text-white' : 'text-slate-900'
-                }`}
-              >
-                Expériences
-              </h3>
-            </div>
+        {/* Tabs */}
+        <div className="flex justify-center gap-4 mb-12">
+          <button
+            onClick={() => setActiveTab('experience')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
+              activeTab === 'experience'
+                ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/50'
+                : theme === 'dark'
+                ? 'bg-slate-900 text-gray-400 hover:bg-slate-800'
+                : 'bg-white text-gray-600 hover:bg-gray-50 shadow-md'
+            }`}
+          >
+            <Briefcase size={20} />
+            Expériences
+          </button>
+          <button
+            onClick={() => setActiveTab('education')}
+            className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
+              activeTab === 'education'
+                ? 'bg-orange-500 text-white shadow-lg shadow-orange-500/50'
+                : theme === 'dark'
+                ? 'bg-slate-900 text-gray-400 hover:bg-slate-800'
+                : 'bg-white text-gray-600 hover:bg-gray-50 shadow-md'
+            }`}
+          >
+            <GraduationCap size={20} />
+            Formation
+          </button>
+        </div>
 
+        {/* Contenu des tabs */}
+        <div className="mb-20">
+          {activeTab === 'experience' ? (
             <div className="space-y-6">
               {experiences.map((exp, index) => (
                 <div
                   key={index}
-                  className={`p-6 rounded-xl border-l-4 border-orange-500 transition-all hover:scale-105 ${
-                    theme === 'dark' ? 'bg-slate-800' : 'bg-white'
+                  className={`group relative p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1 ${
+                    theme === 'dark'
+                      ? 'bg-slate-900 hover:shadow-xl hover:shadow-orange-500/10'
+                      : 'bg-white hover:shadow-xl shadow-md'
                   }`}
+                  style={{
+                    animation: `slideIn 0.5s ease-out ${index * 0.1}s both`,
+                  }}
                 >
-                  <h4
-                    className={`text-xl font-bold mb-1 ${
+                  {/* Barre latérale colorée */}
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-500 to-orange-600 rounded-l-2xl"></div>
+
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                    <div>
+                      <h3
+                        className={`text-2xl font-bold mb-2 ${
+                          theme === 'dark' ? 'text-white' : 'text-slate-900'
+                        }`}
+                      >
+                        {exp.company}
+                      </h3>
+                      <p className="text-orange-500 font-semibold text-lg mb-2">
+                        {exp.role}
+                      </p>
+                      <div className="flex flex-wrap gap-3 text-sm">
+                        <span className={`flex items-center gap-1 ${
+                          theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                        }`}>
+                          <Calendar size={16} />
+                          {exp.period}
+                        </span>
+                        <span className={`flex items-center gap-1 ${
+                          theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                        }`}>
+                          <MapPin size={16} />
+                          {exp.location}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p
+                    className={`mb-4 ${
+                      theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                    }`}
+                  >
+                    {exp.description}
+                  </p>
+
+                  <ul className="space-y-2">
+                    {exp.achievements.map((achievement, i) => (
+                      <li
+                        key={i}
+                        className={`flex items-start gap-2 text-sm ${
+                          theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                        }`}
+                      >
+                        <span className="text-orange-500 mt-1">▪</span>
+                        {achievement}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {education.map((edu, index) => (
+                <div
+                  key={index}
+                  className={`group relative p-8 rounded-2xl transition-all duration-300 hover:-translate-y-1 ${
+                    theme === 'dark'
+                      ? 'bg-slate-900 hover:shadow-xl hover:shadow-orange-500/10'
+                      : 'bg-white hover:shadow-xl shadow-md'
+                  }`}
+                  style={{
+                    animation: `slideIn 0.5s ease-out ${index * 0.1}s both`,
+                  }}
+                >
+                  <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-orange-500 to-orange-600 rounded-l-2xl"></div>
+
+                  <h3
+                    className={`text-2xl font-bold mb-2 ${
                       theme === 'dark' ? 'text-white' : 'text-slate-900'
                     }`}
                   >
-                    {exp.company}
-                  </h4>
-                  <p className="text-orange-500 font-medium mb-2">
-                    {exp.role} • {exp.period}
+                    {edu.school}
+                  </h3>
+                  <p className="text-orange-500 font-semibold text-lg mb-2">
+                    {edu.degree}
                   </p>
+                  <div className="flex flex-wrap gap-3 text-sm mb-3">
+                    <span className={`flex items-center gap-1 ${
+                      theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                    }`}>
+                      <Calendar size={16} />
+                      {edu.period}
+                    </span>
+                    <span className={`flex items-center gap-1 ${
+                      theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                    }`}>
+                      <MapPin size={16} />
+                      {edu.location}
+                    </span>
+                  </div>
                   <p
                     className={
                       theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
                     }
                   >
-                    {exp.description}
+                    {edu.description}
                   </p>
                 </div>
               ))}
             </div>
+          )}
+        </div>
+
+        {/* Certifications */}
+        <div className="mb-20">
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Award size={28} className="text-orange-500" />
+            <h3
+              className={`text-3xl font-bold ${
+                theme === 'dark' ? 'text-white' : 'text-slate-900'
+              }`}
+            >
+              Certifications
+            </h3>
           </div>
 
-          <div>
-            <div className="flex items-center mb-6">
-              <div className="p-3 bg-orange-500 rounded-lg mr-4">
-                <GraduationCap size={28} className="text-white" />
-              </div>
-              <h3
-                className={`text-2xl font-bold ${
-                  theme === 'dark' ? 'text-white' : 'text-slate-900'
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {certifications.map((cert, index) => (
+              <div
+                key={index}
+                className={`p-6 rounded-xl text-center transition-all hover:-translate-y-1 ${
+                  theme === 'dark'
+                    ? 'bg-slate-900 hover:bg-slate-800 hover:shadow-xl hover:shadow-orange-500/10'
+                    : 'bg-white hover:shadow-xl shadow-md'
                 }`}
               >
-                Formation
-              </h3>
-            </div>
-
-            <div
-              className={`p-6 rounded-xl mb-8 ${
-                theme === 'dark' ? 'bg-slate-800' : 'bg-white'
-              }`}
-            >
-              {education.map((edu, index) => (
-                <p
-                  key={index}
-                  className={`mb-3 last:mb-0 ${
-                    theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+                
+                <h4
+                  className={`font-bold mb-2 ${
+                    theme === 'dark' ? 'text-white' : 'text-slate-900'
                   }`}
                 >
-                  • {edu}
+                  {cert.name}
+                </h4>
+                <p className="text-orange-500 text-sm font-medium mb-1">
+                  {cert.provider}
                 </p>
-              ))}
-            </div>
-
-            <div className="flex items-center mb-6">
-              <div className="p-3 bg-orange-500 rounded-lg mr-4">
-                <Award size={28} className="text-white" />
+                <p
+                  className={`text-sm ${
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                  }`}
+                >
+                  {cert.year}
+                </p>
               </div>
-              <h3
-                className={`text-2xl font-bold ${
-                  theme === 'dark' ? 'text-white' : 'text-slate-900'
-                }`}
-              >
-                Certifications
-              </h3>
-            </div>
-
-            <div
-              className={`p-6 rounded-xl ${
-                theme === 'dark' ? 'bg-slate-800' : 'bg-white'
-              }`}
-            >
-              <div className="flex flex-wrap gap-2">
-                {certifications.map((cert, index) => (
-                  <span
-                    key={index}
-                    className={`px-4 py-2 rounded-full text-sm ${
-                      theme === 'dark'
-                        ? 'bg-slate-700 text-gray-300'
-                        : 'bg-gray-100 text-gray-700'
-                    }`}
-                  >
-                    {cert}
-                  </span>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
 
+        {/* Centres d'intérêt */}
         <div>
-          <div className="flex items-center justify-center mb-6">
-            <div className="p-3 bg-orange-500 rounded-lg mr-4">
-              <Heart size={28} className="text-white" />
-            </div>
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Heart size={28} className="text-orange-500" />
             <h3
-              className={`text-2xl font-bold ${
+              className={`text-3xl font-bold ${
                 theme === 'dark' ? 'text-white' : 'text-slate-900'
               }`}
             >
@@ -189,28 +321,36 @@ export default function Experience({ theme }: ExperienceProps) {
             </h3>
           </div>
 
-          <div
-            className={`p-6 rounded-xl max-w-4xl mx-auto ${
-              theme === 'dark' ? 'bg-slate-800' : 'bg-white'
-            }`}
-          >
-            <div className="flex flex-wrap justify-center gap-3">
-              {interests.map((interest, index) => (
-                <span
-                  key={index}
-                  className={`px-5 py-2 rounded-full text-sm font-medium ${
-                    theme === 'dark'
-                      ? 'bg-orange-500/20 text-orange-400'
-                      : 'bg-orange-100 text-orange-600'
-                  }`}
-                >
-                  {interest}
-                </span>
-              ))}
-            </div>
+          <div className="flex flex-wrap justify-center gap-4">
+            {interests.map((interest, index) => (
+              <div
+                key={index}
+                className={`flex items-center gap-3 px-6 py-3 rounded-xl transition-all hover:-translate-y-1 ${
+                  theme === 'dark'
+                    ? 'bg-slate-900 text-gray-300 hover:bg-slate-800'
+                    : 'bg-white text-gray-700 shadow-md hover:shadow-xl'
+                }`}
+              >
+                
+                <span className="font-medium">{interest.name}</span>
+              </div>
+            ))}
           </div>
         </div>
       </div>
+
+      <style>{`
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      `}</style>
     </section>
   );
 }
