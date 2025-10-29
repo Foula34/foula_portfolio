@@ -14,11 +14,11 @@ export default function Experience({ theme }: ExperienceProps) {
       role: 'Stagiaire Développeur',
       period: '07/2025 - 11/2025',
       location: 'Conakry, Guinée',
-      description: 'Développement d\'une application web et mobile innovante pour l\'orientation universitaire.',
+      description: 'Développement d\'une application mobile innovante connecté à un boitier IOT, qui controle et gère un partage d\'energie solaire entre voisin.',
       achievements: [
-        'Conception et développement d\'EduWay',
+        'Conception et développement de Solibox',
         'Collaboration avec une équipe multidisciplinaire',
-        'Intégration d\'APIs et bases de données',
+        'Utilisation de mqtt pour connection avec IOT',
       ],
     },
     {
