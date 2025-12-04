@@ -15,7 +15,7 @@ export default function Projects({ theme }: ProjectsProps) {
         "Plateforme d'orientation universitaire pour aider les étudiants guinéens à découvrir les universités et filières.",
       technologies: ['Next.js', 'Spring Boot', 'Firebase'],
       image: 'images/Capture.PNG',
-      link: 'https://github.com/votre-username/eduway',
+      link: 'https://eduway-three.vercel.app/',
       github: 'https://github.com/votre-username/eduway',
       color: 'from-blue-500 to-cyan-500',
     },
