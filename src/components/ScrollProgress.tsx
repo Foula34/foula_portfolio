@@ -21,7 +21,7 @@ export default function ScrollProgress({ theme }: ScrollProgressProps) {
     return (
         <>
             {/* Top progress bar */}
-            <div className="fixed top-0 left-0 right-0 h-1 z-50 bg-transparent">
+            <div className="fixed top-0 left-0 right-0 h-1 z-[100] bg-transparent">
                 <div
                     className="h-full transition-all duration-150 ease-out relative"
                     style={{
@@ -50,7 +50,7 @@ export default function ScrollProgress({ theme }: ScrollProgressProps) {
             {/* Percentage indicator (optional, shows on scroll) */}
             {scrollProgress > 5 && (
                 <div
-                    className={`fixed top-20 right-6 px-4 py-2 rounded-full font-mono text-sm font-semibold z-50 glass transition-opacity duration-300 ${scrollProgress > 95 ? 'opacity-0' : 'opacity-100'
+                    className={`fixed top-20 right-6 px-4 py-2 rounded-full font-mono text-sm font-semibold z-[100] glass transition-opacity duration-300 ${scrollProgress > 95 ? 'opacity-0' : 'opacity-100'
                         }`}
                     style={{
                         color: theme === 'dark' ? '#00d4ff' : '#0066ff',
