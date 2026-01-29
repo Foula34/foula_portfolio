@@ -24,7 +24,7 @@ export default function Hero({ theme }: HeroProps) {
   return (
     <section
       id="home"
-      className={`relative min-h-screen flex items-center justify-center px-6 overflow-hidden ${theme === 'dark' ? 'bg-slate-950' : 'bg-gray-50'
+      className={`relative min-h-screen flex flex-col items-center px-6 pt-32 pb-12 overflow-hidden ${theme === 'dark' ? 'bg-slate-950' : 'bg-gray-50'
         }`}
     >
       {/* 3D Grid Background */}
@@ -103,7 +103,7 @@ export default function Hero({ theme }: HeroProps) {
         ))}
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto text-center">
+      <div className="relative z-10 max-w-6xl mx-auto text-center my-auto">
         {/* Status Badge */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -188,8 +188,8 @@ export default function Hero({ theme }: HeroProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 + index * 0.1 }}
                 className={`px-4 py-2 rounded-lg text-sm font-medium glass transition-all hover:scale-105 ${theme === 'dark'
-                    ? 'text-cyan-400 hover:text-cyan-300'
-                    : 'text-blue-600 hover:text-blue-500'
+                  ? 'text-cyan-400 hover:text-cyan-300'
+                  : 'text-blue-600 hover:text-blue-500'
                   }`}
                 style={{
                   border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.2)' : 'rgba(0, 102, 255, 0.2)'}`,
@@ -225,8 +225,8 @@ export default function Hero({ theme }: HeroProps) {
             href="documents/Foula_Fofana_CV.pdf"
             download="Foula_Fofana_CV.pdf"
             className={`group relative px-8 py-4 rounded-xl font-medium overflow-hidden transition-all duration-300 hover:scale-105 ${theme === 'dark'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white'
-                : 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
+              ? 'bg-gradient-to-r from-cyan-500 to-blue-500 text-white'
+              : 'bg-gradient-to-r from-blue-500 to-purple-500 text-white'
               }`}
             style={{
               boxShadow: theme === 'dark'
@@ -245,8 +245,8 @@ export default function Hero({ theme }: HeroProps) {
           <a
             href="#contact"
             className={`group px-8 py-4 rounded-xl font-medium transition-all duration-300 hover:scale-105 glass ${theme === 'dark'
-                ? 'text-cyan-400 hover:text-cyan-300'
-                : 'text-blue-600 hover:text-blue-500'
+              ? 'text-cyan-400 hover:text-cyan-300'
+              : 'text-blue-600 hover:text-blue-500'
               }`}
             style={{
               border: `2px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.3)' : 'rgba(0, 102, 255, 0.3)'}`,
@@ -280,8 +280,8 @@ export default function Hero({ theme }: HeroProps) {
               whileHover={{ scale: 1.1, y: -5 }}
               whileTap={{ scale: 0.95 }}
               className={`p-4 rounded-xl glass transition-all duration-300 ${theme === 'dark'
-                  ? 'text-gray-300 hover:text-cyan-400'
-                  : 'text-gray-600 hover:text-blue-600'
+                ? 'text-gray-300 hover:text-cyan-400'
+                : 'text-gray-600 hover:text-blue-600'
                 }`}
               style={{
                 border: `1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
