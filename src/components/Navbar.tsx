@@ -29,6 +29,23 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
     { name: 'Contact', href: '#contact' },
   ];
 
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+
+    const element = document.querySelector(href);
+    if (element) {
+      const offset = 80; // Height of the fixed navbar
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <motion.nav
       initial={{ y: -100 }}
@@ -54,6 +71,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               whileTap={{ scale: 0.95 }}
               className="text-2xl font-bold gradient-text"
               style={{ fontFamily: 'Orbitron, sans-serif' }}
+              onClick={(e) => handleNavClick(e, '#home')}
             >
               FF
             </motion.a>
@@ -73,7 +91,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                     ? 'text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10'
                     : 'text-gray-700 hover:text-blue-600 hover:bg-blue-500/10'
                     }`}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                 >
                   {link.name}
                 </motion.a>
@@ -142,7 +160,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                         ? 'text-gray-300 hover:text-cyan-400 hover:bg-cyan-500/10'
                         : 'text-gray-700 hover:text-blue-600 hover:bg-blue-500/10'
                         }`}
-                      onClick={() => setIsOpen(false)}
+                      onClick={(e) => handleNavClick(e, link.href)}
                     >
                       {link.name}
                     </motion.a>
