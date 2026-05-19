@@ -1,240 +1,100 @@
-import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code2, Smartphone, Database, Palette, Sparkles } from 'lucide-react';
+import { Code2, Smartphone, Database, Palette } from 'lucide-react';
 
 interface SkillsProps {
   theme: 'light' | 'dark';
 }
 
-export default function Skills({ theme }: SkillsProps) {
-  const [activeCategory, setActiveCategory] = useState(0);
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+export default function Skills({ theme: _theme }: SkillsProps) {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
 
   const categories = [
     {
       name: 'Frontend',
       icon: Code2,
-      skills: [
-        { name: 'React / Next.js', level: 90 },
-        { name: 'TypeScript', level: 85 },
-        { name: 'Tailwind CSS', level: 90 },
-        { name: 'HTML / CSS', level: 95 },
-      ],
+      skills: ['React / Next.js', 'TypeScript', 'Tailwind CSS', 'HTML / CSS'],
     },
     {
       name: 'Mobile',
       icon: Smartphone,
-      skills: [
-        { name: 'Flutter', level: 85 },
-        { name: 'Dart', level: 80 },
-        { name: 'Kotlin', level: 80 },
-        { name: 'Jetpack Compose', level: 75 },
-        { name: 'Firebase', level: 80 },
-      ],
+      skills: ['Flutter', 'Dart', 'Kotlin', 'Jetpack Compose', 'Firebase'],
     },
     {
       name: 'Backend',
       icon: Database,
-      skills: [
-        { name: 'Supabase', level: 90 },
-        { name: 'Firebase', level: 80 },
-        { name: 'Prisma', level: 75 },
-        { name: 'MQTT', level: 70 },
-      ],
+      skills: ['Supabase', 'Firebase', 'Prisma', 'MQTT'],
     },
     {
       name: 'Design',
       icon: Palette,
-      skills: [
-        { name: 'Figma', level: 85 },
-        { name: 'UI/UX Design', level: 80 },
-        { name: 'Prototyping', level: 75 },
-        { name: 'Responsive Design', level: 90 },
-      ],
+      skills: ['Figma', 'UI/UX Design', 'Prototyping', 'Responsive Design'],
     },
   ];
 
   return (
-    <section
-      id="skills"
-      className={`py-24 px-6 transition-colors duration-300 relative overflow-hidden ${theme === 'dark' ? 'bg-slate-900' : 'bg-gray-50'
-        }`}
-    >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 grid-bg opacity-10" />
-
-      <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
-        {/* Header */}
+    <section id="skills" className="py-24 lg:py-32 px-6 bg-bg">
+      <div className="max-w-content mx-auto" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
+          className="font-mono text-xs text-text-muted mb-6 tracking-wide"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
-            style={{
-              border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.3)' : 'rgba(0, 102, 255, 0.3)'}`,
-            }}
-          >
-            <Sparkles size={16} className={theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'} />
-            <span className={`text-sm font-medium font-mono ${theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
-              }`}>
-              COMPÉTENCES
-            </span>
-          </div>
-
-          <h2
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-slate-900'
-              }`}
-            style={{ fontFamily: 'Orbitron, sans-serif' }}
-          >
-            Mes <span className="gradient-text">Compétences</span>
-          </h2>
-          <p className={`text-lg max-w-2xl mx-auto ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-            }`}>
-            Technologies et outils que je maîtrise
-          </p>
+          <span className="rule mr-3" /> 02 — Compétences
         </motion.div>
 
-        {/* Category Tabs */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-4 mb-12"
+          transition={{ duration: 0.6, delay: 0.05 }}
+          className="font-display text-4xl sm:text-5xl lg:text-6xl text-text mb-4"
         >
-          {categories.map((category, index) => {
+          La <span className="italic text-accent">boîte à outils</span>.
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="text-base text-text-muted mb-16 max-w-prose"
+        >
+          Les technologies que j'utilise au quotidien sur mes projets — du
+          prototype au produit livré.
+        </motion.p>
+
+        <div className="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-16 lg:gap-y-16">
+          {categories.map((category, i) => {
             const Icon = category.icon;
             return (
-              <motion.button
-                key={index}
-                onClick={() => setActiveCategory(index)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 glass ${activeCategory === index
-                  ? theme === 'dark'
-                    ? 'text-cyan-400 bg-cyan-500/10'
-                    : 'text-blue-600 bg-blue-500/10'
-                  : theme === 'dark'
-                    ? 'text-gray-400 hover:text-cyan-400'
-                    : 'text-gray-600 hover:text-blue-600'
-                  }`}
-                style={{
-                  border: `2px solid ${activeCategory === index
-                    ? theme === 'dark' ? 'rgba(0, 212, 255, 0.5)' : 'rgba(0, 102, 255, 0.5)'
-                    : theme === 'dark' ? 'rgba(0, 212, 255, 0.1)' : 'rgba(0, 102, 255, 0.1)'
-                    }`,
-                  boxShadow: activeCategory === index
-                    ? theme === 'dark'
-                      ? '0 0 20px rgba(0, 212, 255, 0.3)'
-                      : '0 0 20px rgba(0, 102, 255, 0.3)'
-                    : 'none',
-                }}
+              <motion.div
+                key={category.name}
+                initial={{ opacity: 0, y: 16 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
+                className="border-t border-border pt-8"
               >
-                <Icon size={20} />
-                {category.name}
-              </motion.button>
+                <div className="flex items-center gap-3 mb-6">
+                  <Icon size={20} strokeWidth={1.5} className="text-accent" />
+                  <h3 className="font-mono text-xs uppercase tracking-widest text-text-muted">
+                    {category.name}
+                  </h3>
+                </div>
+                <ul className="flex flex-wrap gap-x-6 gap-y-3">
+                  {category.skills.map((skill) => (
+                    <li
+                      key={skill}
+                      className="font-display text-2xl lg:text-3xl text-text hover:text-accent transition-colors duration-200"
+                    >
+                      {skill}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
             );
           })}
-        </motion.div>
-
-        {/* Skills Display */}
-        <motion.div
-          key={activeCategory}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="max-w-4xl mx-auto"
-        >
-          <div className="grid gap-6">
-            {categories[activeCategory].skills.map((skill, index) => (
-              <SkillBar
-                key={skill.name}
-                skill={skill}
-                index={index}
-                theme={theme}
-                inView={inView}
-              />
-            ))}
-          </div>
-        </motion.div>
+        </div>
       </div>
     </section>
-  );
-}
-
-interface SkillBarProps {
-  skill: { name: string; level: number };
-  index: number;
-  theme: 'light' | 'dark';
-  inView: boolean;
-}
-
-function SkillBar({ skill, index, theme, inView }: SkillBarProps) {
-  const [progress, setProgress] = useState(0);
-
-  useEffect(() => {
-    if (inView) {
-      const timer = setTimeout(() => {
-        setProgress(skill.level);
-      }, index * 100);
-      return () => clearTimeout(timer);
-    }
-  }, [inView, skill.level, index]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ scale: 1.02, y: -5 }}
-      className="glass rounded-xl p-6 transition-all duration-300"
-      style={{
-        border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.2)' : 'rgba(0, 102, 255, 0.2)'}`,
-      }}
-    >
-      <div className="flex items-center justify-between mb-3">
-        <span className={`font-medium ${theme === 'dark' ? 'text-white' : 'text-slate-900'
-          }`}>
-          {skill.name}
-        </span>
-        <span className={`text-sm font-mono font-bold ${theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
-          }`}>
-          {progress}%
-        </span>
-      </div>
-
-      {/* Progress Bar */}
-      <div className={`relative h-3 rounded-full overflow-hidden ${theme === 'dark' ? 'bg-slate-800' : 'bg-gray-200'
-        }`}>
-        <motion.div
-          initial={{ width: 0 }}
-          animate={{ width: `${progress}%` }}
-          transition={{ duration: 1, delay: index * 0.1, ease: 'easeOut' }}
-          className="absolute inset-y-0 left-0 rounded-full"
-          style={{
-            background: theme === 'dark'
-              ? 'linear-gradient(90deg, #00d4ff, #b026ff)'
-              : 'linear-gradient(90deg, #0066ff, #b026ff)',
-            boxShadow: theme === 'dark'
-              ? '0 0 20px rgba(0, 212, 255, 0.6), 0 0 40px rgba(0, 212, 255, 0.3)'
-              : '0 0 20px rgba(0, 102, 255, 0.6), 0 0 40px rgba(0, 102, 255, 0.3)',
-          }}
-        >
-          {/* Animated shimmer effect */}
-          <div
-            className="absolute inset-0 animate-shimmer"
-            style={{
-              background: 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent)',
-              backgroundSize: '200% 100%',
-            }}
-          />
-        </motion.div>
-      </div>
-    </motion.div>
   );
 }

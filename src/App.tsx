@@ -7,27 +7,17 @@ import Projects from './components/Projects';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ParticleBackground from './components/ParticleBackground';
-import CustomCursor from './components/CustomCursor';
-import ScrollProgress from './components/ScrollProgress';
-import Preloader from './components/Preloader';
 
 function App() {
-  const [theme, setTheme] = useState<'light' | 'dark'>('dark');
-  const [isLoading, setIsLoading] = useState(true);
+  const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-
-    // Apply theme to document
-    document.documentElement.setAttribute('data-theme', savedTheme || 'dark');
+    if (savedTheme) setTheme(savedTheme);
+    document.documentElement.setAttribute('data-theme', savedTheme || 'light');
   }, []);
 
   useEffect(() => {
-    // Update theme attribute when theme changes
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
 
@@ -37,37 +27,19 @@ function App() {
     localStorage.setItem('theme', newTheme);
   };
 
-  const handlePreloaderComplete = () => {
-    setIsLoading(false);
-  };
-
   return (
-    <>
-      {isLoading && <Preloader onComplete={handlePreloaderComplete} />}
-
-      <div
-        className={`min-h-screen transition-colors duration-500 relative ${theme === 'dark' ? 'bg-slate-950' : 'bg-white'
-          }`}
-        style={{ cursor: 'none' }}
-      >
-        {/* Futuristic Components */}
-        <ParticleBackground theme={theme} />
-        <CustomCursor />
-        <ScrollProgress theme={theme} />
-
-        {/* Main Content */}
-        <div className="relative z-10">
-          <Navbar theme={theme} toggleTheme={toggleTheme} />
-          <Hero theme={theme} />
-          <About theme={theme} />
-          <Skills theme={theme} />
-          <Projects theme={theme} />
-          <Experience theme={theme} />
-          <Contact theme={theme} />
-          <Footer theme={theme} />
-        </div>
-      </div>
-    </>
+    <div className="min-h-screen bg-bg text-text grain">
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <main>
+        <Hero theme={theme} />
+        <About theme={theme} />
+        <Skills theme={theme} />
+        <Projects theme={theme} />
+        <Experience theme={theme} />
+        <Contact theme={theme} />
+      </main>
+      <Footer theme={theme} />
+    </div>
   );
 }
 

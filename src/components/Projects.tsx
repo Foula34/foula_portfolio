@@ -1,42 +1,25 @@
-import { ExternalLink, Github, ArrowUpRight, Sparkles, Trophy } from 'lucide-react';
-import { useState } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { ExternalLink, Github, Trophy, ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 50 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut',
-    },
-  },
-};
 
 interface ProjectsProps {
   theme: 'light' | 'dark';
 }
 
-export default function Projects({ theme }: ProjectsProps) {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+interface Project {
+  title: string;
+  description: string;
+  technologies: string[];
+  image: string;
+  liveUrl: string | null;
+  githubUrl: string | null;
+  award?: string;
+}
 
-  const projects = [
+export default function Projects({ theme: _theme }: ProjectsProps) {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
+
+  const projects: Project[] = [
     {
       title: 'Solibox',
       description:
@@ -45,7 +28,6 @@ export default function Projects({ theme }: ProjectsProps) {
       image: 'images/solibox-app.png',
       liveUrl: null,
       githubUrl: 'https://github.com/Foula34/solibox_app',
-      gradient: 'from-amber-500 via-orange-500 to-red-500',
       award: '1ᵉʳ Prix · Salon Étudiants Entrepreneurs 2026',
     },
     {
@@ -56,7 +38,6 @@ export default function Projects({ theme }: ProjectsProps) {
       image: 'images/solibox.png',
       liveUrl: 'https://soliboxgn.com',
       githubUrl: null,
-      gradient: 'from-green-500 via-emerald-500 to-teal-500',
     },
     {
       title: 'Le Lab-oratoire',
@@ -66,7 +47,6 @@ export default function Projects({ theme }: ProjectsProps) {
       image: 'images/lab-oratoire.png',
       liveUrl: 'https://lab-oratoire.vercel.app',
       githubUrl: null,
-      gradient: 'from-blue-500 via-cyan-500 to-teal-500',
     },
     {
       title: 'Secure-Sport',
@@ -76,7 +56,6 @@ export default function Projects({ theme }: ProjectsProps) {
       image: 'images/secure.png',
       liveUrl: 'https://secure-sport.vercel.app',
       githubUrl: null,
-      gradient: 'from-pink-500 via-purple-500 to-indigo-500',
     },
     {
       title: 'Opidi',
@@ -86,263 +65,176 @@ export default function Projects({ theme }: ProjectsProps) {
       image: 'images/opidi.png',
       liveUrl: 'https://opidi-web.vercel.app',
       githubUrl: null,
-      gradient: 'from-purple-500 via-pink-500 to-rose-500',
     },
   ];
 
-
-
   return (
-    <section
-      id="projects"
-      className={`py-24 px-6 transition-colors duration-300 relative overflow-hidden ${theme === 'dark' ? 'bg-slate-950' : 'bg-white'
-        }`}
-    >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 dot-pattern opacity-20" />
-
-      <div className="max-w-7xl mx-auto relative z-10" ref={ref}>
-        {/* Header */}
+    <section id="projects" className="py-24 lg:py-32 px-6 bg-bg-alt">
+      <div className="max-w-content mx-auto" ref={ref}>
         <motion.div
-          initial={{ opacity: 0, y: -30 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          transition={{ duration: 0.5 }}
+          className="font-mono text-xs text-text-muted mb-6 tracking-wide"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-6"
-            style={{
-              border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.3)' : 'rgba(0, 102, 255, 0.3)'}`,
-            }}
-          >
-            <Sparkles size={16} className={theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'} />
-            <span className={`text-sm font-medium font-mono ${theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'
-              }`}>
-              PORTFOLIO
-            </span>
-          </div>
-
-          <h2
-            className={`text-4xl md:text-5xl lg:text-6xl font-bold mb-4 ${theme === 'dark' ? 'text-white' : 'text-slate-900'
-              }`}
-            style={{ fontFamily: 'Orbitron, sans-serif' }}
-          >
-            Mes <span className="gradient-text">Projets</span>
-          </h2>
-          <p className={`text-lg max-w-2xl mx-auto ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-            }`}>
-            Découvrez une sélection de mes réalisations récentes
-          </p>
+          <span className="rule mr-3" /> 03 — Projets
         </motion.div>
 
-        {/* Projects Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          className="grid md:grid-cols-2 gap-8"
+        <motion.h2
+          initial={{ opacity: 0, y: 16 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.05 }}
+          className="font-display text-4xl sm:text-5xl lg:text-6xl text-text mb-4"
         >
-          {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial="hidden"
-              animate={inView ? 'visible' : 'hidden'}
-              variants={itemVariants}
-              onMouseEnter={() => setHoveredIndex(index)}
-              onMouseLeave={() => setHoveredIndex(null)}
-              className="group relative perspective-container"
-            >
-              <div
-                className={`relative rounded-2xl overflow-hidden glass transition-all duration-500 transform-3d ${hoveredIndex === index ? 'scale-[1.02]' : ''
-                  }`}
-                style={{
-                  border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.2)' : 'rgba(0, 102, 255, 0.2)'}`,
-                  transform: hoveredIndex === index ? 'rotateX(2deg) rotateY(2deg)' : 'rotateX(0) rotateY(0)',
-                }}
-              >
-                {/* Image with Holographic Overlay */}
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
+          Sélection de <span className="italic text-accent">réalisations</span>.
+        </motion.h2>
 
-                  {/* Gradient Overlay */}
-                  <div className={`absolute inset-0 bg-gradient-to-t ${theme === 'dark'
-                    ? 'from-slate-950 via-slate-950/50 to-transparent'
-                    : 'from-white via-white/50 to-transparent'
-                    } opacity-60 group-hover:opacity-80 transition-opacity duration-500`} />
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="text-base text-text-muted mb-16 max-w-prose"
+        >
+          Cinq projets récents, livrés ou en cours d'évolution. Chaque carte
+          renvoie vers la démo en ligne ou le code quand il est public.
+        </motion.p>
 
-                  {/* Holographic Effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500`} />
-
-                  {/* Scan Line Effect */}
-                  <div
-                    className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 ${theme === 'dark' ? 'bg-cyan-500/5' : 'bg-blue-500/5'
-                      }`}
-                    style={{
-                      backgroundImage: `repeating-linear-gradient(0deg, transparent, transparent 2px, ${theme === 'dark' ? 'rgba(0, 212, 255, 0.03)' : 'rgba(0, 102, 255, 0.03)'
-                        } 2px, ${theme === 'dark' ? 'rgba(0, 212, 255, 0.03)' : 'rgba(0, 102, 255, 0.03)'
-                        } 4px)`,
-                    }}
-                  />
-
-                  {/* Award Badge */}
-                  {project.award && (
-                    <div
-                      className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full glass font-mono text-xs font-bold"
-                      style={{
-                        border: `1px solid ${theme === 'dark' ? 'rgba(251, 191, 36, 0.5)' : 'rgba(217, 119, 6, 0.5)'}`,
-                        background: theme === 'dark' ? 'rgba(251, 191, 36, 0.15)' : 'rgba(254, 243, 199, 0.9)',
-                        color: theme === 'dark' ? '#fbbf24' : '#b45309',
-                        boxShadow: theme === 'dark'
-                          ? '0 0 20px rgba(251, 191, 36, 0.3)'
-                          : '0 0 20px rgba(217, 119, 6, 0.2)',
-                      }}
-                    >
-                      <Trophy size={14} />
-                      {project.award}
-                    </div>
-                  )}
-
-                  {/* Action Buttons */}
-                  <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    {project.githubUrl && (
-                      <motion.a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="p-3 rounded-lg glass"
-                        style={{
-                          border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.3)' : 'rgba(0, 102, 255, 0.3)'}`,
-                          color: theme === 'dark' ? '#00d4ff' : '#0066ff',
-                        }}
-                        onClick={(e) => e.stopPropagation()}
-                        aria-label={`Code source de ${project.title}`}
-                      >
-                        <Github size={18} />
-                      </motion.a>
-                    )}
-                    {project.liveUrl && (
-                      <motion.a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
-                        className="p-3 rounded-lg glass"
-                        style={{
-                          border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.3)' : 'rgba(0, 102, 255, 0.3)'}`,
-                          background: theme === 'dark' ? 'rgba(0, 212, 255, 0.2)' : 'rgba(0, 102, 255, 0.2)',
-                          color: theme === 'dark' ? '#00d4ff' : '#0066ff',
-                        }}
-                        onClick={(e) => e.stopPropagation()}
-                        aria-label={`Voir ${project.title} en ligne`}
-                      >
-                        <ExternalLink size={18} />
-                      </motion.a>
-                    )}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-6">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3
-                      className={`text-2xl font-bold ${theme === 'dark' ? 'text-white' : 'text-slate-900'
-                        }`}
-                      style={{ fontFamily: 'Orbitron, sans-serif' }}
-                    >
-                      {project.title}
-                    </h3>
-                    <motion.div
-                      animate={{
-                        x: hoveredIndex === index ? 4 : 0,
-                        y: hoveredIndex === index ? -4 : 0,
-                      }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <ArrowUpRight
-                        className={theme === 'dark' ? 'text-cyan-400' : 'text-blue-600'}
-                        size={24}
-                      />
-                    </motion.div>
-                  </div>
-
-                  <p
-                    className={`mb-6 leading-relaxed ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                      }`}
-                  >
-                    {project.description}
-                  </p>
-
-                  {/* Technologies */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech, techIndex) => (
-                      <motion.span
-                        key={techIndex}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={inView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ delay: 0.8 + techIndex * 0.1 }}
-                        whileHover={{ scale: 1.1 }}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium glass font-mono ${theme === 'dark'
-                          ? 'text-cyan-400'
-                          : 'text-blue-600'
-                          }`}
-                        style={{
-                          border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.2)' : 'rgba(0, 102, 255, 0.2)'}`,
-                        }}
-                      >
-                        {tech}
-                      </motion.span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Bottom Glow Bar */}
-                <div
-                  className={`h-1 bg-gradient-to-r ${project.gradient} transform origin-left transition-transform duration-500 ${hoveredIndex === index ? 'scale-x-100' : 'scale-x-0'
-                    }`}
-                  style={{
-                    boxShadow: hoveredIndex === index
-                      ? `0 0 20px ${theme === 'dark' ? 'rgba(0, 212, 255, 0.6)' : 'rgba(0, 102, 255, 0.6)'}`
-                      : 'none',
-                  }}
-                />
-              </div>
-            </motion.div>
+        <div className="grid md:grid-cols-2 gap-x-8 gap-y-16 lg:gap-y-20">
+          {projects.map((project, i) => (
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={i}
+              inView={inView}
+            />
           ))}
-        </motion.div>
+        </div>
 
-        {/* CTA */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 1 }}
-          className="text-center mt-16"
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-20 pt-12 border-t border-border text-center"
         >
-          <motion.a
+          <a
             href="https://github.com/Foula34"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className={`inline-flex items-center gap-2 px-8 py-4 rounded-xl font-medium glass transition-all duration-300 ${theme === 'dark'
-              ? 'text-cyan-400 hover:text-cyan-300'
-              : 'text-blue-600 hover:text-blue-500'
-              }`}
-            style={{
-              border: `2px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.3)' : 'rgba(0, 102, 255, 0.3)'}`,
-            }}
+            className="group inline-flex items-center gap-2 text-text hover:text-accent border-b border-text/30 hover:border-accent pb-1 transition-colors duration-200"
           >
-            <Github size={20} />
+            <Github size={18} />
             Voir tous mes projets sur GitHub
-            <ArrowUpRight size={18} />
-          </motion.a>
+            <ArrowUpRight
+              size={16}
+              className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+            />
+          </a>
         </motion.div>
       </div>
     </section>
+  );
+}
+
+interface ProjectCardProps {
+  project: Project;
+  index: number;
+  inView: boolean;
+}
+
+function ProjectCard({ project, index, inView }: ProjectCardProps) {
+  const primaryHref = project.liveUrl ?? project.githubUrl ?? '#';
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: 0.15 + index * 0.08 }}
+      className="group flex flex-col"
+    >
+      <a
+        href={primaryHref}
+        target={primaryHref !== '#' ? '_blank' : undefined}
+        rel={primaryHref !== '#' ? 'noopener noreferrer' : undefined}
+        className="block relative overflow-hidden border border-border bg-bg"
+      >
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full aspect-[16/10] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+        />
+        {project.award && (
+          <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-accent text-bg px-3 py-1.5 font-mono text-[11px] tracking-wide">
+            <Trophy size={12} strokeWidth={2} />
+            {project.award}
+          </div>
+        )}
+      </a>
+
+      <div className="mt-6 flex items-start gap-4">
+        <span className="font-mono text-xs text-text-muted pt-1.5">
+          0{index + 1}
+        </span>
+        <div className="flex-1">
+          <div className="flex items-start justify-between gap-4 mb-2">
+            <h3 className="font-display text-2xl lg:text-3xl text-text">
+              {project.title}
+            </h3>
+            <a
+              href={primaryHref}
+              target={primaryHref !== '#' ? '_blank' : undefined}
+              rel={primaryHref !== '#' ? 'noopener noreferrer' : undefined}
+              aria-label={`Ouvrir ${project.title}`}
+              className="text-text-muted hover:text-accent transition-colors duration-200 pt-2"
+            >
+              <ArrowUpRight
+                size={20}
+                strokeWidth={1.5}
+                className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+              />
+            </a>
+          </div>
+
+          <p className="text-text-muted leading-relaxed mb-5">
+            {project.description}
+          </p>
+
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
+            {project.technologies.map((tech) => (
+              <span
+                key={tech}
+                className="font-mono text-xs text-text-muted"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex items-center gap-5 text-sm">
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-text hover:text-accent transition-colors duration-200"
+              >
+                <ExternalLink size={14} />
+                Voir le site
+              </a>
+            )}
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-text hover:text-accent transition-colors duration-200"
+              >
+                <Github size={14} />
+                Code source
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.article>
   );
 }
