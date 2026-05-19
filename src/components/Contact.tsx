@@ -7,6 +7,8 @@ interface ContactProps {
   theme: 'light' | 'dark';
 }
 
+const CONTACT_EMAIL = 'fofanafoula70@gmail.com';
+
 export default function Contact({ theme }: ContactProps) {
   const [formData, setFormData] = useState({
     name: '',
@@ -36,15 +38,22 @@ export default function Contact({ theme }: ContactProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors = validate();
-    if (Object.keys(newErrors).length === 0) {
-      setIsSubmitted(true);
-      setTimeout(() => {
-        setFormData({ name: '', email: '', subject: '', message: '' });
-        setIsSubmitted(false);
-      }, 3000);
-    } else {
+    if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      return;
     }
+
+    const subject = formData.subject.trim() || `Contact portfolio — ${formData.name}`;
+    const body = `Bonjour Foula,\n\n${formData.message}\n\n—\n${formData.name}\n${formData.email}`;
+    const mailto = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.location.href = mailto;
+
+    setIsSubmitted(true);
+    setTimeout(() => {
+      setFormData({ name: '', email: '', subject: '', message: '' });
+      setIsSubmitted(false);
+    }, 3000);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -300,7 +309,7 @@ export default function Contact({ theme }: ContactProps) {
                 {isSubmitted ? (
                   <span className="flex items-center justify-center gap-2">
                     <CheckCircle2 size={20} />
-                    Message envoyé !
+                    Client mail ouvert
                   </span>
                 ) : (
                   <span className="flex items-center justify-center gap-2">

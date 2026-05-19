@@ -1,4 +1,4 @@
-import { ExternalLink, Github, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ExternalLink, Github, ArrowUpRight, Sparkles, Trophy } from 'lucide-react';
 import { useState } from 'react';
 import { motion, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -38,46 +38,55 @@ export default function Projects({ theme }: ProjectsProps) {
 
   const projects = [
     {
-      title: 'EduWay',
-      description:
-        "Plateforme d'orientation universitaire pour aider les étudiants guinéens à découvrir les universités et filières.",
-      technologies: ['Next.js', 'Spring Boot', 'Firebase'],
-      image: 'images/Capture.PNG',
-      link: 'https://eduway-three.vercel.app/',
-      github: 'https://github.com/votre-username/eduway',
-      gradient: 'from-blue-500 via-cyan-500 to-teal-500',
-    },
-    {
-      title: 'Walima',
-      description:
-        'Mise en relation prestataires / clients pour simplifier la recherche et la réservation de services.',
-      technologies: ['Next.js', 'Supabase'],
-      image:
-        'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&h=400&fit=crop',
-      link: 'https://github.com/votre-username/walima',
-      github: 'https://github.com/votre-username/walima',
-      gradient: 'from-purple-500 via-pink-500 to-rose-500',
-    },
-    {
       title: 'Solibox',
       description:
-        "Application mobile d'énergie solaire connectée pour le suivi et partage du surplus d'énergie via boîtier IoT.",
+        "Application mobile d'énergie solaire connectée pour le suivi et le partage du surplus d'énergie via boîtier IoT.",
       technologies: ['Flutter', 'Supabase', 'MQTT'],
-      image:
-        'https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&h=400&fit=crop',
-      link: 'https://github.com/Foula34/solibox_app',
-      github: 'https://github.com/Foula34/solibox_app',
+      image: 'images/solibox-app.png',
+      liveUrl: null,
+      githubUrl: 'https://github.com/Foula34/solibox_app',
       gradient: 'from-amber-500 via-orange-500 to-red-500',
+      award: '1ᵉʳ Prix · Salon Étudiants Entrepreneurs 2026',
     },
     {
       title: 'Solibox Landing',
       description:
-        "Landing page de la startup présentant l'application mobile et la solution d'énergie solaire.",
-      technologies: ['Next.js'],
-      image: 'images/solibox.PNG',
-      link: 'https://solibox-landing.vercel.app',
-      github: 'https://github.com/votre-username/solibox-landing',
+        "Landing page de la startup présentant l'application mobile et la solution d'énergie solaire connectée.",
+      technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
+      image: 'images/solibox.png',
+      liveUrl: 'https://soliboxgn.com',
+      githubUrl: null,
       gradient: 'from-green-500 via-emerald-500 to-teal-500',
+    },
+    {
+      title: 'Le Lab-oratoire',
+      description:
+        "Application web pour les membres d'un club d'art oratoire : suivi de progression, défis, ressources et gamification.",
+      technologies: ['Next.js', 'Supabase'],
+      image: 'images/lab-oratoire.png',
+      liveUrl: 'https://lab-oratoire.vercel.app',
+      githubUrl: null,
+      gradient: 'from-blue-500 via-cyan-500 to-teal-500',
+    },
+    {
+      title: 'Secure-Sport',
+      description:
+        "Prototype d'une plateforme dédiée aux clubs et académies de football en Guinée pour le suivi des dossiers de leurs clients.",
+      technologies: ['Next.js', 'Tailwind CSS'],
+      image: 'images/secure.png',
+      liveUrl: 'https://secure-sport.vercel.app',
+      githubUrl: null,
+      gradient: 'from-pink-500 via-purple-500 to-indigo-500',
+    },
+    {
+      title: 'Opidi',
+      description:
+        'Plateforme type réseau social qui connecte médecins, patients et pharmaciens et facilite leurs interactions.',
+      technologies: ['Next.js', 'Supabase', 'Prisma'],
+      image: 'images/opidi.png',
+      liveUrl: 'https://opidi-web.vercel.app',
+      githubUrl: null,
+      gradient: 'from-purple-500 via-pink-500 to-rose-500',
     },
   ];
 
@@ -178,39 +187,63 @@ export default function Projects({ theme }: ProjectsProps) {
                     }}
                   />
 
+                  {/* Award Badge */}
+                  {project.award && (
+                    <div
+                      className="absolute top-4 left-4 flex items-center gap-1.5 px-3 py-1.5 rounded-full glass font-mono text-xs font-bold"
+                      style={{
+                        border: `1px solid ${theme === 'dark' ? 'rgba(251, 191, 36, 0.5)' : 'rgba(217, 119, 6, 0.5)'}`,
+                        background: theme === 'dark' ? 'rgba(251, 191, 36, 0.15)' : 'rgba(254, 243, 199, 0.9)',
+                        color: theme === 'dark' ? '#fbbf24' : '#b45309',
+                        boxShadow: theme === 'dark'
+                          ? '0 0 20px rgba(251, 191, 36, 0.3)'
+                          : '0 0 20px rgba(217, 119, 6, 0.2)',
+                      }}
+                    >
+                      <Trophy size={14} />
+                      {project.award}
+                    </div>
+                  )}
+
                   {/* Action Buttons */}
                   <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-                    <motion.a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="p-3 rounded-lg glass"
-                      style={{
-                        border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.3)' : 'rgba(0, 102, 255, 0.3)'}`,
-                        color: theme === 'dark' ? '#00d4ff' : '#0066ff',
-                      }}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Github size={18} />
-                    </motion.a>
-                    <motion.a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="p-3 rounded-lg glass"
-                      style={{
-                        border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.3)' : 'rgba(0, 102, 255, 0.3)'}`,
-                        background: theme === 'dark' ? 'rgba(0, 212, 255, 0.2)' : 'rgba(0, 102, 255, 0.2)',
-                        color: theme === 'dark' ? '#00d4ff' : '#0066ff',
-                      }}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <ExternalLink size={18} />
-                    </motion.a>
+                    {project.githubUrl && (
+                      <motion.a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-3 rounded-lg glass"
+                        style={{
+                          border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.3)' : 'rgba(0, 102, 255, 0.3)'}`,
+                          color: theme === 'dark' ? '#00d4ff' : '#0066ff',
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={`Code source de ${project.title}`}
+                      >
+                        <Github size={18} />
+                      </motion.a>
+                    )}
+                    {project.liveUrl && (
+                      <motion.a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        className="p-3 rounded-lg glass"
+                        style={{
+                          border: `1px solid ${theme === 'dark' ? 'rgba(0, 212, 255, 0.3)' : 'rgba(0, 102, 255, 0.3)'}`,
+                          background: theme === 'dark' ? 'rgba(0, 212, 255, 0.2)' : 'rgba(0, 102, 255, 0.2)',
+                          color: theme === 'dark' ? '#00d4ff' : '#0066ff',
+                        }}
+                        onClick={(e) => e.stopPropagation()}
+                        aria-label={`Voir ${project.title} en ligne`}
+                      >
+                        <ExternalLink size={18} />
+                      </motion.a>
+                    )}
                   </div>
                 </div>
 

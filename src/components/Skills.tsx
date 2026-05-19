@@ -21,7 +21,7 @@ export default function Skills({ theme }: SkillsProps) {
       skills: [
         { name: 'React / Next.js', level: 90 },
         { name: 'TypeScript', level: 85 },
-        { name: 'Tailwind CSS', level: 95 },
+        { name: 'Tailwind CSS', level: 90 },
         { name: 'HTML / CSS', level: 95 },
       ],
     },
@@ -30,9 +30,9 @@ export default function Skills({ theme }: SkillsProps) {
       icon: Smartphone,
       skills: [
         { name: 'Flutter', level: 85 },
-        { name: 'JetPack Compose', level: 75 },
-        { name: 'Kotlin', level: 70 },
         { name: 'Dart', level: 80 },
+        { name: 'Kotlin', level: 80 },
+        { name: 'Jetpack Compose', level: 75 },
         { name: 'Firebase', level: 80 },
       ],
     },
@@ -40,10 +40,10 @@ export default function Skills({ theme }: SkillsProps) {
       name: 'Backend',
       icon: Database,
       skills: [
-
-        { name: 'Supabase', level: 85 },
+        { name: 'Supabase', level: 90 },
         { name: 'Firebase', level: 80 },
-
+        { name: 'Prisma', level: 75 },
+        { name: 'MQTT', level: 70 },
       ],
     },
     {

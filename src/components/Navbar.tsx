@@ -24,7 +24,6 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
     { name: 'À propos', href: '#about' },
     { name: 'Compétences', href: '#skills' },
     { name: 'Projets', href: '#projects' },
-    { name: 'Blog', href: '#blog' },
     { name: 'Expérience', href: '#experience' },
     { name: 'Contact', href: '#contact' },
   ];

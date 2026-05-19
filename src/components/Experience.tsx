@@ -1,4 +1,4 @@
-import { Briefcase, GraduationCap, Award, Heart, Calendar, MapPin, Sparkles } from 'lucide-react';
+import { Briefcase, GraduationCap, Trophy, Heart, Rocket, Calendar, MapPin, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
@@ -14,12 +14,42 @@ export default function Experience({ theme }: ExperienceProps) {
 
   const experiences = [
     {
+      type: 'award',
+      icon: Trophy,
+      title: '1ᵉʳ Prix · Catégorie Technologies & Innovations',
+      organization: 'Salon des Étudiants Entrepreneurs',
+      location: 'Keyce Academie / UFDG, Conakry',
+      period: '16 mai 2026',
+      description: 'Premier prix remporté avec Solibox, une solution d\'énergie solaire connectée pour le partage du surplus d\'énergie via boîtier IoT.',
+      color: 'amber',
+    },
+    {
+      type: 'work',
+      icon: Briefcase,
+      title: 'Développeur Mobile Kotlin',
+      organization: 'NG Tech',
+      location: 'Conakry, Guinée',
+      period: 'Janvier – Mars 2026',
+      description: 'Stage de 3 mois — développement et intégration backend de certaines fonctionnalités d\'une application mobile native Android (contenu sous confidentialité).',
+      color: 'cyan',
+    },
+    {
+      type: 'entrepreneurship',
+      icon: Rocket,
+      title: 'Co-fondateur & Porteur de projet',
+      organization: 'Solibox',
+      location: 'Conakry, Guinée',
+      period: 'Novembre 2025 – Présent',
+      description: 'Conception, développement et pilotage d\'une solution d\'énergie solaire connectée : application mobile, landing page, boîtier IoT et gestion de la startup.',
+      color: 'orange',
+    },
+    {
       type: 'work',
       icon: Briefcase,
       title: 'Développeur Front-End',
       organization: 'Orange Digital Center',
       location: 'Conakry, Guinée',
-      period: '2024 - Présent',
+      period: 'Juin – Novembre 2025',
       description: 'Développement d\'applications web modernes avec React et Next.js. Collaboration sur des projets à impact social.',
       color: 'cyan',
     },
@@ -29,19 +59,9 @@ export default function Experience({ theme }: ExperienceProps) {
       title: 'Ambassadeur',
       organization: 'Fata School',
       location: 'Conakry, Guinée',
-      period: '2023 - Now',
-      description: 'Promotion de l\'application mobile fata dev et des différents projets de fata school',
+      period: '2023 – Présent',
+      description: 'Promotion de l\'application mobile Fata Dev et des différents projets de Fata School.',
       color: 'purple',
-    },
-    {
-      type: 'education',
-      icon: GraduationCap,
-      title: 'Licence en Informatique',
-      organization: 'Université de Conakry',
-      location: 'Conakry, Guinée',
-      period: '2021 - 2024',
-      description: 'Formation en développement logiciel, bases de données, et génie logiciel.',
-      color: 'blue',
     },
     {
       type: 'volunteer',
@@ -49,9 +69,19 @@ export default function Experience({ theme }: ExperienceProps) {
       title: 'Formateur Bénévole',
       organization: 'Fata School',
       location: 'Conakry, Guinée',
-      period: '2023 - Présent',
+      period: '2023 – Présent',
       description: 'Formation de jeunes développeurs aux technologies web modernes.',
       color: 'green',
+    },
+    {
+      type: 'education',
+      icon: GraduationCap,
+      title: 'Licence en Informatique',
+      organization: 'Université de Conakry',
+      location: 'Conakry, Guinée',
+      period: '2023 – 2027 (L3 en cours)',
+      description: 'Formation en développement logiciel, bases de données et génie logiciel.',
+      color: 'blue',
     },
   ];
 

@@ -171,7 +171,7 @@ export default function Hero({ theme }: HeroProps) {
                 2000,
                 'Développeur Mobile',
                 2000,
-                'Créateur d\'Expériences Numériques',
+                'Co-fondateur Solibox',
                 2000,
               ]}
               wrapper="span"
@@ -181,7 +181,7 @@ export default function Hero({ theme }: HeroProps) {
           </div>
 
           <div className="flex justify-center gap-2 flex-wrap">
-            {['React', 'Next.js', 'Flutter', 'TypeScript'].map((tech, index) => (
+            {['React', 'Next.js', 'Flutter', 'TypeScript', 'Kotlin'].map((tech, index) => (
               <motion.span
                 key={tech}
                 initial={{ opacity: 0, y: 20 }}
@@ -209,9 +209,9 @@ export default function Hero({ theme }: HeroProps) {
           className={`text-base sm:text-lg max-w-2xl mx-auto mb-12 leading-relaxed ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
             }`}
         >
-          Passionné par la création de solutions numériques innovantes qui allient
-          esthétique, performance et impact social à travers des expériences web et
-          mobiles exceptionnelles.
+          Développeur web et mobile passionné par la création de solutions numériques
+          utiles. Co-fondateur de Solibox — primé au Salon des étudiants entrepreneurs
+          2026 — je conçois des produits qui allient technologie et impact concret.
         </motion.p>
 
         {/* CTA Buttons */}

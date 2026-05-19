@@ -1,4 +1,4 @@
-import { Code2, Lightbulb, Users, Target, Sparkles } from 'lucide-react';
+import { Rocket, MapPin, Layers, GraduationCap, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useState } from 'react';
@@ -15,31 +15,31 @@ export default function About({ theme }: AboutProps) {
 
   const values = [
     {
-      icon: Code2,
-      title: 'Innovation',
-      description: 'Solutions créatives et modernes',
+      icon: Rocket,
+      title: 'Du code au produit',
+      description: 'Concevoir, développer, livrer — jusqu\'à l\'utilisateur final.',
     },
     {
-      icon: Lightbulb,
-      title: 'Apprentissage',
-      description: 'Curiosité et progression continue',
+      icon: MapPin,
+      title: 'Impact local',
+      description: 'Des solutions qui répondent à des problèmes vécus en Guinée.',
     },
     {
-      icon: Users,
-      title: 'Collaboration',
-      description: 'Travail d\'équipe et communication',
+      icon: Layers,
+      title: 'Polyvalence',
+      description: 'Web, mobile, design, gestion de projet — toute la chaîne.',
     },
     {
-      icon: Target,
-      title: 'Impact',
-      description: 'Projets à utilité concrète',
+      icon: GraduationCap,
+      title: 'Transmission',
+      description: 'Former la prochaine génération de dev (Fata School).',
     },
   ];
 
   const stats = [
-    { number: '2+', label: 'Années d\'expérience' },
-    { number: '10+', label: 'Projets réalisés' },
-    { number: '100%', label: 'Engagement' },
+    { number: '1ᵉʳ', label: 'Prix Étudiants Entrepreneurs 2026' },
+    { number: '5+', label: 'Projets livrés' },
+    { number: '2+', label: 'Années de développement' },
   ];
 
   return (
@@ -139,20 +139,20 @@ export default function About({ theme }: AboutProps) {
                 className={`text-lg leading-relaxed ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                   }`}
               >
-                Je suis un jeune <span className="font-semibold gradient-text">développeur web front-end et mobile</span> passionné par
-                la conception de solutions numériques utiles. Grâce à mes
-                expériences à <span className="font-semibold">Orange Digital Center</span> et <span className="font-semibold">Fata School</span>, j'ai développé
-                des compétences solides en conception, développement et
-                coordination de projets tech à impact social.
+                <span className="font-semibold gradient-text">Développeur web et mobile</span> basé à Conakry, je travaille au croisement
+                du <span className="font-semibold">code</span> et de l'<span className="font-semibold">entrepreneuriat</span>. Mes expériences
+                à <span className="font-semibold">Orange Digital Center</span>, <span className="font-semibold">NG Tech</span> et <span className="font-semibold">Fata School</span> m'ont
+                permis de construire des produits concrets — de l'application mobile
+                à la plateforme web — et de coordonner des projets tech à impact social.
               </p>
               <p
                 className={`text-lg leading-relaxed ${theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                   }`}
               >
-                Curieux, autonome et engagé, j'aime relever des défis techniques et
-                contribuer à des projets innovants qui allient technologie et
-                utilité concrète. Mon objectif est de créer des expériences
-                numériques qui ont un <span className="font-semibold gradient-text">impact positif</span> sur la vie des utilisateurs.
+                Curieux et autonome, j'aime apprendre par la pratique et transformer
+                une idée en produit utilisable. Que je code une app mobile, une plateforme web
+                ou que je porte un projet de bout en bout, ce qui me motive c'est de voir la
+                technologie résoudre des <span className="font-semibold gradient-text">problèmes réels</span> — pour ma communauté en Guinée et au-delà.
               </p>
 
               {/* Stats */}

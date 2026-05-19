@@ -4,7 +4,6 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
-import Blog from './components/Blog';
 import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -63,7 +62,6 @@ function App() {
           <About theme={theme} />
           <Skills theme={theme} />
           <Projects theme={theme} />
-          <Blog theme={theme} />
           <Experience theme={theme} />
           <Contact theme={theme} />
           <Footer theme={theme} />

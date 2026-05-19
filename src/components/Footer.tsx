@@ -54,7 +54,7 @@ export default function Footer({ theme }: FooterProps) {
               FF
             </h3>
             <p className={`text-sm ${theme === 'dark' ? 'text-gray-400' : 'text-gray-600'}`}>
-              Développeur Front-End & Mobile
+              Développeur web & mobile · Co-fondateur Solibox
             </p>
           </motion.div>
 
