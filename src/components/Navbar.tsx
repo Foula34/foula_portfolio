@@ -40,12 +40,12 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
     }
   };
 
+  const isOpaque = scrolled || isOpen;
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? 'bg-bg/85 backdrop-blur-md border-b border-border'
-          : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        isOpaque ? 'bg-bg border-b border-border' : 'bg-transparent'
       }`}
     >
       <div className="max-w-content mx-auto px-6">
@@ -55,7 +55,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             onClick={(e) => handleNavClick(e, '#home')}
             className="font-display text-xl text-text hover:text-accent transition-colors duration-200"
           >
-            Foula <span className="italic text-accent">Fofana.</span>
+            Foula <span className="text-accent">Fofana.</span>
           </a>
 
           {/* Desktop nav */}
@@ -116,13 +116,13 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               transition={{ duration: 0.25 }}
               className="md:hidden overflow-hidden border-t border-border"
             >
-              <div className="py-4 space-y-1">
+              <div className="py-6 space-y-1">
                 {navLinks.map((link) => (
                   <a
                     key={link.name}
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="block py-3 text-text hover:text-accent transition-colors duration-200"
+                    className="block py-3 font-display text-2xl text-text hover:text-accent transition-colors duration-200"
                   >
                     {link.name}
                   </a>

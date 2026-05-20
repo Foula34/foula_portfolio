@@ -50,7 +50,7 @@ export default function Skills({ theme: _theme }: SkillsProps) {
           transition={{ duration: 0.6, delay: 0.05 }}
           className="font-display text-4xl sm:text-5xl lg:text-6xl text-text mb-4"
         >
-          La <span className="italic text-accent">boîte à outils</span>.
+          La <span className="text-accent">boîte à outils</span>.
         </motion.h2>
 
         <motion.p

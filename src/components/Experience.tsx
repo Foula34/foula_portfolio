@@ -112,7 +112,7 @@ export default function Experience({ theme: _theme }: ExperienceProps) {
           transition={{ duration: 0.6, delay: 0.05 }}
           className="font-display text-4xl sm:text-5xl lg:text-6xl text-text mb-4"
         >
-          Étapes & <span className="italic text-accent">expériences</span>.
+          Étapes & <span className="text-accent">expériences</span>.
         </motion.h2>
 
         <motion.p

@@ -91,7 +91,7 @@ export default function Contact({ theme: _theme }: ContactProps) {
           transition={{ duration: 0.6, delay: 0.05 }}
           className="font-display text-4xl sm:text-5xl lg:text-6xl text-text mb-4"
         >
-          On <span className="italic text-accent">parle</span> ?
+          On <span className="text-accent">parle</span> ?
         </motion.h2>
 
         <motion.p

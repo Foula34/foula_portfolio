@@ -14,7 +14,7 @@ export default function Hero({ theme: _theme }: HeroProps) {
       <div className="max-w-content mx-auto w-full">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
           {/* LEFT — Text column */}
-          <div className="lg:col-span-7 order-2 lg:order-1">
+          <div className="lg:col-span-7">
             <motion.p
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export default function Hero({ theme: _theme }: HeroProps) {
             >
               Foula
               <br />
-              <span className="text-accent italic">Fofana.</span>
+              <span className="text-accent">Fofana.</span>
             </motion.h1>
 
             <motion.p
@@ -116,7 +116,7 @@ export default function Hero({ theme: _theme }: HeroProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="lg:col-span-5 order-1 lg:order-2"
+            className="lg:col-span-5"
           >
             <div className="relative max-w-sm mx-auto lg:max-w-none lg:ml-auto">
               <img

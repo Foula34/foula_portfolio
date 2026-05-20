@@ -86,7 +86,7 @@ export default function Projects({ theme: _theme }: ProjectsProps) {
           transition={{ duration: 0.6, delay: 0.05 }}
           className="font-display text-4xl sm:text-5xl lg:text-6xl text-text mb-4"
         >
-          Sélection de <span className="italic text-accent">réalisations</span>.
+          Sélection de <span className="text-accent">réalisations</span>.
         </motion.h2>
 
         <motion.p

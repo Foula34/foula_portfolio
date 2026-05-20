@@ -57,7 +57,7 @@ export default function About({ theme: _theme }: AboutProps) {
           transition={{ duration: 0.6, delay: 0.05 }}
           className="font-display text-4xl sm:text-5xl lg:text-6xl text-text mb-16"
         >
-          Construire des produits <span className="italic text-accent">utiles</span>.
+          Construire des produits <span className="text-accent">utiles</span>.
         </motion.h2>
 
         {/* Bio */}
