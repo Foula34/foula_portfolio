@@ -25,19 +25,10 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    e.preventDefault();
+  const handleNavClick = () => {
+    // Native anchor navigation + CSS `scroll-behavior: smooth` + `scroll-padding-top`
+    // handle the actual scroll. We only close the mobile menu here.
     setIsOpen(false);
-    const element = document.querySelector(href);
-    if (element) {
-      const offset = 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-      window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
-    }
   };
 
   const isOpaque = scrolled || isOpen;
@@ -52,7 +43,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
         <div className="flex items-center justify-between h-16 lg:h-20">
           <a
             href="#home"
-            onClick={(e) => handleNavClick(e, '#home')}
+            onClick={handleNavClick}
             className="font-display text-xl text-text hover:text-accent transition-colors duration-200"
           >
             Foula <span className="text-accent">Fofana.</span>
@@ -64,7 +55,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
               <a
                 key={link.name}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
+                onClick={handleNavClick}
                 className="text-sm text-text-muted hover:text-accent transition-colors duration-200"
               >
                 {link.name}
@@ -121,7 +112,7 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
                   <a
                     key={link.name}
                     href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
+                    onClick={handleNavClick}
                     className="block py-3 font-display text-2xl text-text hover:text-accent transition-colors duration-200"
                   >
                     {link.name}
