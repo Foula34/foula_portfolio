@@ -15,12 +15,13 @@ export const metadata: Metadata = {
     description: 'Une vraie boutique pour les vendeurs WhatsApp, sans rien installer pour leurs clients.',
     images: [{ url: '/images/sanni.jpg', alt: "Page d'accueil de Sanni et une boutique sur mobile" }],
   },
+  twitter: { card: 'summary_large_image', title: 'Sanni, étude de cas', description: "Une vraie boutique pour les vendeurs WhatsApp, sans rien installer pour leurs clients.", images: ['/images/sanni.jpg'] },
 };
 
 const facts = [
   { label: 'Mon rôle', value: 'Fondateur. Conception, développement, déploiement et support, en autonomie' },
   { label: 'En ligne depuis', value: 'Septembre 2026' },
-  { label: 'Technologies', value: 'Next.js, TypeScript, Supabase, Tailwind CSS, PWA, Vercel' },
+  { label: 'Technologies', value: 'Next.js, TypeScript, Supabase, Tailwind CSS, PWA, Firebase Cloud Messaging, Resend' },
   { label: 'Premiers résultats', value: '32 vendeurs inscrits et 24 boutiques en ligne en 3 semaines, sans publicité' },
 ];
 

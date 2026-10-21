@@ -75,6 +75,7 @@ const projects: Project[] = [
     stack: ['Next.js', 'Supabase', 'PWA'],
     image: { src: '/images/lab-oratoire.png', width: 1348, height: 607, alt: "Page d'accueil de Lab Oratoire" },
     url: 'https://lab-oratoiregn.com',
+    caseStudy: '/projets/lab-oratoire',
     urlLabel: 'lab-oratoiregn.com',
     palette: { bg: '#0E1730', fg: '#F3EFE4', muted: '#9AA4C0', accent: '#E2B33C', onAccent: '#0E1730' },
   },
