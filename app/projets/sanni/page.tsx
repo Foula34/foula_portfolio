@@ -15,6 +15,7 @@ export const metadata: Metadata = {
     description: 'Une vraie boutique pour les vendeurs WhatsApp, sans rien installer pour leurs clients.',
     images: [{ url: '/images/sanni.jpg', alt: "Page d'accueil de Sanni et une boutique sur mobile" }],
   },
+  twitter: { card: 'summary_large_image', title: 'Sanni, étude de cas', description: "Une vraie boutique pour les vendeurs WhatsApp, sans rien installer pour leurs clients.", images: ['/images/sanni.jpg'] },
 };
 
 const facts = [

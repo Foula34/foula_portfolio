@@ -16,6 +16,7 @@ export const metadata: Metadata = {
     description: "Partager le surplus d'énergie solaire entre voisins, et le piloter en temps réel avec MQTT.",
     images: [{ url: '/images/solibox-app.png', alt: "Écrans de l'application SoliBox" }],
   },
+  twitter: { card: 'summary_large_image', title: 'SoliBox, étude de cas', description: "Partager le surplus d'énergie solaire entre voisins, et le piloter en temps réel avec MQTT.", images: ['/images/solibox-app.png'] },
 };
 
 const facts = [

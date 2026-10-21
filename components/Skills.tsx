@@ -4,8 +4,8 @@ import { useState } from 'react';
 
 type Target = 'solibox' | 'sanni' | 'lab' | 'ngtech';
 
-// Où chaque compétence a réellement servi. Firebase et MySQL n'apparaissent
-// dans aucun des projets présentés : ils sont listés à part, sans lien inventé.
+// Où chaque compétence a réellement servi. MySQL n'apparaît
+// dans aucun des projets présentés : il est listé à part, sans lien inventé.
 const targets: { id: Target; name: string; note: string; bg: string; fg: string }[] = [
   { id: 'solibox', name: 'SoliBox', note: 'Application mobile IoT', bg: '#F88300', fg: '#1E1200' },
   { id: 'sanni', name: 'Sanni', note: 'Boutique en ligne', bg: '#1D1927', fg: '#F6F1E9' },
@@ -39,6 +39,7 @@ const groups: { name: string; skills: { name: string; used: Target[] }[] }[] = [
       { name: 'Supabase', used: ['solibox', 'sanni', 'lab'] },
       { name: 'PostgreSQL', used: ['solibox', 'sanni', 'lab'] },
       { name: 'MQTT', used: ['solibox'] },
+      { name: 'Firebase', used: ['lab'] },
     ],
   },
 ];
@@ -90,7 +91,7 @@ export default function Skills() {
                 </div>
               </div>
             ))}
-            <p className="text-sm text-text-muted">Aussi : JavaScript, Firebase, MySQL, Git et GitHub.</p>
+            <p className="text-sm text-text-muted">Aussi : JavaScript, MySQL, Git et GitHub.</p>
           </div>
 
           <div className="lg:col-span-5 order-1 lg:order-2">

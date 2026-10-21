@@ -18,10 +18,13 @@ export default function FlowDiagram({
   nodes,
   links,
   caption,
+  accent = '#F88300',
 }: {
   nodes: Node[];
   links: Link[];
   caption: string;
+  // Couleur du nœud mis en avant : celle du projet raconté.
+  accent?: string;
 }) {
   return (
     <figure className="my-2">
@@ -29,15 +32,20 @@ export default function FlowDiagram({
         {nodes.map((node, i) => (
           <div key={node.label} className="contents">
             <div
-              className={`sm:flex-1 rounded-xl border px-4 py-3 text-center ${
-                node.highlight ? 'border-[#F88300] bg-[#F88300]/10' : 'border-border bg-bg'
+              className={`sm:flex-1 sm:basis-0 min-w-0 rounded-xl border px-3 py-3 text-center ${
+                node.highlight ? '' : 'border-border bg-bg'
               }`}
+              style={
+                node.highlight
+                  ? { borderColor: accent, backgroundColor: `color-mix(in srgb, ${accent} 12%, transparent)` }
+                  : undefined
+              }
             >
               <p className="font-semibold text-text">{node.label}</p>
               {node.note && <p className="mt-0.5 text-sm text-text-muted">{node.note}</p>}
             </div>
             {i < links.length && (
-              <div className="sm:w-36 shrink-0 flex sm:flex-col items-center justify-center gap-1 px-2 py-1 text-text-muted">
+              <div className="sm:w-28 shrink-0 flex sm:flex-col items-center justify-center gap-1 px-2 py-1 text-text-muted">
                 <span aria-hidden="true" className="text-lg leading-none rotate-90 sm:rotate-0">
                   {links[i].dir === 'both' ? '⇄' : links[i].dir === 'right' ? '→' : '←'}
                 </span>
