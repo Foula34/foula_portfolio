@@ -6,9 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 
 const navLinks = [
+  { name: 'Projets', href: '#projects' },
   { name: 'À propos', href: '#about' },
   { name: 'Compétences', href: '#skills' },
-  { name: 'Projets', href: '#projects' },
   { name: 'Parcours', href: '#experience' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -57,7 +57,7 @@ export default function Navbar() {
             onClick={handleNavClick}
             className="font-display text-xl text-text hover:text-accent transition-colors duration-200"
           >
-            Foula <span className="text-accent">Fofana.</span>
+            Foula Fofana
           </a>
 
           {/* Desktop nav */}

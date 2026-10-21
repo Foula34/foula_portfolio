@@ -111,3 +111,26 @@ body {
 :root:not([data-theme='dark']) .theme-icon-dark {
   display: none;
 }
+
+/* Section projets : chaque projet impose ses couleurs (variables --p-*),
+   et la section glisse d'une palette à l'autre. */
+.project-stage,
+.project-stage :where(p, h2, h3, dt, dd, a, li, div) {
+  transition: background-color 0.7s ease, color 0.7s ease, border-color 0.7s ease;
+}
+.p-line {
+  border-color: color-mix(in srgb, var(--p-fg) 15%, transparent);
+}
+.p-line-strong {
+  border-color: color-mix(in srgb, var(--p-fg) 35%, transparent);
+}
+.p-ring {
+  --tw-ring-color: color-mix(in srgb, var(--p-fg) 15%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-stage,
+  .project-stage :where(p, h2, h3, dt, dd, a, li, div) {
+    transition: none;
+  }
+}

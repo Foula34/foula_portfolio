@@ -1,7 +1,16 @@
 import type { Metadata, Viewport } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import { GeistMono } from 'geist/font/mono';
+import localFont from 'next/font/local';
 import './globals.css';
+
+// Police d'affichage : Unbounded, large et affirmée, réservée au nom et aux titres de projets.
+const unbounded = localFont({
+  src: '../node_modules/@fontsource-variable/unbounded/files/unbounded-latin-wght-normal.woff2',
+  variable: '--font-unbounded',
+  weight: '200 900',
+  display: 'swap',
+});
 
 // Polices embarquées dans le projet (paquet `geist`) : servies par le site lui-même,
 // sans requête vers Google, et sans saut de texte au chargement.
@@ -65,7 +74,7 @@ export default function RootLayout({
       lang="fr"
       data-theme="light"
       suppressHydrationWarning
-      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      className={`${GeistSans.variable} ${GeistMono.variable} ${unbounded.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

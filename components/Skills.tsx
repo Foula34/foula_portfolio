@@ -40,7 +40,7 @@ export default function Skills() {
           transition={{ duration: 0.5 }}
           className="font-mono text-xs text-text-muted mb-6 tracking-wide"
         >
-          <span className="rule mr-3" /> 02 · Compétences
+          <span className="rule mr-3" /> Compétences
         </motion.div>
 
         <motion.h2

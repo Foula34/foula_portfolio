@@ -1,260 +1,215 @@
 'use client';
 
-import { ExternalLink, Trophy, ArrowUpRight } from 'lucide-react';
-import { GithubIcon as Github } from './BrandIcons';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { useState, type CSSProperties } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { ArrowUpRight } from 'lucide-react';
 
-
-interface Project {
-  title: string;
-  role: string;
-  description: string;
-  result: string;
-  technologies: string[];
-  image?: string;
-  liveUrl: string | null;
-  githubUrl: string | null;
-  award?: string;
+interface Palette {
+  bg: string;
+  fg: string;
+  muted: string;
+  accent: string;
+  onAccent: string;
 }
 
+interface Project {
+  id: string;
+  title: string;
+  tagline: string;
+  detail: string;
+  role: string;
+  result: string;
+  stack: string[];
+  image: { src: string; width: number; height: number; alt: string };
+  url: string;
+  urlLabel: string;
+  prize?: string;
+  palette: Palette;
+}
+
+// Chaque projet impose ses propres couleurs à toute la section quand on arrive dessus.
 const projects: Project[] = [
   {
+    id: 'solibox',
     title: 'SoliBox',
-    role: 'Cofondateur & CEO · application mobile',
-    description:
-      "Boîtier connecté qui permet aux foyers équipés de panneaux solaires de vendre leur surplus d'énergie à leurs voisins. J'ai développé l'application mobile : suivi en temps réel de la production et de la consommation, contrôle à distance du boîtier.",
-    result:
-      'Équipe de 5, incubée à Orange Fab Guinée, du prototype aux premières installations sur de vraies maisons.',
-    technologies: ['Flutter', 'Supabase', 'MQTT'],
-    image: '/images/solibox-app.png',
-    liveUrl: 'https://soliboxgn.com',
-    githubUrl: null,
-    award: '1ᵉʳ prix national POESAM 2026',
+    tagline: "Les voisins s'échangent l'énergie de leurs panneaux solaires.",
+    detail:
+      "Un boîtier connecté et une application mobile pour suivre la production et la consommation en temps réel, contrôler le boîtier à distance et vendre le surplus.",
+    role: "Cofondateur et CEO. J'ai développé l'application mobile.",
+    result: 'Équipe de 5, incubée à Orange Fab Guinée, premières installations sur de vraies maisons.',
+    stack: ['Flutter', 'Supabase', 'MQTT'],
+    image: { src: '/images/solibox-app.png', width: 1348, height: 607, alt: "Écrans de l'application mobile SoliBox" },
+    url: 'https://soliboxgn.com',
+    urlLabel: 'soliboxgn.com',
+    prize: '1er prix national POESAM 2026',
+    palette: { bg: '#FFE7A3', fg: '#2B1C02', muted: '#6E5418', accent: '#2B1C02', onAccent: '#FFE7A3' },
   },
   {
+    id: 'sanni',
     title: 'Sanni',
-    role: 'Fondateur & développeur',
-    description:
-      'Boutique en ligne pour les commerçants qui vendent sur WhatsApp et Facebook : ils publient leurs articles une fois, partagent un lien, et leurs clients commandent eux-mêmes, sans rien installer.',
-    result:
-      '32 vendeurs inscrits et 24 boutiques en ligne en 3 semaines, sans budget publicitaire.',
-    technologies: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'PWA'],
-    image: '/images/sanni.jpg',
-    liveUrl: 'https://sanniya.com',
-    githubUrl: null,
+    tagline: 'Les vendeurs WhatsApp ont enfin une vraie boutique.',
+    detail:
+      'Ils publient leurs articles une fois, partagent un lien, et leurs clients commandent eux-mêmes, sans rien installer ni créer de compte.',
+    role: "Fondateur. Je l'ai conçu, développé et mis en ligne en autonomie.",
+    result: '32 vendeurs inscrits et 24 boutiques en ligne en 3 semaines, sans budget publicitaire.',
+    stack: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'PWA'],
+    image: { src: '/images/sanni.jpg', width: 1600, height: 1000, alt: "Page d'accueil de Sanni et une boutique sur mobile" },
+    url: 'https://sanniya.com',
+    urlLabel: 'sanniya.com',
+    palette: { bg: '#1D1927', fg: '#F6F1E9', muted: '#A9A2B8', accent: '#E8650F', onAccent: '#FFFFFF' },
   },
   {
+    id: 'lab-oratoire',
     title: 'Lab Oratoire',
-    role: 'Créateur & développeur',
-    description:
-      "Plateforme communautaire pour pratiquer la prise de parole en public : défis vidéo, retours entre membres, classement et analyse d'improvisation par IA.",
-    result:
-      'Plus de 40 membres, 10 défis lancés et 10 semaines de pratique continue.',
-    technologies: ['Next.js', 'Supabase', 'PWA'],
-    image: '/images/lab-oratoire.png',
-    liveUrl: 'https://lab-oratoiregn.com',
-    githubUrl: null,
+    tagline: 'Apprendre à parler en public en pratiquant, chaque semaine.',
+    detail:
+      "Une plateforme communautaire avec des défis vidéo, des retours entre membres, un classement et une analyse d'improvisation par IA.",
+    role: "Créateur. J'ai conçu et développé la plateforme.",
+    result: 'Plus de 40 membres, 10 défis lancés et 10 semaines de pratique continue.',
+    stack: ['Next.js', 'Supabase', 'PWA'],
+    image: { src: '/images/lab-oratoire.png', width: 1348, height: 607, alt: "Page d'accueil de Lab Oratoire" },
+    url: 'https://lab-oratoiregn.com',
+    urlLabel: 'lab-oratoiregn.com',
+    palette: { bg: '#0E1730', fg: '#F3EFE4', muted: '#9AA4C0', accent: '#E2B33C', onAccent: '#0E1730' },
   },
 ];
 
+function paletteVars(p: Palette): CSSProperties {
+  return {
+    '--p-bg': p.bg,
+    '--p-fg': p.fg,
+    '--p-muted': p.muted,
+    '--p-accent': p.accent,
+    '--p-on-accent': p.onAccent,
+  } as CSSProperties;
+}
+
 export default function Projects() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
+  const [active, setActive] = useState(0);
+  const palette = projects[active].palette;
 
   return (
-    <section id="projects" className="py-24 lg:py-32 px-6 bg-bg-alt">
-      <div className="max-w-content mx-auto" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="font-mono text-xs text-text-muted mb-6 tracking-wide"
-        >
-          <span className="rule mr-3" /> 03 · Projets
-        </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.05 }}
-          className="font-display text-4xl sm:text-5xl lg:text-6xl text-text mb-4"
-        >
-          Sélection de <span className="text-accent">réalisations</span>.
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-base text-text-muted mb-16 max-w-prose"
-        >
-          Trois produits que je conçois et développe, de l’idée jusqu’au
-          déploiement, avec de vrais utilisateurs.
-        </motion.p>
-
-        <div className="grid md:grid-cols-2 gap-x-8 gap-y-16 lg:gap-y-20">
-          {projects.map((project, i) => (
-            <ProjectCard
-              featured={i === 0}
-              key={project.title}
-              project={project}
-              index={i}
-              inView={inView}
-            />
-          ))}
+    <section
+      id="projects"
+      aria-labelledby="projects-title"
+      style={paletteVars(palette)}
+      className="project-stage relative bg-[var(--p-bg)] text-[color:var(--p-fg)]"
+    >
+      {/* Navigation collante : montre le projet en cours et permet de sauter à un autre. */}
+      <div className="sticky top-16 lg:top-20 z-30 bg-[var(--p-bg)] project-stage">
+        <div className="max-w-content mx-auto px-6 flex items-center justify-between gap-6 h-14 p-line border-b">
+          <h2 id="projects-title" className="sr-only sm:not-sr-only text-sm font-medium">
+            Projets
+          </h2>
+          <nav aria-label="Projets" className="flex gap-1 sm:gap-2 overflow-x-auto">
+            {projects.map((project, i) => (
+              <a
+                key={project.id}
+                href={`#${project.id}`}
+                aria-current={i === active ? 'true' : undefined}
+                className={`whitespace-nowrap rounded-full px-3 py-1.5 text-sm transition-colors ${
+                  i === active
+                    ? 'bg-[var(--p-fg)] text-[color:var(--p-bg)]'
+                    : 'text-[color:var(--p-muted)] hover:text-[color:var(--p-fg)]'
+                }`}
+              >
+                {project.title}
+              </a>
+            ))}
+          </nav>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          className="mt-20 pt-12 border-t border-border text-center"
-        >
-          <a
-            href="https://github.com/Foula34"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 text-text hover:text-accent border-b border-text/30 hover:border-accent pb-1 transition-colors duration-200"
-          >
-            <Github size={18} />
-            Voir tous mes projets sur GitHub
-            <ArrowUpRight
-              size={16}
-              className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-            />
-          </a>
-        </motion.div>
       </div>
+
+      {projects.map((project, i) => (
+        <ProjectPanel key={project.id} project={project} onEnter={() => setActive(i)} />
+      ))}
     </section>
   );
 }
 
-interface ProjectCardProps {
-  featured?: boolean;
-  project: Project;
-  index: number;
-  inView: boolean;
-}
-
-function ProjectCard({ project, index, inView, featured }: ProjectCardProps) {
-  const primaryHref = project.liveUrl ?? project.githubUrl ?? '#';
+function ProjectPanel({ project, onEnter }: { project: Project; onEnter: () => void }) {
+  const reduce = useReducedMotion() ?? false;
+  // Le projet devient actif quand il franchit le milieu de l'écran.
+  const { ref } = useInView({
+    rootMargin: '-50% 0px -50% 0px',
+    onChange: (inView) => {
+      if (inView) onEnter();
+    },
+  });
 
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 24 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, delay: 0.15 + index * 0.08 }}
-      className={`group flex flex-col ${featured ? 'md:col-span-2' : ''}`}
+    <article
+      ref={ref}
+      id={project.id}
+      className="scroll-mt-[7.5rem] lg:scroll-mt-[8.5rem] min-h-[calc(100svh-7.5rem)] lg:min-h-[calc(100svh-8.5rem)] flex items-center px-6 py-14 lg:py-12"
     >
-      <a
-        href={primaryHref}
-        target={primaryHref !== '#' ? '_blank' : undefined}
-        rel={primaryHref !== '#' ? 'noopener noreferrer' : undefined}
-        className="block relative overflow-hidden border border-border bg-bg"
-      >
-        {project.image ? (
-          <Image
-            src={project.image}
-            alt={`Aperçu de ${project.title}`}
-            width={1348}
-            height={607}
-            sizes={featured ? '(min-width: 1152px) 1104px, 100vw' : '(min-width: 768px) 50vw, 100vw'}
-            className={`w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02] ${
-              featured ? 'aspect-[16/10] md:aspect-[21/9]' : 'aspect-[16/10]'
-            }`}
-          />
-        ) : (
-          <div className="w-full aspect-[16/10] flex flex-col items-center justify-center gap-3 bg-accent-soft">
-            <span className="font-display text-5xl lg:text-6xl text-text">
-              {project.title}
-            </span>
-            {project.liveUrl && (
-              <span className="font-mono text-xs text-text-muted">
-                {project.liveUrl.replace('https://', '')}
-              </span>
-            )}
-          </div>
-        )}
-        {project.award && (
-          <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-accent text-bg px-3 py-1.5 font-mono text-[11px] tracking-wide">
-            <Trophy size={12} strokeWidth={2} />
-            {project.award}
-          </div>
-        )}
-      </a>
+      <div className="max-w-content mx-auto w-full grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+        <div className="lg:col-span-5 order-2 lg:order-1">
+          {project.prize && (
+            <p className="inline-block mb-5 rounded-full border p-line-strong px-3 py-1 text-sm font-medium">
+              {project.prize}
+            </p>
+          )}
+          <h3 className="font-unbounded font-bold tracking-[-0.03em] leading-[0.95] text-[clamp(2.4rem,5vw,4rem)]">
+            {project.title}
+          </h3>
+          <p className="mt-5 text-xl lg:text-2xl leading-snug font-medium tracking-tight">{project.tagline}</p>
+          <p className="mt-3 text-[color:var(--p-muted)] leading-relaxed">{project.detail}</p>
 
-      <div className="mt-6 flex items-start gap-4">
-        <span className="font-mono text-xs text-text-muted pt-1.5">
-          0{index + 1}
-        </span>
-        <div className="flex-1">
-          <div className="flex items-start justify-between gap-4 mb-2">
-            <h3 className="font-display text-2xl lg:text-3xl text-text">
-              {project.title}
-            </h3>
-            <a
-              href={primaryHref}
-              target={primaryHref !== '#' ? '_blank' : undefined}
-              rel={primaryHref !== '#' ? 'noopener noreferrer' : undefined}
-              aria-label={`Ouvrir ${project.title}`}
-              className="text-text-muted hover:text-accent transition-colors duration-200 pt-2"
-            >
-              <ArrowUpRight
-                size={20}
-                strokeWidth={1.5}
-                className="transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
-            </a>
-          </div>
+          <dl className="mt-6 space-y-3">
+            <div>
+              <dt className="text-sm text-[color:var(--p-muted)]">Mon rôle</dt>
+              <dd className="mt-0.5">{project.role}</dd>
+            </div>
+            <div>
+              <dt className="text-sm text-[color:var(--p-muted)]">Résultat</dt>
+              <dd className="mt-0.5">{project.result}</dd>
+            </div>
+            <div>
+              <dt className="text-sm text-[color:var(--p-muted)]">Technologies</dt>
+              <dd className="mt-0.5">{project.stack.join(', ')}</dd>
+            </div>
+          </dl>
 
-          <p className="font-mono text-xs text-accent tracking-wide mb-3">
-            {project.role}
-          </p>
-
-          <p className="text-text-muted leading-relaxed mb-3">
-            {project.description}
-          </p>
-
-          <p className="text-text leading-relaxed mb-5">{project.result}</p>
-
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
-            {project.technologies.map((tech) => (
-              <span
-                key={tech}
-                className="font-mono text-xs text-text-muted"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex items-center gap-5 text-sm">
-            {project.liveUrl && (
-              <a
-                href={project.liveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-text hover:text-accent transition-colors duration-200"
-              >
-                <ExternalLink size={14} />
-                Voir le site
-              </a>
-            )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-text hover:text-accent transition-colors duration-200"
-              >
-                <Github size={14} />
-                Code source
-              </a>
-            )}
-          </div>
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-7 inline-flex items-center gap-2 rounded-full bg-[var(--p-accent)] text-[color:var(--p-on-accent)] px-6 py-3.5 font-medium transition-transform hover:-translate-y-0.5"
+          >
+            Visiter {project.urlLabel}
+            <ArrowUpRight size={18} />
+          </a>
         </div>
+
+        <motion.div
+          className="lg:col-span-7 order-1 lg:order-2"
+          initial={reduce ? false : { opacity: 0, scale: 0.94 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.35 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <a
+            href={project.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            tabIndex={-1}
+            aria-hidden="true"
+            className="block overflow-hidden rounded-2xl ring-1 p-ring shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)]"
+          >
+            <Image
+              src={project.image.src}
+              alt={project.image.alt}
+              width={project.image.width}
+              height={project.image.height}
+              sizes="(min-width: 1024px) 58vw, 100vw"
+              className="w-full aspect-[16/10] object-cover object-top"
+            />
+          </a>
+        </motion.div>
       </div>
-    </motion.article>
+    </article>
   );
 }

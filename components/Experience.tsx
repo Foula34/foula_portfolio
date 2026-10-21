@@ -94,7 +94,7 @@ export default function Experience() {
           transition={{ duration: 0.5 }}
           className="font-mono text-xs text-text-muted mb-6 tracking-wide"
         >
-          <span className="rule mr-3" /> 04 · Parcours
+          <span className="rule mr-3" /> Parcours
         </motion.div>
 
         <motion.h2

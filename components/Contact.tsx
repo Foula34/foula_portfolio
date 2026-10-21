@@ -73,7 +73,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="font-mono text-xs text-text-muted mb-6 tracking-wide"
         >
-          <span className="rule mr-3" /> 05 · Contact
+          <span className="rule mr-3" /> Contact
         </motion.div>
 
         <motion.h2
