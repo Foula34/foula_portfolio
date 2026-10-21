@@ -1,12 +1,11 @@
+'use client';
+
 import { Rocket, MapPin, Layers, GraduationCap } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-interface AboutProps {
-  theme: 'light' | 'dark';
-}
 
-export default function About({ theme: _theme }: AboutProps) {
+export default function About() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
 
   const stats = [
@@ -70,10 +69,10 @@ export default function About({ theme: _theme }: AboutProps) {
               className="text-lg leading-relaxed text-text"
             >
               Développeur web et mobile basé à Conakry, en 4e année de Génie
-              informatique (génie logiciel) à l'Université Gamal Abdel Nasser.
-              J'ai développé mon expérience à l'
+              informatique (génie logiciel) à l’Université Gamal Abdel Nasser.
+              J’ai développé mon expérience à l’
               <span className="font-medium">Orange Digital Center</span>, où notre
-              équipe a pris la 2e place de l'Orange Summer Challenge 2025, puis
+              équipe a pris la 2e place de l’Orange Summer Challenge 2025, puis
               chez <span className="font-medium">NG Tech</span>, où je suis
               développeur mobile. Chez{' '}
               <span className="font-medium">FATA Guinée</span>, je forme des jeunes
@@ -85,10 +84,10 @@ export default function About({ theme: _theme }: AboutProps) {
               transition={{ duration: 0.6, delay: 0.25 }}
               className="text-lg leading-relaxed text-text-muted"
             >
-              Curieux et autonome, j'aime apprendre par la pratique et transformer
+              Curieux et autonome, j’aime apprendre par la pratique et transformer
               une idée en produit utilisable. Que je code une app mobile, une
               plateforme web ou que je porte un projet de bout en bout, ce qui me
-              motive c'est de voir la technologie résoudre des problèmes réels —
+              motive c’est de voir la technologie résoudre des problèmes réels —
               pour ma communauté en Guinée et au-delà.
             </motion.p>
           </div>

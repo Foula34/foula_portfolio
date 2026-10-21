@@ -1,24 +1,15 @@
-import {
-  Mail,
-  Phone,
-  Linkedin,
-  Send,
-  CheckCircle2,
-  MapPin,
-  Github,
-  ArrowUpRight,
-} from 'lucide-react';
+'use client';
+
+import { Mail, Phone, Send, CheckCircle2, MapPin, ArrowUpRight } from 'lucide-react';
+import { GithubIcon as Github, LinkedinIcon as Linkedin } from './BrandIcons';
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-interface ContactProps {
-  theme: 'light' | 'dark';
-}
 
 const CONTACT_EMAIL = 'fofanafoula70@gmail.com';
 
-export default function Contact({ theme: _theme }: ContactProps) {
+export default function Contact() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',

@@ -1,12 +1,11 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Code2, Smartphone, Database, Cpu } from 'lucide-react';
 
-interface SkillsProps {
-  theme: 'light' | 'dark';
-}
 
-export default function Skills({ theme: _theme }: SkillsProps) {
+export default function Skills() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
 
   const categories = [
@@ -59,7 +58,7 @@ export default function Skills({ theme: _theme }: SkillsProps) {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="text-base text-text-muted mb-16 max-w-prose"
         >
-          Les technologies que j'utilise au quotidien sur mes projets — du
+          Les technologies que j’utilise au quotidien sur mes projets — du
           prototype au produit livré.
         </motion.p>
 

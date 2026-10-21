@@ -1,11 +1,10 @@
+'use client';
+
 import { ArrowUp } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-interface FooterProps {
-  theme: 'light' | 'dark';
-}
 
-export default function Footer({ theme: _theme }: FooterProps) {
+export default function Footer() {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {

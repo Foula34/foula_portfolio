@@ -1,10 +1,11 @@
-import { ExternalLink, Github, Trophy, ArrowUpRight } from 'lucide-react';
+'use client';
+
+import { ExternalLink, Trophy, ArrowUpRight } from 'lucide-react';
+import { GithubIcon as Github } from './BrandIcons';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-interface ProjectsProps {
-  theme: 'light' | 'dark';
-}
 
 interface Project {
   title: string;
@@ -27,7 +28,7 @@ const projects: Project[] = [
     result:
       'Équipe de 5, incubée à Orange Fab Guinée, du prototype aux premières installations sur de vraies maisons.',
     technologies: ['Flutter', 'Supabase', 'MQTT'],
-    image: 'images/solibox-app.png',
+    image: '/images/solibox-app.png',
     liveUrl: 'https://soliboxgn.com',
     githubUrl: null,
     award: '1ᵉʳ prix national POESAM 2026',
@@ -51,13 +52,13 @@ const projects: Project[] = [
     result:
       'Plus de 40 membres, 10 défis lancés et 10 semaines de pratique continue.',
     technologies: ['Next.js', 'Supabase', 'PWA'],
-    image: 'images/lab-oratoire.png',
+    image: '/images/lab-oratoire.png',
     liveUrl: 'https://lab-oratoiregn.com',
     githubUrl: null,
   },
 ];
 
-export default function Projects({ theme: _theme }: ProjectsProps) {
+export default function Projects() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
 
   return (
@@ -87,7 +88,7 @@ export default function Projects({ theme: _theme }: ProjectsProps) {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="text-base text-text-muted mb-16 max-w-prose"
         >
-          Trois produits que je conçois et développe, de l'idée jusqu'au
+          Trois produits que je conçois et développe, de l’idée jusqu’au
           déploiement, avec de vrais utilisateurs.
         </motion.p>
 
@@ -152,9 +153,12 @@ function ProjectCard({ project, index, inView, featured }: ProjectCardProps) {
         className="block relative overflow-hidden border border-border bg-bg"
       >
         {project.image ? (
-          <img
+          <Image
             src={project.image}
             alt={`Aperçu de ${project.title}`}
+            width={1348}
+            height={607}
+            sizes={featured ? '(min-width: 1152px) 1104px, 100vw' : '(min-width: 768px) 50vw, 100vw'}
             className={`w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02] ${
               featured ? 'aspect-[16/10] md:aspect-[21/9]' : 'aspect-[16/10]'
             }`}

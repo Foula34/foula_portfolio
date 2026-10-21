@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@400;500;600&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -40,7 +38,7 @@ html {
 }
 
 body {
-  font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background-color: var(--bg);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
@@ -50,14 +48,14 @@ body {
 }
 
 .font-display {
-  font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, sans-serif;
   font-weight: 600;
   letter-spacing: -0.035em;
   line-height: 1;
 }
 
 .font-mono {
-  font-family: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  font-family: var(--font-geist-mono), ui-monospace, 'SF Mono', Menlo, monospace;
   font-feature-settings: 'tnum';
 }
 
@@ -106,4 +104,10 @@ body {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Icône du bouton de thème : la lune en clair, le soleil en sombre. */
+[data-theme='dark'] .theme-icon-light,
+:root:not([data-theme='dark']) .theme-icon-dark {
+  display: none;
 }

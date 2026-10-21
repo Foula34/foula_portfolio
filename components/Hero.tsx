@@ -1,11 +1,12 @@
-import { Github, Linkedin, Mail, ArrowRight, Download } from 'lucide-react';
+'use client';
+
+import { Mail, ArrowRight, Download } from 'lucide-react';
+import { GithubIcon as Github, LinkedinIcon as Linkedin } from './BrandIcons';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
-interface HeroProps {
-  theme: 'light' | 'dark';
-}
 
-export default function Hero({ theme: _theme }: HeroProps) {
+export default function Hero() {
   return (
     <section
       id="home"
@@ -53,7 +54,7 @@ export default function Hero({ theme: _theme }: HeroProps) {
               className="text-base text-text-muted mb-10 leading-relaxed max-w-prose"
             >
               Je conçois, développe et mets en ligne des produits utilisés par de
-              vrais utilisateurs, de l'idée jusqu'au déploiement : SoliBox, Sanni
+              vrais utilisateurs, de l’idée jusqu’au déploiement : SoliBox, Sanni
               et Lab Oratoire.
             </motion.p>
 
@@ -74,7 +75,7 @@ export default function Hero({ theme: _theme }: HeroProps) {
                 />
               </a>
               <a
-                href="documents/Foula_Fofana_CV_2026.pdf"
+                href="/documents/Foula_Fofana_CV_2026.pdf"
                 download="Foula_Fofana_CV_2026.pdf"
                 className="group inline-flex items-center gap-2 text-text hover:text-accent border-b border-text/30 hover:border-accent pb-1 transition-colors duration-200"
               >
@@ -120,9 +121,13 @@ export default function Hero({ theme: _theme }: HeroProps) {
             className="lg:col-span-5"
           >
             <div className="relative max-w-sm mx-auto lg:max-w-none lg:ml-auto">
-              <img
-                src="images/foula.jpg"
+              <Image
+                src="/images/foula.jpg"
                 alt="Foula Fofana"
+                width={960}
+                height={1280}
+                priority
+                sizes="(min-width: 1024px) 40vw, (min-width: 640px) 384px, 100vw"
                 className="w-full aspect-[4/5] object-cover"
               />
               <p className="font-mono text-xs text-text-muted mt-4 tracking-wide">

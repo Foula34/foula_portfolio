@@ -1,11 +1,9 @@
+'use client';
+
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-interface NavbarProps {
-  theme: 'light' | 'dark';
-  toggleTheme: () => void;
-}
 
 const navLinks = [
   { name: 'À propos', href: '#about' },
@@ -15,7 +13,20 @@ const navLinks = [
   { name: 'Contact', href: '#contact' },
 ];
 
-export default function Navbar({ theme, toggleTheme }: NavbarProps) {
+// Le thème est porté par l'attribut data-theme de <html>, posé avant l'affichage
+// par le script du layout. Pas besoin d'état React : le CSS choisit l'icône.
+function toggleTheme() {
+  const root = document.documentElement;
+  const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  try {
+    localStorage.setItem('theme', next);
+  } catch {
+    // Stockage indisponible (navigation privée) : le thème vaut pour la visite.
+  }
+}
+
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -64,13 +75,10 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             <button
               onClick={toggleTheme}
               className="text-text-muted hover:text-accent transition-colors duration-200"
-              aria-label={theme === 'dark' ? 'Mode clair' : 'Mode sombre'}
+              aria-label="Changer de thème"
             >
-              {theme === 'dark' ? (
-                <Sun size={18} strokeWidth={1.75} />
-              ) : (
-                <Moon size={18} strokeWidth={1.75} />
-              )}
+              <Sun size={18} strokeWidth={1.75} className="theme-icon-dark" />
+              <Moon size={18} strokeWidth={1.75} className="theme-icon-light" />
             </button>
           </div>
 
@@ -79,13 +87,10 @@ export default function Navbar({ theme, toggleTheme }: NavbarProps) {
             <button
               onClick={toggleTheme}
               className="text-text-muted hover:text-accent transition-colors duration-200"
-              aria-label={theme === 'dark' ? 'Mode clair' : 'Mode sombre'}
+              aria-label="Changer de thème"
             >
-              {theme === 'dark' ? (
-                <Sun size={18} strokeWidth={1.75} />
-              ) : (
-                <Moon size={18} strokeWidth={1.75} />
-              )}
+              <Sun size={18} strokeWidth={1.75} className="theme-icon-dark" />
+              <Moon size={18} strokeWidth={1.75} className="theme-icon-light" />
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}

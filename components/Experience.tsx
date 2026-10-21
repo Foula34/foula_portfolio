@@ -1,18 +1,10 @@
-import {
-  Briefcase,
-  GraduationCap,
-  Trophy,
-  Heart,
-  Rocket,
-  MapPin,
-} from 'lucide-react';
+'use client';
+
+import { Briefcase, GraduationCap, Trophy, Heart, Rocket, MapPin } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { LucideIcon } from 'lucide-react';
 
-interface ExperienceProps {
-  theme: 'light' | 'dark';
-}
 
 interface Item {
   icon: LucideIcon;
@@ -24,7 +16,7 @@ interface Item {
   highlight?: boolean;
 }
 
-export default function Experience({ theme: _theme }: ExperienceProps) {
+export default function Experience() {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const items: Item[] = [
