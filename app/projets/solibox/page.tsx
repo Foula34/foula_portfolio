@@ -19,6 +19,14 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: 'SoliBox, étude de cas', description: "Partager le surplus d'énergie solaire entre voisins, et le piloter en temps réel avec MQTT.", images: ['/images/solibox-app.png'] },
 };
 
+// SoliBox OS : ce que chaque rôle peut voir et faire.
+const osRoles = [
+  { who: 'CEO et RAF', access: 'Tout, y compris les documents sensibles. Eux seuls valident les dépenses.' },
+  { who: "Membres de l'équipe", access: 'Tâches, réunions, produit. Ils peuvent proposer une dépense.' },
+  { who: 'Collaborateurs externes', access: 'Seulement ce dont ils ont besoin, sans accès aux finances.' },
+  { who: 'Bailleurs de fonds', access: 'Les rapports financiers que nous choisissons de partager, exportables en PDF.' },
+];
+
 const facts = [
   { label: 'Mon rôle', value: "Cofondateur et CEO, développeur de l'application mobile" },
   { label: 'Équipe', value: '5 personnes, incubée à Orange Fab Guinée' },
@@ -168,6 +176,50 @@ export default function SoliBoxCaseStudy() {
                 producteur et chaque consommateur sache combien il a partagé ou consommé.
               </p>
             </Section>
+
+            <section className="grid lg:grid-cols-12 gap-8 lg:gap-12 py-14 border-t border-border">
+              <div className="lg:col-span-8 space-y-5 text-lg leading-relaxed text-text-muted max-w-[42rem]">
+                <h2 className="font-unbounded font-semibold text-2xl tracking-[-0.02em] leading-tight text-text">
+                  L&apos;outil interne de l&apos;équipe : SoliBox OS
+                </h2>
+                <p>
+                  Piloter une startup, c&apos;est aussi gérer des tâches, des dépenses, des compétitions et des
+                  documents. Plutôt que d&apos;éparpiller tout ça entre plusieurs outils externes, j&apos;ai construit
+                  SoliBox OS, une plateforme de gestion réservée à l&apos;équipe. Tout est au même endroit, et nos
+                  données restent entre nous.
+                </p>
+                <p>
+                  On y suit le pilotage (tableau de bord, tâches, réunions, objectifs), les finances (financements,
+                  dépenses, achats, inventaire), le produit (application, hardware, tests), ainsi que nos compétitions,
+                  nos prix et nos documents.
+                </p>
+                <p>
+                  L&apos;outil est organisé par rôles, pour que chacun ne voie que ce qui le concerne :
+                </p>
+                <dl className="divide-y divide-border border-y border-border text-base">
+                  {osRoles.map((r) => (
+                    <div key={r.who} className="py-4 grid sm:grid-cols-[12rem_1fr] gap-1 sm:gap-6">
+                      <dt className="font-semibold text-text">{r.who}</dt>
+                      <dd>{r.access}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <p className="text-base">
+                  Même stack que mes autres projets : Next.js, Supabase, Tailwind CSS, Firebase Cloud Messaging et
+                  Resend, en PWA.
+                </p>
+              </div>
+              <div className="lg:col-span-4 flex justify-center lg:justify-end lg:items-start">
+                <Image
+                  src="/images/solibox-os.jpg"
+                  alt="Menu de SoliBox OS : pilotage, finances et produit"
+                  width={600}
+                  height={1600}
+                  sizes="260px"
+                  className="w-[220px] sm:w-[260px] rounded-[1.75rem] ring-8 ring-[#0A0F14] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.5)]"
+                />
+              </div>
+            </section>
 
             <Section title="Ce que j'en retiens">
               <p>
