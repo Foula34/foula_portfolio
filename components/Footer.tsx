@@ -18,7 +18,7 @@ export default function Footer() {
             Voir le code de ce site
           </a>
           <span>© {year}</span>
-          <a href="#home" className="hover:text-text transition-colors">
+          <a href="#" className="hover:text-text transition-colors">
             Retour en haut
           </a>
         </div>
