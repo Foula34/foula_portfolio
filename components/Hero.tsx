@@ -14,7 +14,7 @@ export default function Hero() {
     >
       <div className="max-w-content mx-auto w-full">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* LEFT — Text column */}
+          {/* LEFT · Text column */}
           <div className="lg:col-span-7">
             <motion.p
               initial={{ opacity: 0, y: 8 }}
@@ -113,7 +113,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* RIGHT — Photo column */}
+          {/* RIGHT · Photo column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

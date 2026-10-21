@@ -30,7 +30,7 @@ export default function Footer() {
         </div>
 
         <div className="flex items-center gap-6 font-mono text-xs text-text-muted">
-          <span>© {currentYear} — Conakry, Guinée</span>
+          <span>© {currentYear} · Conakry, Guinée</span>
           <button
             onClick={scrollToTop}
             className={`inline-flex items-center gap-1 hover:text-accent transition-all duration-200 ${

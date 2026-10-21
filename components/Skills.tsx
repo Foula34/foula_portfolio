@@ -40,7 +40,7 @@ export default function Skills() {
           transition={{ duration: 0.5 }}
           className="font-mono text-xs text-text-muted mb-6 tracking-wide"
         >
-          <span className="rule mr-3" /> 02 — Compétences
+          <span className="rule mr-3" /> 02 · Compétences
         </motion.div>
 
         <motion.h2
@@ -58,7 +58,7 @@ export default function Skills() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="text-base text-text-muted mb-16 max-w-prose"
         >
-          Les technologies que j’utilise au quotidien sur mes projets — du
+          Les technologies que j’utilise au quotidien sur mes projets, du
           prototype au produit livré.
         </motion.p>
 

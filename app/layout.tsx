@@ -7,7 +7,7 @@ import './globals.css';
 // sans requête vers Google, et sans saut de texte au chargement.
 
 const siteUrl = 'https://foula-portfolio.vercel.app';
-const title = 'Foula Fofana — Développeur web & mobile';
+const title = 'Foula Fofana · Développeur web & mobile';
 const description =
   'Développeur web et mobile basé à Conakry. Cofondateur et CEO de SoliBox, 1er prix national POESAM 2026. Créateur de Sanni et Lab Oratoire.';
 

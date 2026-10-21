@@ -47,7 +47,7 @@ export default function About() {
           transition={{ duration: 0.5 }}
           className="font-mono text-xs text-text-muted mb-6 tracking-wide"
         >
-          <span className="rule mr-3" /> 01 — À propos
+          <span className="rule mr-3" /> 01 · À propos
         </motion.div>
 
         <motion.h2
@@ -87,7 +87,7 @@ export default function About() {
               Curieux et autonome, j’aime apprendre par la pratique et transformer
               une idée en produit utilisable. Que je code une app mobile, une
               plateforme web ou que je porte un projet de bout en bout, ce qui me
-              motive c’est de voir la technologie résoudre des problèmes réels —
+              motive c’est de voir la technologie résoudre des problèmes réels,
               pour ma communauté en Guinée et au-delà.
             </motion.p>
           </div>

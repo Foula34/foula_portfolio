@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  /* Tech modern — Light mode (default) */
+  /* Tech modern · Light mode (default) */
   --bg: #FFFFFF;
   --bg-alt: #FAFAF7;
   --text: #0A0A0A;
@@ -15,7 +15,7 @@
 }
 
 [data-theme='dark'] {
-  /* Tech modern — Dark mode */
+  /* Tech modern · Dark mode */
   --bg: #0A0A0A;
   --bg-alt: #141414;
   --text: #FAFAFA;

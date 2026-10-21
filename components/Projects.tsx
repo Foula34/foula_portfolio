@@ -41,6 +41,7 @@ const projects: Project[] = [
     result:
       '32 vendeurs inscrits et 24 boutiques en ligne en 3 semaines, sans budget publicitaire.',
     technologies: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'PWA'],
+    image: '/images/sanni.jpg',
     liveUrl: 'https://sanniya.com',
     githubUrl: null,
   },
@@ -70,7 +71,7 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="font-mono text-xs text-text-muted mb-6 tracking-wide"
         >
-          <span className="rule mr-3" /> 03 — Projets
+          <span className="rule mr-3" /> 03 · Projets
         </motion.div>
 
         <motion.h2

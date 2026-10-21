@@ -40,8 +40,8 @@ export default function Contact() {
       return;
     }
     const subject =
-      formData.subject.trim() || `Contact portfolio — ${formData.name}`;
-    const body = `Bonjour Foula,\n\n${formData.message}\n\n—\n${formData.name}\n${formData.email}`;
+      formData.subject.trim() || `Contact portfolio : ${formData.name}`;
+    const body = `Bonjour Foula,\n\n${formData.message}\n\n${formData.name}\n${formData.email}`;
     window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
       subject
     )}&body=${encodeURIComponent(body)}`;
@@ -73,7 +73,7 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="font-mono text-xs text-text-muted mb-6 tracking-wide"
         >
-          <span className="rule mr-3" /> 05 — Contact
+          <span className="rule mr-3" /> 05 · Contact
         </motion.div>
 
         <motion.h2
@@ -96,7 +96,7 @@ export default function Contact() {
         </motion.p>
 
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* LEFT — Direct contact */}
+          {/* LEFT · Direct contact */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -193,7 +193,7 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* RIGHT — Form */}
+          {/* RIGHT · Form */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}

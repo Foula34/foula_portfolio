@@ -94,7 +94,7 @@ export default function Experience() {
           transition={{ duration: 0.5 }}
           className="font-mono text-xs text-text-muted mb-6 tracking-wide"
         >
-          <span className="rule mr-3" /> 04 — Parcours
+          <span className="rule mr-3" /> 04 · Parcours
         </motion.div>
 
         <motion.h2
@@ -112,7 +112,7 @@ export default function Experience() {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="text-base text-text-muted mb-16 max-w-prose"
         >
-          De la plus récente à la plus ancienne — postes, distinctions, études et
+          De la plus récente à la plus ancienne : postes, distinctions, études et
           engagements.
         </motion.p>
 
