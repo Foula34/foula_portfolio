@@ -3,13 +3,14 @@
 import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Link from 'next/link';
 
 
 const navLinks = [
-  { name: 'Projets', href: '#projects' },
-  { name: 'Mon histoire', href: '#story' },
-  { name: 'Compétences', href: '#skills' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Projets', href: '/#projects' },
+  { name: 'Mon histoire', href: '/#story' },
+  { name: 'Compétences', href: '/#skills' },
+  { name: 'Contact', href: '/#contact' },
 ];
 
 // Le thème est porté par l'attribut data-theme de <html>, posé avant l'affichage
@@ -25,7 +26,8 @@ function toggleTheme() {
   }
 }
 
-export default function Navbar() {
+// `solid` : barre toujours opaque, pour les pages dont le haut est coloré (études de cas).
+export default function Navbar({ solid = false }: { solid?: boolean }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -41,7 +43,7 @@ export default function Navbar() {
     setIsOpen(false);
   };
 
-  const isOpaque = scrolled || isOpen;
+  const isOpaque = solid || scrolled || isOpen;
 
   return (
     <nav
@@ -51,25 +53,25 @@ export default function Navbar() {
     >
       <div className="max-w-content mx-auto px-6">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <a
-            href="#home"
+          <Link
+            href="/"
             onClick={handleNavClick}
             className="font-display text-xl text-text hover:text-accent transition-colors duration-200"
           >
             Foula Fofana
-          </a>
+          </Link>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <a
+              <Link
                 key={link.name}
                 href={link.href}
                 onClick={handleNavClick}
                 className="text-sm text-text-muted hover:text-accent transition-colors duration-200"
               >
                 {link.name}
-              </a>
+              </Link>
             ))}
             <button
               onClick={toggleTheme}
@@ -113,14 +115,14 @@ export default function Navbar() {
             >
               <div className="py-6 space-y-1">
                 {navLinks.map((link) => (
-                  <a
+                  <Link
                     key={link.name}
                     href={link.href}
                     onClick={handleNavClick}
                     className="block py-3 font-display text-2xl text-text hover:text-accent transition-colors duration-200"
                   >
                     {link.name}
-                  </a>
+                  </Link>
                 ))}
               </div>
             </motion.div>

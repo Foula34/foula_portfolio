@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useState, type CSSProperties } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -26,6 +27,7 @@ interface Project {
   url: string;
   urlLabel: string;
   prize?: string;
+  caseStudy?: string;
   palette: Palette;
 }
 
@@ -44,6 +46,7 @@ const projects: Project[] = [
     url: 'https://soliboxgn.com',
     urlLabel: 'soliboxgn.com',
     prize: '1er prix national POESAM 2026',
+    caseStudy: '/projets/solibox',
     palette: { bg: '#F88300', fg: '#1E1200', muted: '#4D2E00', accent: '#1E1200', onAccent: '#F88300' },
   },
   {
@@ -173,15 +176,29 @@ function ProjectPanel({ project, onEnter }: { project: Project; onEnter: () => v
             </div>
           </dl>
 
-          <a
-            href={project.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-7 inline-flex items-center gap-2 rounded-full bg-[var(--p-accent)] text-[color:var(--p-on-accent)] px-6 py-3.5 font-medium transition-transform hover:-translate-y-0.5"
-          >
-            Visiter {project.urlLabel}
-            <ArrowUpRight size={18} />
-          </a>
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            {project.caseStudy && (
+              <Link
+                href={project.caseStudy}
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--p-accent)] text-[color:var(--p-on-accent)] px-6 py-3.5 font-medium transition-transform hover:-translate-y-0.5"
+              >
+                Lire l&apos;étude de cas
+              </Link>
+            )}
+            <a
+              href={project.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={
+                project.caseStudy
+                  ? 'inline-flex items-center gap-2 rounded-full border p-line-strong px-6 py-3.5 font-medium transition-transform hover:-translate-y-0.5'
+                  : 'inline-flex items-center gap-2 rounded-full bg-[var(--p-accent)] text-[color:var(--p-on-accent)] px-6 py-3.5 font-medium transition-transform hover:-translate-y-0.5'
+              }
+            >
+              Visiter {project.urlLabel}
+              <ArrowUpRight size={18} />
+            </a>
+          </div>
         </div>
 
         <motion.div
