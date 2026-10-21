@@ -8,65 +8,57 @@ interface ProjectsProps {
 
 interface Project {
   title: string;
+  role: string;
   description: string;
+  result: string;
   technologies: string[];
-  image: string;
+  image?: string;
   liveUrl: string | null;
   githubUrl: string | null;
   award?: string;
 }
 
+const projects: Project[] = [
+  {
+    title: 'SoliBox',
+    role: 'Cofondateur & CEO · application mobile',
+    description:
+      "Boîtier connecté qui permet aux foyers équipés de panneaux solaires de vendre leur surplus d'énergie à leurs voisins. J'ai développé l'application mobile : suivi en temps réel de la production et de la consommation, contrôle à distance du boîtier.",
+    result:
+      'Équipe de 5, incubée à Orange Fab Guinée, du prototype aux premières installations sur de vraies maisons.',
+    technologies: ['Flutter', 'Supabase', 'MQTT'],
+    image: 'images/solibox-app.png',
+    liveUrl: 'https://soliboxgn.com',
+    githubUrl: null,
+    award: '1ᵉʳ prix national POESAM 2026',
+  },
+  {
+    title: 'Sanni',
+    role: 'Fondateur & développeur',
+    description:
+      'Boutique en ligne pour les commerçants qui vendent sur WhatsApp et Facebook : ils publient leurs articles une fois, partagent un lien, et leurs clients commandent eux-mêmes, sans rien installer.',
+    result:
+      '32 vendeurs inscrits et 24 boutiques en ligne en 3 semaines, sans budget publicitaire.',
+    technologies: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'PWA'],
+    liveUrl: 'https://sanniya.com',
+    githubUrl: null,
+  },
+  {
+    title: 'Lab Oratoire',
+    role: 'Créateur & développeur',
+    description:
+      "Plateforme communautaire pour pratiquer la prise de parole en public : défis vidéo, retours entre membres, classement et analyse d'improvisation par IA.",
+    result:
+      'Plus de 40 membres, 10 défis lancés et 10 semaines de pratique continue.',
+    technologies: ['Next.js', 'Supabase', 'PWA'],
+    image: 'images/lab-oratoire.png',
+    liveUrl: 'https://lab-oratoiregn.com',
+    githubUrl: null,
+  },
+];
+
 export default function Projects({ theme: _theme }: ProjectsProps) {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
-
-  const projects: Project[] = [
-    {
-      title: 'Solibox',
-      description:
-        "Application mobile d'énergie solaire connectée pour le suivi et le partage du surplus d'énergie via boîtier IoT.",
-      technologies: ['Flutter', 'Supabase', 'MQTT'],
-      image: 'images/solibox-app.png',
-      liveUrl: null,
-      githubUrl: 'https://github.com/Foula34/solibox_app',
-      award: '1ᵉʳ Prix · Salon Étudiants Entrepreneurs 2026',
-    },
-    {
-      title: 'Solibox Landing',
-      description:
-        "Landing page de la startup présentant l'application mobile et la solution d'énergie solaire connectée.",
-      technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
-      image: 'images/solibox.png',
-      liveUrl: 'https://soliboxgn.com',
-      githubUrl: null,
-    },
-    {
-      title: 'Le Lab-oratoire',
-      description:
-        "Application web pour les membres d'un club d'art oratoire : suivi de progression, défis, ressources et gamification.",
-      technologies: ['Next.js', 'Supabase'],
-      image: 'images/lab-oratoire.png',
-      liveUrl: 'https://lab-oratoire.vercel.app',
-      githubUrl: null,
-    },
-    {
-      title: 'Secure-Sport',
-      description:
-        "Prototype d'une plateforme dédiée aux clubs et académies de football en Guinée pour le suivi des dossiers de leurs clients.",
-      technologies: ['Next.js', 'Tailwind CSS'],
-      image: 'images/secure.png',
-      liveUrl: 'https://secure-sport.vercel.app',
-      githubUrl: null,
-    },
-    {
-      title: 'Opidi',
-      description:
-        'Plateforme type réseau social qui connecte médecins, patients et pharmaciens et facilite leurs interactions.',
-      technologies: ['Next.js', 'Supabase', 'Prisma'],
-      image: 'images/opidi.png',
-      liveUrl: 'https://opidi-web.vercel.app',
-      githubUrl: null,
-    },
-  ];
 
   return (
     <section id="projects" className="py-24 lg:py-32 px-6 bg-bg-alt">
@@ -95,13 +87,14 @@ export default function Projects({ theme: _theme }: ProjectsProps) {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="text-base text-text-muted mb-16 max-w-prose"
         >
-          Cinq projets récents, livrés ou en cours d'évolution. Chaque carte
-          renvoie vers la démo en ligne ou le code quand il est public.
+          Trois produits que je conçois et développe, de l'idée jusqu'au
+          déploiement, avec de vrais utilisateurs.
         </motion.p>
 
         <div className="grid md:grid-cols-2 gap-x-8 gap-y-16 lg:gap-y-20">
           {projects.map((project, i) => (
             <ProjectCard
+              featured={i === 0}
               key={project.title}
               project={project}
               index={i}
@@ -136,12 +129,13 @@ export default function Projects({ theme: _theme }: ProjectsProps) {
 }
 
 interface ProjectCardProps {
+  featured?: boolean;
   project: Project;
   index: number;
   inView: boolean;
 }
 
-function ProjectCard({ project, index, inView }: ProjectCardProps) {
+function ProjectCard({ project, index, inView, featured }: ProjectCardProps) {
   const primaryHref = project.liveUrl ?? project.githubUrl ?? '#';
 
   return (
@@ -149,7 +143,7 @@ function ProjectCard({ project, index, inView }: ProjectCardProps) {
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: 0.15 + index * 0.08 }}
-      className="group flex flex-col"
+      className={`group flex flex-col ${featured ? 'md:col-span-2' : ''}`}
     >
       <a
         href={primaryHref}
@@ -157,11 +151,26 @@ function ProjectCard({ project, index, inView }: ProjectCardProps) {
         rel={primaryHref !== '#' ? 'noopener noreferrer' : undefined}
         className="block relative overflow-hidden border border-border bg-bg"
       >
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full aspect-[16/10] object-cover transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-        />
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={`Aperçu de ${project.title}`}
+            className={`w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02] ${
+              featured ? 'aspect-[16/10] md:aspect-[21/9]' : 'aspect-[16/10]'
+            }`}
+          />
+        ) : (
+          <div className="w-full aspect-[16/10] flex flex-col items-center justify-center gap-3 bg-accent-soft">
+            <span className="font-display text-5xl lg:text-6xl text-text">
+              {project.title}
+            </span>
+            {project.liveUrl && (
+              <span className="font-mono text-xs text-text-muted">
+                {project.liveUrl.replace('https://', '')}
+              </span>
+            )}
+          </div>
+        )}
         {project.award && (
           <div className="absolute top-4 left-4 inline-flex items-center gap-2 bg-accent text-bg px-3 py-1.5 font-mono text-[11px] tracking-wide">
             <Trophy size={12} strokeWidth={2} />
@@ -194,9 +203,15 @@ function ProjectCard({ project, index, inView }: ProjectCardProps) {
             </a>
           </div>
 
-          <p className="text-text-muted leading-relaxed mb-5">
+          <p className="font-mono text-xs text-accent tracking-wide mb-3">
+            {project.role}
+          </p>
+
+          <p className="text-text-muted leading-relaxed mb-3">
             {project.description}
           </p>
+
+          <p className="text-text leading-relaxed mb-5">{project.result}</p>
 
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
             {project.technologies.map((tech) => (

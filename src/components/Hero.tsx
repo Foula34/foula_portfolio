@@ -41,8 +41,9 @@ export default function Hero({ theme: _theme }: HeroProps) {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-lg sm:text-xl text-text mb-6 leading-relaxed max-w-prose"
             >
-              Co-fondateur de <span className="font-medium">Solibox</span>. Développeur
-              web & mobile. Primé au Salon des Étudiants Entrepreneurs 2026.
+              Développeur web & mobile. Cofondateur et CEO de{' '}
+              <span className="font-medium">SoliBox</span>, 1ᵉʳ prix national
+              POESAM 2026.
             </motion.p>
 
             <motion.p
@@ -51,9 +52,9 @@ export default function Hero({ theme: _theme }: HeroProps) {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-base text-text-muted mb-10 leading-relaxed max-w-prose"
             >
-              De Conakry, je conçois des produits qui répondent à des problèmes
-              concrets — de l'application mobile à la plateforme web — au croisement
-              du code et de l'entrepreneuriat.
+              Je conçois, développe et mets en ligne des produits utilisés par de
+              vrais utilisateurs, de l'idée jusqu'au déploiement : SoliBox, Sanni
+              et Lab Oratoire.
             </motion.p>
 
             <motion.div
@@ -73,8 +74,8 @@ export default function Hero({ theme: _theme }: HeroProps) {
                 />
               </a>
               <a
-                href="documents/Foula_Fofana_CV.pdf"
-                download="Foula_Fofana_CV.pdf"
+                href="documents/Foula_Fofana_CV_2026.pdf"
+                download="Foula_Fofana_CV_2026.pdf"
                 className="group inline-flex items-center gap-2 text-text hover:text-accent border-b border-text/30 hover:border-accent pb-1 transition-colors duration-200"
               >
                 <Download size={16} />
@@ -125,7 +126,7 @@ export default function Hero({ theme: _theme }: HeroProps) {
                 className="w-full aspect-[4/5] object-cover"
               />
               <p className="font-mono text-xs text-text-muted mt-4 tracking-wide">
-                Foula Fofana · co-fondateur Solibox
+                Foula Fofana · cofondateur & CEO de SoliBox
               </p>
             </div>
           </motion.div>

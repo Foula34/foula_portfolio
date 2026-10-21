@@ -26,7 +26,7 @@ export default function Footer({ theme: _theme }: FooterProps) {
         <div>
           <p className="font-display text-lg text-text">Foula Fofana</p>
           <p className="font-mono text-xs text-text-muted mt-1 tracking-wide">
-            Développeur web & mobile · Co-fondateur Solibox
+            Développeur web & mobile · Cofondateur & CEO de SoliBox
           </p>
         </div>
 

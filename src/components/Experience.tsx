@@ -30,67 +30,66 @@ export default function Experience({ theme: _theme }: ExperienceProps) {
   const items: Item[] = [
     {
       icon: Trophy,
-      title: '1ᵉʳ Prix · Catégorie Technologies & Innovations',
-      organization: 'Salon des Étudiants Entrepreneurs',
-      location: 'Keyce Academie / UFDG, Conakry',
-      period: '16 mai 2026',
+      title: 'Trois premiers prix avec SoliBox',
+      organization: 'POESAM · SADEN Fulbright · Salon des Étudiants Entrepreneurs',
+      location: 'Guinée',
+      period: '2026',
       description:
-        "Premier prix remporté avec Solibox, une solution d'énergie solaire connectée pour le partage du surplus d'énergie via boîtier IoT.",
+        "1er prix national POESAM 2026, 1er prix du SADEN Fulbright Innovation Challenge 2026 et 1er prix du Salon des Étudiants Entrepreneurs 2026.",
       highlight: true,
     },
     {
+      icon: Heart,
+      title: 'Responsable Masterclass & Formation',
+      organization: 'FATA Guinée',
+      location: 'Conakry, Guinée',
+      period: "2026 – aujourd'hui · bénévole depuis 07/2024",
+      description:
+        "École de programmation pour la jeunesse africaine. Supervision des masterclass et des formations, et formateur moi-même : HTML, CSS, technologies du web et initiation au numérique.",
+    },
+    {
       icon: Briefcase,
-      title: 'Développeur Mobile Kotlin',
+      title: 'Développeur mobile',
       organization: 'NG Tech',
       location: 'Conakry, Guinée',
-      period: 'Janvier – Mars 2026',
+      period: 'En cours',
       description:
-        "Stage de 3 mois — développement et intégration backend de certaines fonctionnalités d'une application mobile native Android (contenu sous confidentialité).",
+        "Stage, puis poste actuel. Développement d'applications mobiles en Kotlin (Android) et React Native / Expo.",
     },
     {
       icon: Rocket,
-      title: 'Co-fondateur & Porteur de projet',
-      organization: 'Solibox',
+      title: 'Cofondateur & CEO',
+      organization: 'SoliBox',
       location: 'Conakry, Guinée',
-      period: 'Depuis novembre 2025',
+      period: "2025 – aujourd'hui",
       description:
-        "Conception, développement et pilotage d'une solution d'énergie solaire connectée : application mobile, landing page, boîtier IoT et gestion de la startup.",
+        "Startup IoT de partage d'énergie solaire entre voisins, incubée à Orange Fab Guinée. Direction d'une équipe de 5 et développement de l'application mobile.",
     },
     {
       icon: Briefcase,
-      title: 'Développeur Front-End',
-      organization: 'Orange Digital Center',
+      title: 'Stagiaire développeur',
+      organization: 'Orange Guinée · Orange Digital Center',
       location: 'Conakry, Guinée',
-      period: 'Juin – Novembre 2025',
+      period: '07/2025 – 11/2025',
       description:
-        "Développement d'applications web modernes avec React et Next.js. Collaboration sur des projets à impact social.",
-    },
-    {
-      icon: Briefcase,
-      title: 'Ambassadeur',
-      organization: 'Fata School',
-      location: 'Conakry, Guinée',
-      period: 'Depuis 2023',
-      description:
-        "Promotion de l'application mobile Fata Dev et des différents projets de Fata School.",
-    },
-    {
-      icon: Heart,
-      title: 'Formateur Bénévole',
-      organization: 'Fata School',
-      location: 'Conakry, Guinée',
-      period: 'Depuis 2023',
-      description:
-        'Formation de jeunes développeurs aux technologies web modernes.',
+        "Orange Summer Challenge 2025 : conception et développement d'une application web et mobile en équipe pluridisciplinaire, coordination technique, tests et présentation finale. 2e place du challenge.",
     },
     {
       icon: GraduationCap,
-      title: 'Licence en Informatique',
-      organization: 'Université de Conakry',
+      title: 'Formateur en informatique de base',
+      organization: 'Asis tech',
       location: 'Conakry, Guinée',
-      period: '2023 – 2027 (L3 en cours)',
+      period: '2025 · plus de 6 mois, en alternance',
       description:
-        'Formation en développement logiciel, bases de données et génie logiciel.',
+        "Plus de 30 apprenants formés en bureautique (Word, Excel) et en initiation à l'informatique et à Internet.",
+    },
+    {
+      icon: GraduationCap,
+      title: 'Licence Génie informatique, 4e année',
+      organization: 'Université Gamal Abdel Nasser de Conakry',
+      location: 'Conakry, Guinée',
+      period: '2023 – en cours',
+      description: 'Parcours génie logiciel.',
     },
   ];
 

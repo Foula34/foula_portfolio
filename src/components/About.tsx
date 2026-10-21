@@ -10,16 +10,16 @@ export default function About({ theme: _theme }: AboutProps) {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
 
   const stats = [
-    { number: '1ᵉʳ', label: 'Prix Salon Étudiants Entrepreneurs 2026' },
-    { number: '5+', label: 'Projets livrés' },
-    { number: '2+', label: 'Années de développement' },
+    { number: '3', label: 'Premiers prix en 2026 avec SoliBox' },
+    { number: '3', label: 'Produits conçus et développés' },
+    { number: '30+', label: 'Personnes formées en informatique' },
   ];
 
   const values = [
     {
       icon: Rocket,
       title: 'Du code au produit',
-      description: 'Concevoir, développer, livrer — jusqu\'à l\'utilisateur final.',
+      description: 'Concevoir, développer, livrer, jusqu\'à l\'utilisateur final.',
     },
     {
       icon: MapPin,
@@ -29,12 +29,12 @@ export default function About({ theme: _theme }: AboutProps) {
     {
       icon: Layers,
       title: 'Polyvalence',
-      description: 'Web, mobile, design, gestion de projet — toute la chaîne.',
+      description: 'Web, mobile, IoT et mise en production : toute la chaîne.',
     },
     {
       icon: GraduationCap,
       title: 'Transmission',
-      description: 'Former la prochaine génération de dev (Fata School).',
+      description: 'Former la prochaine génération de développeurs (FATA Guinée).',
     },
   ];
 
@@ -69,13 +69,15 @@ export default function About({ theme: _theme }: AboutProps) {
               transition={{ duration: 0.6, delay: 0.15 }}
               className="text-lg leading-relaxed text-text"
             >
-              Développeur web et mobile basé à Conakry, je travaille au croisement
-              du code et de l'entrepreneuriat. Mes expériences à{' '}
-              <span className="font-medium">Orange Digital Center</span>,{' '}
-              <span className="font-medium">NG Tech</span> et{' '}
-              <span className="font-medium">Fata School</span> m'ont permis de
-              construire des produits concrets — de l'application mobile à la
-              plateforme web — et de coordonner des projets tech à impact social.
+              Développeur web et mobile basé à Conakry, en 4e année de Génie
+              informatique (génie logiciel) à l'Université Gamal Abdel Nasser.
+              J'ai développé mon expérience à l'
+              <span className="font-medium">Orange Digital Center</span>, où notre
+              équipe a pris la 2e place de l'Orange Summer Challenge 2025, puis
+              chez <span className="font-medium">NG Tech</span>, où je suis
+              développeur mobile. Chez{' '}
+              <span className="font-medium">FATA Guinée</span>, je forme des jeunes
+              au développement web.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 12 }}

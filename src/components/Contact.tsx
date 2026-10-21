@@ -100,8 +100,8 @@ export default function Contact({ theme: _theme }: ContactProps) {
           transition={{ duration: 0.6, delay: 0.15 }}
           className="text-base text-text-muted mb-16 max-w-prose"
         >
-          Un projet, une question, une opportunité ? Écris-moi directement ou
-          utilise le formulaire — la réponse arrivera dans la journée.
+          Un projet, une mission, une opportunité ? Écris-moi directement ou
+          utilise le formulaire.
         </motion.p>
 
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
@@ -191,7 +191,7 @@ export default function Contact({ theme: _theme }: ContactProps) {
                     className="group inline-flex items-center gap-2 text-text hover:text-accent transition-colors duration-200"
                   >
                     <Linkedin size={16} strokeWidth={1.75} />
-                    linkedin.com/in/foula-fofana
+                    linkedin.com/in/foula-fofana-1769782a5
                     <ArrowUpRight
                       size={14}
                       className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200"

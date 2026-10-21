@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code2, Smartphone, Database, Palette } from 'lucide-react';
+import { Code2, Smartphone, Database, Cpu } from 'lucide-react';
 
 interface SkillsProps {
   theme: 'light' | 'dark';
@@ -11,24 +11,24 @@ export default function Skills({ theme: _theme }: SkillsProps) {
 
   const categories = [
     {
-      name: 'Frontend',
-      icon: Code2,
-      skills: ['React / Next.js', 'TypeScript', 'Tailwind CSS', 'HTML / CSS'],
-    },
-    {
       name: 'Mobile',
       icon: Smartphone,
-      skills: ['Flutter', 'Dart', 'Kotlin', 'Jetpack Compose', 'Firebase'],
+      skills: ['Flutter (Dart)', 'Kotlin (Android)', 'React Native / Expo'],
     },
     {
-      name: 'Backend',
+      name: 'Web',
+      icon: Code2,
+      skills: ['Next.js', 'React', 'TypeScript', 'JavaScript', 'Tailwind CSS'],
+    },
+    {
+      name: 'Back-end & données',
       icon: Database,
-      skills: ['Supabase', 'Firebase', 'Prisma', 'MQTT'],
+      skills: ['Supabase', 'PostgreSQL', 'Firebase', 'MySQL'],
     },
     {
-      name: 'Design',
-      icon: Palette,
-      skills: ['Figma', 'UI/UX Design', 'Prototyping', 'Responsive Design'],
+      name: 'IoT & déploiement',
+      icon: Cpu,
+      skills: ['MQTT', 'Git / GitHub', 'Vercel', 'PWA'],
     },
   ];
 
