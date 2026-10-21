@@ -44,7 +44,7 @@ const projects: Project[] = [
     url: 'https://soliboxgn.com',
     urlLabel: 'soliboxgn.com',
     prize: '1er prix national POESAM 2026',
-    palette: { bg: '#FFE7A3', fg: '#2B1C02', muted: '#6E5418', accent: '#2B1C02', onAccent: '#FFE7A3' },
+    palette: { bg: '#F88300', fg: '#1E1200', muted: '#4D2E00', accent: '#1E1200', onAccent: '#F88300' },
   },
   {
     id: 'sanni',
