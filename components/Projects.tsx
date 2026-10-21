@@ -60,6 +60,7 @@ const projects: Project[] = [
     stack: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'PWA'],
     image: { src: '/images/sanni.jpg', width: 1600, height: 1000, alt: "Page d'accueil de Sanni et une boutique sur mobile" },
     url: 'https://sanniya.com',
+    caseStudy: '/projets/sanni',
     urlLabel: 'sanniya.com',
     palette: { bg: '#1D1927', fg: '#F6F1E9', muted: '#A9A2B8', accent: '#E8650F', onAccent: '#FFFFFF' },
   },

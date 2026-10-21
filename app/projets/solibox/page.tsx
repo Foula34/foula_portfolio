@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowUpRight } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import FlowDiagram from '@/components/FlowDiagram';
+import Section from '@/components/CaseSection';
 
 export const metadata: Metadata = {
   title: 'SoliBox, étude de cas · Foula Fofana',
@@ -23,17 +24,6 @@ const facts = [
   { label: 'Technologies', value: 'Flutter, ESP32, MQTT (HiveMQ), Supabase' },
   { label: 'Distinctions', value: '1er prix national POESAM 2026, 1er prix SADEN Fulbright 2026, 1er prix Salon des Étudiants Entrepreneurs 2026' },
 ];
-
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section className="grid lg:grid-cols-12 gap-4 lg:gap-12 py-14 border-t border-border">
-      <h2 className="lg:col-span-4 font-unbounded font-semibold text-2xl tracking-[-0.02em] leading-tight text-text">
-        {title}
-      </h2>
-      <div className="lg:col-span-8 space-y-5 text-lg leading-relaxed text-text-muted max-w-[42rem]">{children}</div>
-    </section>
-  );
-}
 
 export default function SoliBoxCaseStudy() {
   return (
