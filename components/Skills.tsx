@@ -39,7 +39,8 @@ const groups: { name: string; skills: { name: string; used: Target[] }[] }[] = [
       { name: 'Supabase', used: ['solibox', 'sanni', 'lab'] },
       { name: 'PostgreSQL', used: ['solibox', 'sanni', 'lab'] },
       { name: 'MQTT', used: ['solibox'] },
-      { name: 'Firebase', used: ['lab'] },
+      { name: 'Firebase', used: ['sanni', 'lab'] },
+      { name: 'Resend', used: ['sanni', 'lab'] },
     ],
   },
 ];
