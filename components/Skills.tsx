@@ -1,97 +1,122 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { Code2, Smartphone, Database, Cpu } from 'lucide-react';
+import { useState } from 'react';
 
+type Target = 'solibox' | 'sanni' | 'lab' | 'ngtech';
+
+// Où chaque compétence a réellement servi. Firebase et MySQL n'apparaissent
+// dans aucun des projets présentés : ils sont listés à part, sans lien inventé.
+const targets: { id: Target; name: string; note: string; bg: string; fg: string }[] = [
+  { id: 'solibox', name: 'SoliBox', note: 'Application mobile IoT', bg: '#F88300', fg: '#1E1200' },
+  { id: 'sanni', name: 'Sanni', note: 'Boutique en ligne', bg: '#1D1927', fg: '#F6F1E9' },
+  { id: 'lab', name: 'Lab Oratoire', note: 'Plateforme communautaire', bg: '#0E1730', fg: '#F3EFE4' },
+  { id: 'ngtech', name: 'NG Tech', note: 'Développeur mobile', bg: '#3A3F47', fg: '#F5F5F4' },
+];
+
+const groups: { name: string; skills: { name: string; used: Target[] }[] }[] = [
+  {
+    name: 'Mobile',
+    skills: [
+      { name: 'Flutter', used: ['solibox'] },
+      { name: 'Kotlin', used: ['ngtech'] },
+      { name: 'React Native', used: ['ngtech'] },
+    ],
+  },
+  {
+    name: 'Web',
+    skills: [
+      { name: 'Next.js', used: ['sanni', 'lab'] },
+      { name: 'React', used: ['sanni', 'lab'] },
+      { name: 'TypeScript', used: ['sanni'] },
+      { name: 'Tailwind CSS', used: ['sanni'] },
+      { name: 'PWA', used: ['sanni', 'lab'] },
+      { name: 'Vercel', used: ['sanni', 'lab'] },
+    ],
+  },
+  {
+    name: 'Back-end',
+    skills: [
+      { name: 'Supabase', used: ['solibox', 'sanni', 'lab'] },
+      { name: 'PostgreSQL', used: ['solibox', 'sanni', 'lab'] },
+      { name: 'MQTT', used: ['solibox'] },
+    ],
+  },
+];
+
+const allSkills = groups.flatMap((g) => g.skills);
 
 export default function Skills() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.15 });
-
-  const categories = [
-    {
-      name: 'Mobile',
-      icon: Smartphone,
-      skills: ['Flutter (Dart)', 'Kotlin (Android)', 'React Native / Expo'],
-    },
-    {
-      name: 'Web',
-      icon: Code2,
-      skills: ['Next.js', 'React', 'TypeScript', 'JavaScript', 'Tailwind CSS'],
-    },
-    {
-      name: 'Back-end & données',
-      icon: Database,
-      skills: ['Supabase', 'PostgreSQL', 'Firebase', 'MySQL'],
-    },
-    {
-      name: 'IoT & déploiement',
-      icon: Cpu,
-      skills: ['MQTT', 'Git / GitHub', 'Vercel', 'PWA'],
-    },
-  ];
+  const [selected, setSelected] = useState('Supabase');
+  const used = allSkills.find((s) => s.name === selected)?.used ?? [];
 
   return (
-    <section id="skills" className="py-24 lg:py-32 px-6 bg-bg">
-      <div className="max-w-content mx-auto" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="font-mono text-xs text-text-muted mb-6 tracking-wide"
+    <section id="skills" aria-labelledby="skills-title" className="px-6 py-24 lg:py-32 bg-bg">
+      <div className="max-w-content mx-auto">
+        <h2
+          id="skills-title"
+          className="font-unbounded font-bold tracking-[-0.03em] leading-[1] text-text text-[clamp(2rem,4vw,3.25rem)] max-w-2xl"
         >
-          <span className="rule mr-3" /> Compétences
-        </motion.div>
+          Mes outils, et où je m&apos;en suis servi.
+        </h2>
+        <p className="mt-5 text-lg text-text-muted max-w-xl">
+          Choisis une technologie : les projets où je l&apos;ai utilisée s&apos;allument.
+        </p>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.05 }}
-          className="font-display text-4xl sm:text-5xl lg:text-6xl text-text mb-4"
-        >
-          La <span className="text-accent">boîte à outils</span>.
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-base text-text-muted mb-16 max-w-prose"
-        >
-          Les technologies que j’utilise au quotidien sur mes projets, du
-          prototype au produit livré.
-        </motion.p>
-
-        <div className="space-y-12 lg:space-y-0 lg:grid lg:grid-cols-2 lg:gap-x-16 lg:gap-y-16">
-          {categories.map((category, i) => {
-            const Icon = category.icon;
-            return (
-              <motion.div
-                key={category.name}
-                initial={{ opacity: 0, y: 16 }}
-                animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.08 }}
-                className="border-t border-border pt-8"
-              >
-                <div className="flex items-center gap-3 mb-6">
-                  <Icon size={20} strokeWidth={1.5} className="text-accent" />
-                  <h3 className="font-mono text-xs uppercase tracking-widest text-text-muted">
-                    {category.name}
-                  </h3>
+        <div className="mt-14 grid lg:grid-cols-12 gap-12 lg:gap-16">
+          <div className="lg:col-span-7 space-y-8 order-2 lg:order-1">
+            {groups.map((group) => (
+              <div key={group.name}>
+                <h3 className="text-sm font-medium text-text-muted mb-3">{group.name}</h3>
+                <div className="flex flex-wrap gap-2">
+                  {group.skills.map((skill) => {
+                    const isOn = skill.name === selected;
+                    return (
+                      <button
+                        key={skill.name}
+                        type="button"
+                        aria-pressed={isOn}
+                        onClick={() => setSelected(skill.name)}
+                        onMouseEnter={() => setSelected(skill.name)}
+                        className={`rounded-full border px-4 py-2 text-base transition-colors ${
+                          isOn
+                            ? 'bg-text text-bg border-text'
+                            : 'border-border text-text hover:border-text'
+                        }`}
+                      >
+                        {skill.name}
+                      </button>
+                    );
+                  })}
                 </div>
-                <ul className="flex flex-wrap gap-x-6 gap-y-3">
-                  {category.skills.map((skill) => (
-                    <li
-                      key={skill}
-                      className="font-display text-2xl lg:text-3xl text-text hover:text-accent transition-colors duration-200"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            );
-          })}
+              </div>
+            ))}
+            <p className="text-sm text-text-muted">Aussi : JavaScript, Firebase, MySQL, Git et GitHub.</p>
+          </div>
+
+          <div className="lg:col-span-5 order-1 lg:order-2">
+            <ul className="grid grid-cols-2 gap-3" aria-live="polite">
+              {targets.map((t) => {
+                const on = used.includes(t.id);
+                return (
+                  <li
+                    key={t.id}
+                    className="rounded-2xl p-4 sm:p-5 min-h-[6.5rem] sm:min-h-[8.5rem] flex flex-col justify-between transition-[background-color,color,opacity,transform] duration-500"
+                    style={
+                      on
+                        ? { backgroundColor: t.bg, color: t.fg }
+                        : { backgroundColor: 'var(--bg-alt)', color: 'var(--text-muted)', opacity: 0.7 }
+                    }
+                  >
+                    <span className="font-unbounded font-semibold text-base sm:text-lg leading-tight">{t.name}</span>
+                    <span className="text-sm">
+                      {t.note}
+                      <span className="sr-only">{on ? `, utilise ${selected}` : ''}</span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
     </section>

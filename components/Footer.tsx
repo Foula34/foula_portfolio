@@ -1,46 +1,18 @@
-'use client';
-
-import { ArrowUp } from 'lucide-react';
-import { useState, useEffect } from 'react';
-
-
 export default function Footer() {
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setShowScrollTop(window.scrollY > 500);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border px-6 py-12 bg-bg">
-      <div className="max-w-content mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-        <div>
-          <p className="font-display text-lg text-text">Foula Fofana</p>
-          <p className="font-mono text-xs text-text-muted mt-1 tracking-wide">
-            Développeur web & mobile · Cofondateur & CEO de SoliBox
-          </p>
-        </div>
-
-        <div className="flex items-center gap-6 font-mono text-xs text-text-muted">
-          <span>© {currentYear} · Conakry, Guinée</span>
-          <button
-            onClick={scrollToTop}
-            className={`inline-flex items-center gap-1 hover:text-accent transition-all duration-200 ${
-              showScrollTop ? 'opacity-100' : 'opacity-0 pointer-events-none'
-            }`}
-            aria-label="Retour en haut"
-          >
-            <ArrowUp size={14} strokeWidth={1.75} />
-            Haut
-          </button>
+    <footer className="border-t border-border px-6 py-10 bg-bg">
+      <div className="max-w-content mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4 text-sm text-text-muted">
+        <p>
+          <span className="font-unbounded font-semibold text-text">Foula Fofana</span>, développeur web et
+          mobile à Conakry.
+        </p>
+        <div className="flex items-center gap-6">
+          <span>© {year}</span>
+          <a href="#home" className="hover:text-text transition-colors">
+            Retour en haut
+          </a>
         </div>
       </div>
     </footer>

@@ -1,185 +1,159 @@
 'use client';
 
-import { Briefcase, GraduationCap, Trophy, Heart, Rocket, MapPin } from 'lucide-react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
-import { LucideIcon } from 'lucide-react';
+import { useRef, useState, type KeyboardEvent } from 'react';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 
-
-interface Item {
-  icon: LucideIcon;
-  title: string;
-  organization: string;
-  location: string;
+interface Entry {
   period: string;
-  description: string;
-  highlight?: boolean;
+  title: string;
+  org: string;
+  text: string;
 }
 
-export default function Experience() {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
+const tabs: { id: string; label: string; entries: Entry[] }[] = [
+  {
+    id: 'experiences',
+    label: 'Expériences',
+    entries: [
+      {
+        period: 'En cours',
+        title: 'Développeur mobile',
+        org: 'NG Tech, Conakry',
+        text: "Stage, puis poste actuel. Développement d'applications mobiles en Kotlin (Android) et React Native / Expo.",
+      },
+      {
+        period: "2025 – aujourd'hui",
+        title: 'Cofondateur & CEO',
+        org: 'SoliBox, incubée à Orange Fab Guinée',
+        text: "Direction d'une équipe de 5 et développement de l'application mobile, du prototype aux premières installations.",
+      },
+      {
+        period: '07/2025 – 11/2025',
+        title: 'Stagiaire développeur',
+        org: 'Orange Guinée, Orange Digital Center',
+        text: "Orange Summer Challenge 2025 : application web et mobile en équipe, coordination technique, tests et présentation finale. 2e place.",
+      },
+    ],
+  },
+  {
+    id: 'engagements',
+    label: 'Engagements',
+    entries: [
+      {
+        period: "2026 – aujourd'hui",
+        title: 'Responsable Masterclass & Formation',
+        org: 'FATA Guinée, bénévole depuis 07/2024',
+        text: 'Supervision des masterclass et des formations, et formateur sur HTML, CSS, technologies du web et initiation au numérique.',
+      },
+      {
+        period: '2025, plus de 6 mois',
+        title: 'Formateur en informatique de base',
+        org: 'Asis tech, en alternance',
+        text: "Plus de 30 apprenants formés en bureautique et en initiation à l'informatique et à Internet.",
+      },
+    ],
+  },
+  {
+    id: 'formation',
+    label: 'Formation',
+    entries: [
+      {
+        period: '2023 – en cours',
+        title: 'Licence Génie informatique, 4e année',
+        org: 'Université Gamal Abdel Nasser de Conakry',
+        text: 'Parcours génie logiciel.',
+      },
+      {
+        period: 'Certification',
+        title: 'Développeur Flutter',
+        org: 'Nimba Hub',
+        text: '',
+      },
+      {
+        period: '2023',
+        title: 'Baccalauréat Sciences mathématiques',
+        org: 'Ducal, Mamou, mention Bien',
+        text: '',
+      },
+    ],
+  },
+];
 
-  const items: Item[] = [
-    {
-      icon: Trophy,
-      title: 'Trois premiers prix avec SoliBox',
-      organization: 'POESAM · SADEN Fulbright · Salon des Étudiants Entrepreneurs',
-      location: 'Guinée',
-      period: '2026',
-      description:
-        "1er prix national POESAM 2026, 1er prix du SADEN Fulbright Innovation Challenge 2026 et 1er prix du Salon des Étudiants Entrepreneurs 2026 (catégorie Numérique).",
-      highlight: true,
-    },
-    {
-      icon: Heart,
-      title: 'Responsable Masterclass & Formation',
-      organization: 'FATA Guinée',
-      location: 'Conakry, Guinée',
-      period: "2026 – aujourd'hui · bénévole depuis 07/2024",
-      description:
-        "École de programmation pour la jeunesse africaine. Supervision des masterclass et des formations, et formateur moi-même : HTML, CSS, technologies du web et initiation au numérique.",
-    },
-    {
-      icon: Briefcase,
-      title: 'Développeur mobile',
-      organization: 'NG Tech',
-      location: 'Conakry, Guinée',
-      period: 'En cours',
-      description:
-        "Stage, puis poste actuel. Développement d'applications mobiles en Kotlin (Android) et React Native / Expo.",
-    },
-    {
-      icon: Rocket,
-      title: 'Cofondateur & CEO',
-      organization: 'SoliBox',
-      location: 'Conakry, Guinée',
-      period: "2025 – aujourd'hui",
-      description:
-        "Startup IoT de partage d'énergie solaire entre voisins, incubée à Orange Fab Guinée. Direction d'une équipe de 5 et développement de l'application mobile.",
-    },
-    {
-      icon: Briefcase,
-      title: 'Stagiaire développeur',
-      organization: 'Orange Guinée · Orange Digital Center',
-      location: 'Conakry, Guinée',
-      period: '07/2025 – 11/2025',
-      description:
-        "Orange Summer Challenge 2025 : conception et développement d'une application web et mobile en équipe pluridisciplinaire, coordination technique, tests et présentation finale. 2e place du challenge.",
-    },
-    {
-      icon: GraduationCap,
-      title: 'Formateur en informatique de base',
-      organization: 'Asis tech',
-      location: 'Conakry, Guinée',
-      period: '2025 · plus de 6 mois, en alternance',
-      description:
-        "Plus de 30 apprenants formés en bureautique (Word, Excel) et en initiation à l'informatique et à Internet.",
-    },
-    {
-      icon: GraduationCap,
-      title: 'Licence Génie informatique, 4e année',
-      organization: 'Université Gamal Abdel Nasser de Conakry',
-      location: 'Conakry, Guinée',
-      period: '2023 – en cours',
-      description: 'Parcours génie logiciel.',
-    },
-  ];
+export default function Experience() {
+  const [active, setActive] = useState(0);
+  const reduce = useReducedMotion() ?? false;
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  // Flèches gauche/droite pour passer d'un onglet à l'autre (comportement attendu d'une liste d'onglets).
+  const onKeyDown = (e: KeyboardEvent) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    const next = (active + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+    setActive(next);
+    tabRefs.current[next]?.focus();
+  };
+
+  const tab = tabs[active];
 
   return (
-    <section id="experience" className="py-24 lg:py-32 px-6 bg-bg">
-      <div className="max-w-content mx-auto" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
-          className="font-mono text-xs text-text-muted mb-6 tracking-wide"
-        >
-          <span className="rule mr-3" /> Parcours
-        </motion.div>
-
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.05 }}
-          className="font-display text-4xl sm:text-5xl lg:text-6xl text-text mb-4"
-        >
-          Étapes & <span className="text-accent">expériences</span>.
-        </motion.h2>
-
-        <motion.p
-          initial={{ opacity: 0, y: 12 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.15 }}
-          className="text-base text-text-muted mb-16 max-w-prose"
-        >
-          De la plus récente à la plus ancienne : postes, distinctions, études et
-          engagements.
-        </motion.p>
-
-        <div className="relative">
-          {/* Vertical spine */}
-          <div
-            aria-hidden="true"
-            className="absolute left-[11px] sm:left-[15px] top-2 bottom-2 w-px bg-border"
-          />
-
-          <ol className="space-y-12 lg:space-y-14">
-            {items.map((item, i) => (
-              <TimelineItem
-                key={i}
-                item={item}
-                index={i}
-                inView={inView}
-              />
+    <section id="experience" aria-labelledby="experience-title" className="px-6 py-24 lg:py-32 bg-bg-alt">
+      <div className="max-w-content mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16">
+        <div className="lg:col-span-4">
+          <h2
+            id="experience-title"
+            className="font-unbounded font-bold tracking-[-0.03em] leading-[1] text-text text-[clamp(2rem,4vw,3.25rem)]"
+          >
+            Parcours
+          </h2>
+          <div role="tablist" aria-label="Parcours" onKeyDown={onKeyDown} className="mt-8 flex flex-wrap lg:flex-col lg:items-start gap-2">
+            {tabs.map((t, i) => (
+              <button
+                key={t.id}
+                ref={(el) => {
+                  tabRefs.current[i] = el;
+                }}
+                role="tab"
+                id={`tab-${t.id}`}
+                aria-selected={i === active}
+                aria-controls={`panel-${t.id}`}
+                tabIndex={i === active ? 0 : -1}
+                onClick={() => setActive(i)}
+                className={`text-left rounded-full lg:rounded-xl px-4 py-2 lg:py-3 transition-colors ${
+                  i === active ? 'bg-text text-bg' : 'text-text-muted hover:text-text'
+                }`}
+              >
+                {t.label}
+              </button>
             ))}
-          </ol>
+          </div>
+        </div>
+
+        <div className="lg:col-span-8">
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.ol
+              key={tab.id}
+              role="tabpanel"
+              id={`panel-${tab.id}`}
+              aria-labelledby={`tab-${tab.id}`}
+              initial={reduce ? false : { opacity: 0, x: 16 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={reduce ? undefined : { opacity: 0, x: -16 }}
+              transition={{ duration: 0.25 }}
+              className="divide-y divide-border border-y border-border"
+            >
+              {tab.entries.map((entry) => (
+                <li key={entry.title} className="py-7 grid sm:grid-cols-[11rem_1fr] gap-1 sm:gap-8">
+                  <p className="text-sm text-text-muted pt-1">{entry.period}</p>
+                  <div>
+                    <h3 className="text-xl font-semibold text-text">{entry.title}</h3>
+                    <p className="mt-1 text-text">{entry.org}</p>
+                    {entry.text && <p className="mt-2 text-text-muted leading-relaxed">{entry.text}</p>}
+                  </div>
+                </li>
+              ))}
+            </motion.ol>
+          </AnimatePresence>
         </div>
       </div>
     </section>
-  );
-}
-
-interface TimelineItemProps {
-  item: Item;
-  index: number;
-  inView: boolean;
-}
-
-function TimelineItem({ item, index, inView }: TimelineItemProps) {
-  const Icon = item.icon;
-  return (
-    <motion.li
-      initial={{ opacity: 0, y: 16 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: 0.15 + index * 0.06 }}
-      className="relative pl-12 sm:pl-16"
-    >
-      <div
-        className={`absolute left-0 top-1 flex items-center justify-center w-[22px] h-[22px] sm:w-[30px] sm:h-[30px] rounded-full border ${
-          item.highlight
-            ? 'bg-accent border-accent text-bg'
-            : 'bg-bg border-border text-text-muted'
-        }`}
-      >
-        <Icon size={item.highlight ? 14 : 13} strokeWidth={1.75} />
-      </div>
-
-      <div className="font-mono text-xs text-text-muted mb-1.5 tracking-wide">
-        {item.period}
-      </div>
-      <h3 className="font-display text-xl lg:text-2xl text-text mb-1">
-        {item.title}
-      </h3>
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-text-muted mb-3">
-        <span className="font-medium text-text">{item.organization}</span>
-        <span className="inline-flex items-center gap-1">
-          <MapPin size={12} strokeWidth={1.75} />
-          {item.location}
-        </span>
-      </div>
-      <p className="text-text-muted leading-relaxed max-w-prose">
-        {item.description}
-      </p>
-    </motion.li>
   );
 }
