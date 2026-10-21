@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   twitter: { card: 'summary_large_image', title: 'SoliBox, étude de cas', description: "Partager le surplus d'énergie solaire entre voisins, et le piloter en temps réel avec MQTT.", images: ['/images/solibox-app.png'] },
 };
 
-// SoliBox OS : qui voit quoi (politiques RLS de Supabase, complétées par des vérifications dans le code).
+// SoliBox OS : ce que chaque rôle peut voir et faire.
 const osRoles = [
   { who: 'CEO et RAF', access: 'Tout, y compris les documents sensibles. Eux seuls valident les dépenses.' },
   { who: "Membres de l'équipe", access: 'Tâches, réunions, produit. Ils peuvent proposer une dépense.' },
@@ -194,9 +194,7 @@ export default function SoliBoxCaseStudy() {
                   nos prix et nos documents.
                 </p>
                 <p>
-                  Le plus intéressant techniquement, c&apos;est la gestion des accès. Chacun ne voit que ce qui le
-                  concerne, et ces règles sont appliquées dans la base de données avec les politiques RLS de Supabase,
-                  complétées par des vérifications dans le code :
+                  L&apos;outil est organisé par rôles, pour que chacun ne voie que ce qui le concerne :
                 </p>
                 <dl className="divide-y divide-border border-y border-border text-base">
                   {osRoles.map((r) => (
