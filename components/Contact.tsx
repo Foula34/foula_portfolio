@@ -27,7 +27,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" aria-labelledby="contact-title" className="px-6 py-24 lg:py-36 bg-bg">
+    <section id="contact" aria-labelledby="contact-title" className="px-6 py-24 lg:py-36 bg-bg-alt">
       <div className="max-w-content mx-auto">
         <h2
           id="contact-title"
