@@ -27,7 +27,7 @@ export default function Experience() {
       location: 'Guinée',
       period: '2026',
       description:
-        "1er prix national POESAM 2026, 1er prix du SADEN Fulbright Innovation Challenge 2026 et 1er prix du Salon des Étudiants Entrepreneurs 2026.",
+        "1er prix national POESAM 2026, 1er prix du SADEN Fulbright Innovation Challenge 2026 et 1er prix du Salon des Étudiants Entrepreneurs 2026 (catégorie Numérique).",
       highlight: true,
     },
     {
