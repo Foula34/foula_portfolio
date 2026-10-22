@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Check, Copy, Phone, ArrowUpRight } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './BrandIcons';
+import type { HomeText } from '@/content/types';
 
 const EMAIL = 'fofanafoula70@gmail.com';
 
@@ -12,7 +13,7 @@ const links = [
   { icon: GithubIcon, label: 'GitHub', href: 'https://github.com/Foula34' },
 ];
 
-export default function Contact() {
+export default function Contact({ t }: { t: HomeText['contact'] }) {
   const [copied, setCopied] = useState(false);
 
   const copyEmail = async () => {
@@ -33,10 +34,10 @@ export default function Contact() {
           id="contact-title"
           className="font-unbounded font-extrabold tracking-[-0.04em] leading-[0.95] text-text text-[clamp(2.6rem,8vw,6.5rem)]"
         >
-          Travaillons ensemble.
+          {t.heading}
         </h2>
         <p className="mt-6 text-lg text-text-muted max-w-xl">
-          Un projet, une mission ou un poste ? Écris-moi, je lis tout.
+          {t.intro}
         </p>
 
         <div className="mt-12 flex flex-col sm:flex-row sm:items-center gap-4">
@@ -52,7 +53,7 @@ export default function Contact() {
             className="self-start sm:self-auto inline-flex items-center gap-2 rounded-full border border-text/20 hover:border-text px-4 py-2 text-sm text-text transition-colors"
           >
             {copied ? <Check size={16} /> : <Copy size={16} />}
-            <span aria-live="polite">{copied ? 'Adresse copiée' : "Copier l'adresse"}</span>
+            <span aria-live="polite">{copied ? t.copied : t.copy}</span>
           </button>
         </div>
 

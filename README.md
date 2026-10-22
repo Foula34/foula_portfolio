@@ -25,6 +25,9 @@ Un petit script dans le `<head>` pose le thème sur `<html>` avant l'affichage, 
 **Les animations respectent les préférences.**
 Si l'appareil demande de réduire les mouvements, les animations sont désactivées et tout le contenu reste affiché normalement.
 
+**Deux langues, sans dupliquer le code.**
+Le français reste à la racine (`/`, `/projets/sanni`) pour que les liens déjà partagés continuent de marcher ; l'anglais vit sous `/en`. Chaque langue a sa propre mise en page racine (groupes de routes `app/(fr)` et `app/(en)`), pour que la balise `<html lang>` soit juste. Les textes sont dans `content/`, une page d'étude de cas est un seul composant qui reçoit la langue, et chaque page déclare sa version dans l'autre langue (`hreflang`) pour Google.
+
 **Polices et images servies par le site.**
 Les polices (Geist, Unbounded) sont embarquées dans le projet : aucune requête vers Google. Les images passent par `next/image`, qui les redimensionne et les convertit en formats modernes.
 
@@ -40,7 +43,12 @@ Puis ouvrir http://localhost:3000.
 ## Structure
 
 ```
-app/          layout (métadonnées, polices, thème) et page d'accueil
-components/   une section par fichier : Hero, Projects, Story, Skills, Contact
+app/(fr)/     pages françaises : accueil et /projets/[slug]
+app/(en)/en/  pages anglaises : /en et /en/projects/[slug]
+components/   sections de l'accueil, composant d'étude de cas, navigation
+content/      tous les textes : ui.ts, home.ts et cases/ (fr et en côte à côte)
+lib/          langues, métadonnées, polices
 public/       images et CV
 ```
+
+Pour corriger un texte, il suffit de modifier le fichier de `content/` concerné, sans toucher aux composants.

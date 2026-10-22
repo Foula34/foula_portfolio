@@ -1,12 +1,7 @@
 import Image from 'next/image';
 import { Download, Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './BrandIcons';
-
-const prizes = [
-  { name: 'POESAM 2026', detail: '1er prix national' },
-  { name: 'SADEN Fulbright 2026', detail: '1er prix, Innovation Challenge' },
-  { name: 'Salon des Étudiants Entrepreneurs 2026', detail: '1er prix, catégorie Numérique' },
-];
+import type { HomeText } from '@/content/types';
 
 const socials = [
   { icon: GithubIcon, href: 'https://github.com/Foula34', label: 'GitHub' },
@@ -28,7 +23,7 @@ function AnimatedWord({ word, delay }: { word: string; delay: number }) {
   );
 }
 
-export default function Hero() {
+export default function Hero({ t }: { t: HomeText['hero'] }) {
   return (
     <section id="home" className="relative px-6 pt-28 pb-12 lg:pt-36 lg:pb-16">
       <div className="max-w-content mx-auto">
@@ -42,10 +37,10 @@ export default function Hero() {
 
             <div style={{ animationDelay: '0.9s' }} className="fade-in mt-10 max-w-[34rem]">
               <p className="text-2xl sm:text-3xl leading-snug text-text font-medium tracking-tight">
-                Je construis des produits que de vrais gens utilisent, à Conakry.
+                {t.tagline}
               </p>
               <p className="mt-4 text-lg text-text-muted leading-relaxed">
-                Développeur web et mobile, cofondateur et CEO de SoliBox, créateur de Sanni et de Lab Oratoire.
+                {t.intro}
               </p>
 
               <div className="mt-8 flex flex-wrap items-center gap-4">
@@ -53,7 +48,7 @@ export default function Hero() {
                   href="#projects"
                   className="inline-flex items-center bg-accent hover:bg-accent-hover text-bg px-6 py-3.5 rounded-full font-medium transition-colors"
                 >
-                  Voir mes projets
+                  {t.seeProjects}
                 </a>
                 <a
                   href="/documents/Foula_Fofana_CV_2026.pdf"
@@ -61,7 +56,7 @@ export default function Hero() {
                   className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-text/20 hover:border-text text-text font-medium transition-colors"
                 >
                   <Download size={16} />
-                  Télécharger mon CV
+                  {t.downloadCv}
                 </a>
                 <div className="flex items-center gap-1 ml-1">
                   {socials.map(({ icon: Icon, href, label }) => (
@@ -85,7 +80,7 @@ export default function Hero() {
             <div className="relative max-w-xs sm:max-w-sm lg:max-w-none mx-auto overflow-hidden rounded-2xl">
               <Image
                 src="/images/foula.jpg"
-                alt="Foula Fofana tenant son attestation 1000 TechLeaders"
+                alt={t.photoAlt}
                 width={960}
                 height={1280}
                 priority
@@ -95,15 +90,15 @@ export default function Hero() {
             </div>
             <p style={{ animationDelay: '1.2s' }} className="fade-in mt-4 flex items-center gap-2 text-sm text-text-muted">
               <span className="h-2 w-2 rounded-full bg-[#25D366] shrink-0" aria-hidden="true" />
-              En ce moment, je fais grandir Sanni.
+              {t.now}
             </p>
           </div>
         </div>
 
         <ul style={{ animationDelay: '1.1s' }} className="fade-in mt-16 lg:mt-20 grid sm:grid-cols-3 border-t border-border"
-          aria-label="Distinctions"
+          aria-label={t.prizesLabel}
         >
-          {prizes.map((prize) => (
+          {t.prizes.map((prize) => (
             <li key={prize.name} className="py-5 sm:pb-0 sm:pr-6 border-b sm:border-b-0 border-border last:border-b-0">
               <p className="font-unbounded font-semibold text-text text-base leading-tight">{prize.name}</p>
               <p className="mt-1 text-sm text-text-muted">{prize.detail}</p>

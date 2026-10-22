@@ -4,14 +4,7 @@ import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-
-
-const navLinks = [
-  { name: 'Projets', href: '/#projects' },
-  { name: 'Mon histoire', href: '/#story' },
-  { name: 'Compétences', href: '/#skills' },
-  { name: 'Contact', href: '/#contact' },
-];
+import type { UiText } from '@/content/types';
 
 // Le thème est porté par l'attribut data-theme de <html>, posé avant l'affichage
 // par le script du layout. Pas besoin d'état React : le CSS choisit l'icône.
@@ -27,7 +20,37 @@ function toggleTheme() {
 }
 
 // `solid` : barre toujours opaque, pour les pages dont le haut est coloré (études de cas).
-export default function Navbar({ solid = false }: { solid?: boolean }) {
+// `homeHref` : accueil de la langue en cours ; `switchHref` : la même page dans l'autre langue.
+export default function Navbar({
+  ui,
+  homeHref,
+  switchHref,
+  solid = false,
+}: {
+  ui: UiText;
+  homeHref: string;
+  switchHref: string;
+  solid?: boolean;
+}) {
+  // « / » ou « /en », suivi de l'ancre de la section : /#projects, /en#projects.
+  const base = homeHref;
+  const navLinks = [
+    { name: ui.nav.projects, href: `${base}#projects` },
+    { name: ui.nav.story, href: `${base}#story` },
+    { name: ui.nav.skills, href: `${base}#skills` },
+    { name: ui.nav.contact, href: `${base}#contact` },
+  ];
+  // Changer de langue recharge la page : chaque langue a sa propre mise en page (<html lang>).
+  const languageSwitch = (
+    <a
+      href={switchHref}
+      hrefLang={ui.switchLanguage.label.toLowerCase()}
+      aria-label={ui.switchLanguage.aria}
+      className="text-sm font-medium text-text-muted hover:text-accent border border-border rounded-full px-2.5 py-1 transition-colors duration-200"
+    >
+      {ui.switchLanguage.label}
+    </a>
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -54,7 +77,7 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
       <div className="max-w-content mx-auto px-6">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link
-            href="/"
+            href={homeHref}
             onClick={handleNavClick}
             className="font-display text-xl text-text hover:text-accent transition-colors duration-200"
           >
@@ -73,10 +96,11 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
                 {link.name}
               </Link>
             ))}
+            {languageSwitch}
             <button
               onClick={toggleTheme}
               className="text-text-muted hover:text-accent transition-colors duration-200"
-              aria-label="Changer de thème"
+              aria-label={ui.themeToggle}
             >
               <Sun size={18} strokeWidth={1.75} className="theme-icon-dark" />
               <Moon size={18} strokeWidth={1.75} className="theme-icon-light" />
@@ -85,10 +109,11 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
 
           {/* Mobile controls */}
           <div className="md:hidden flex items-center gap-4">
+            {languageSwitch}
             <button
               onClick={toggleTheme}
               className="text-text-muted hover:text-accent transition-colors duration-200"
-              aria-label="Changer de thème"
+              aria-label={ui.themeToggle}
             >
               <Sun size={18} strokeWidth={1.75} className="theme-icon-dark" />
               <Moon size={18} strokeWidth={1.75} className="theme-icon-light" />
@@ -96,7 +121,8 @@ export default function Navbar({ solid = false }: { solid?: boolean }) {
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-text hover:text-accent transition-colors duration-200"
-              aria-label="Toggle menu"
+              aria-label={ui.menuToggle}
+              aria-expanded={isOpen}
             >
               {isOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
