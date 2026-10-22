@@ -6,6 +6,8 @@ import { useState, type CSSProperties } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ArrowUpRight } from 'lucide-react';
+import type { HomeText } from '@/content/types';
+import { casePath, type CaseSlug, type Locale } from '@/lib/i18n';
 
 interface Palette {
   bg: string;
@@ -15,71 +17,51 @@ interface Palette {
   onAccent: string;
 }
 
-interface Project {
-  id: string;
+// Ce qui ne dépend pas de la langue : couleurs, images, liens. Les textes viennent de content/home.ts.
+interface ProjectBase {
+  id: CaseSlug;
   title: string;
-  tagline: string;
-  detail: string;
-  role: string;
-  result: string;
   stack: string[];
-  image: { src: string; width: number; height: number; alt: string };
+  image: { src: string; width: number; height: number };
   url: string;
   urlLabel: string;
-  prize?: string;
-  caseStudy?: string;
   palette: Palette;
 }
 
+type Project = ProjectBase & HomeText['projects']['items'][CaseSlug] & { caseStudy: string };
+
 // Chaque projet impose ses propres couleurs à toute la section quand on arrive dessus.
-const projects: Project[] = [
+const bases: ProjectBase[] = [
   {
     id: 'solibox',
     title: 'SoliBox',
-    tagline: "Les voisins s'échangent l'énergie de leurs panneaux solaires.",
-    detail:
-      "Un boîtier connecté et une application mobile pour suivre la production et la consommation en temps réel, contrôler le boîtier à distance et vendre le surplus.",
-    role: "Cofondateur et CEO. J'ai développé l'application mobile.",
-    result: 'Équipe de 5, incubée à Orange Fab Guinée, premières installations sur de vraies maisons.',
     stack: ['Flutter', 'Supabase', 'MQTT'],
-    image: { src: '/images/solibox-app.png', width: 1348, height: 607, alt: "Écrans de l'application mobile SoliBox" },
+    image: { src: '/images/solibox-app.png', width: 1348, height: 607 },
     url: 'https://soliboxgn.com',
     urlLabel: 'soliboxgn.com',
-    prize: '1er prix national POESAM 2026',
-    caseStudy: '/projets/solibox',
     palette: { bg: '#F88300', fg: '#1E1200', muted: '#4D2E00', accent: '#1E1200', onAccent: '#F88300' },
   },
   {
     id: 'sanni',
     title: 'Sanni',
-    tagline: 'Les vendeurs WhatsApp ont enfin une vraie boutique.',
-    detail:
-      'Ils publient leurs articles une fois, partagent un lien, et leurs clients commandent eux-mêmes, sans rien installer ni créer de compte.',
-    role: "Fondateur. Je l'ai conçu, développé et mis en ligne en autonomie.",
-    result: '32 vendeurs inscrits et 24 boutiques en ligne en 3 semaines, sans budget publicitaire.',
     stack: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'PWA'],
-    image: { src: '/images/sanni.jpg', width: 1600, height: 1000, alt: "Page d'accueil de Sanni et une boutique sur mobile" },
+    image: { src: '/images/sanni.jpg', width: 1600, height: 1000 },
     url: 'https://sanniya.com',
-    caseStudy: '/projets/sanni',
     urlLabel: 'sanniya.com',
     palette: { bg: '#1D1927', fg: '#F6F1E9', muted: '#A9A2B8', accent: '#E8650F', onAccent: '#1D1927' },
   },
   {
     id: 'lab-oratoire',
     title: 'Lab Oratoire',
-    tagline: 'Apprendre à parler en public en pratiquant, chaque semaine.',
-    detail:
-      "Une plateforme communautaire avec des défis vidéo, des retours entre membres, un classement et une analyse d'improvisation par IA.",
-    role: "Créateur. J'ai conçu et développé la plateforme.",
-    result: 'Plus de 40 membres, 10 défis lancés et 10 semaines de pratique continue.',
     stack: ['Next.js', 'Supabase', 'PWA'],
-    image: { src: '/images/lab-oratoire.png', width: 1348, height: 607, alt: "Page d'accueil de Lab Oratoire" },
+    image: { src: '/images/lab-oratoire.png', width: 1348, height: 607 },
     url: 'https://lab-oratoiregn.com',
-    caseStudy: '/projets/lab-oratoire',
     urlLabel: 'lab-oratoiregn.com',
     palette: { bg: '#0E1730', fg: '#F3EFE4', muted: '#9AA4C0', accent: '#E2B33C', onAccent: '#0E1730' },
   },
 ];
+
+type Labels = HomeText['projects'];
 
 function paletteVars(p: Palette): CSSProperties {
   return {
@@ -91,8 +73,9 @@ function paletteVars(p: Palette): CSSProperties {
   } as CSSProperties;
 }
 
-export default function Projects() {
+export default function Projects({ t, locale }: { t: HomeText['projects']; locale: Locale }) {
   const [active, setActive] = useState(0);
+  const projects: Project[] = bases.map((b) => ({ ...b, ...t.items[b.id], caseStudy: casePath(locale, b.id) }));
   const palette = projects[active].palette;
 
   return (
@@ -106,9 +89,9 @@ export default function Projects() {
       <div className="sticky top-16 lg:top-20 z-30 bg-[var(--p-bg)] project-stage">
         <div className="max-w-content mx-auto px-6 flex items-center justify-between gap-6 h-14 p-line border-b">
           <h2 id="projects-title" className="sr-only sm:not-sr-only text-sm font-medium">
-            Projets
+            {t.heading}
           </h2>
-          <nav aria-label="Projets" className="flex gap-1 sm:gap-2 overflow-x-auto">
+          <nav aria-label={t.heading} className="flex gap-1 sm:gap-2 overflow-x-auto">
             {projects.map((project, i) => (
               <a
                 key={project.id}
@@ -128,13 +111,13 @@ export default function Projects() {
       </div>
 
       {projects.map((project, i) => (
-        <ProjectPanel key={project.id} project={project} onEnter={() => setActive(i)} />
+        <ProjectPanel key={project.id} project={project} labels={t} onEnter={() => setActive(i)} />
       ))}
     </section>
   );
 }
 
-function ProjectPanel({ project, onEnter }: { project: Project; onEnter: () => void }) {
+function ProjectPanel({ project, labels, onEnter }: { project: Project; labels: Labels; onEnter: () => void }) {
   const reduce = useReducedMotion() ?? false;
   // Le projet devient actif quand il franchit le milieu de l'écran.
   const { ref } = useInView({
@@ -165,26 +148,26 @@ function ProjectPanel({ project, onEnter }: { project: Project; onEnter: () => v
 
           <dl className="mt-6 space-y-3">
             <div>
-              <dt className="text-sm text-[color:var(--p-muted)]">Mon rôle</dt>
+              <dt className="text-sm text-[color:var(--p-muted)]">{labels.role}</dt>
               <dd className="mt-0.5">{project.role}</dd>
             </div>
             <div>
-              <dt className="text-sm text-[color:var(--p-muted)]">Résultat</dt>
+              <dt className="text-sm text-[color:var(--p-muted)]">{labels.result}</dt>
               <dd className="mt-0.5">{project.result}</dd>
             </div>
             <div>
-              <dt className="text-sm text-[color:var(--p-muted)]">Technologies</dt>
+              <dt className="text-sm text-[color:var(--p-muted)]">{labels.stack}</dt>
               <dd className="mt-0.5">{project.stack.join(', ')}</dd>
             </div>
           </dl>
 
           <div className="mt-7 flex flex-wrap items-center gap-3">
-            {project.caseStudy && (
+            {(
               <Link
                 href={project.caseStudy}
                 className="inline-flex items-center gap-2 rounded-full bg-[var(--p-accent)] text-[color:var(--p-on-accent)] px-6 py-3.5 font-medium transition-transform hover:-translate-y-0.5"
               >
-                Lire l&apos;étude de cas
+                {labels.readCase}
               </Link>
             )}
             <a
@@ -197,7 +180,7 @@ function ProjectPanel({ project, onEnter }: { project: Project; onEnter: () => v
                   : 'inline-flex items-center gap-2 rounded-full bg-[var(--p-accent)] text-[color:var(--p-on-accent)] px-6 py-3.5 font-medium transition-transform hover:-translate-y-0.5'
               }
             >
-              Visiter {project.urlLabel}
+              {labels.visit} {project.urlLabel}
               <ArrowUpRight size={18} />
             </a>
           </div>
@@ -220,7 +203,7 @@ function ProjectPanel({ project, onEnter }: { project: Project; onEnter: () => v
           >
             <Image
               src={project.image.src}
-              alt={project.image.alt}
+              alt={project.imageAlt}
               width={project.image.width}
               height={project.image.height}
               sizes="(min-width: 1024px) 58vw, 100vw"

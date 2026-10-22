@@ -1,21 +1,23 @@
 'use client';
 
 import { useState } from 'react';
+import type { HomeText } from '@/content/types';
+import { fill } from '@/lib/format';
 
 type Target = 'solibox' | 'sanni' | 'lab' | 'ngtech';
 
 // Où chaque compétence a réellement servi. MySQL n'apparaît
 // dans aucun des projets présentés : il est listé à part, sans lien inventé.
-const targets: { id: Target; name: string; note: string; bg: string; fg: string }[] = [
-  { id: 'solibox', name: 'SoliBox', note: 'Application mobile IoT', bg: '#F88300', fg: '#1E1200' },
-  { id: 'sanni', name: 'Sanni', note: 'Boutique en ligne', bg: '#1D1927', fg: '#F6F1E9' },
-  { id: 'lab', name: 'Lab Oratoire', note: 'Plateforme communautaire', bg: '#0E1730', fg: '#F3EFE4' },
-  { id: 'ngtech', name: 'NG Tech', note: 'Développeur mobile', bg: '#3A3F47', fg: '#F5F5F4' },
+const targets: { id: Target; name: string; bg: string; fg: string }[] = [
+  { id: 'solibox', name: 'SoliBox', bg: '#F88300', fg: '#1E1200' },
+  { id: 'sanni', name: 'Sanni', bg: '#1D1927', fg: '#F6F1E9' },
+  { id: 'lab', name: 'Lab Oratoire', bg: '#0E1730', fg: '#F3EFE4' },
+  { id: 'ngtech', name: 'NG Tech', bg: '#3A3F47', fg: '#F5F5F4' },
 ];
 
-const groups: { name: string; skills: { name: string; used: Target[] }[] }[] = [
+const groups: { key: keyof HomeText['skills']['groups']; skills: { name: string; used: Target[] }[] }[] = [
   {
-    name: 'Mobile',
+    key: 'mobile',
     skills: [
       { name: 'Flutter', used: ['solibox'] },
       { name: 'Kotlin', used: ['ngtech'] },
@@ -23,7 +25,7 @@ const groups: { name: string; skills: { name: string; used: Target[] }[] }[] = [
     ],
   },
   {
-    name: 'Web',
+    key: 'web',
     skills: [
       { name: 'Next.js', used: ['sanni', 'lab'] },
       { name: 'React', used: ['sanni', 'lab'] },
@@ -34,7 +36,7 @@ const groups: { name: string; skills: { name: string; used: Target[] }[] }[] = [
     ],
   },
   {
-    name: 'Back-end',
+    key: 'backend',
     skills: [
       { name: 'Supabase', used: ['solibox', 'sanni', 'lab'] },
       { name: 'PostgreSQL', used: ['solibox', 'sanni', 'lab'] },
@@ -47,9 +49,11 @@ const groups: { name: string; skills: { name: string; used: Target[] }[] }[] = [
 
 const allSkills = groups.flatMap((g) => g.skills);
 
-export default function Skills() {
+export default function Skills({ t }: { t: HomeText['skills'] }) {
   const [selected, setSelected] = useState('Supabase');
   const used = allSkills.find((s) => s.name === selected)?.used ?? [];
+  const notes = t.targets;
+  const usesSuffix = t.usesSuffix;
 
   return (
     <section id="skills" aria-labelledby="skills-title" className="px-6 py-24 lg:py-32 bg-bg">
@@ -58,17 +62,17 @@ export default function Skills() {
           id="skills-title"
           className="font-unbounded font-bold tracking-[-0.03em] leading-[1] text-text text-[clamp(2rem,4vw,3.25rem)] max-w-2xl"
         >
-          Mes outils, et où je m&apos;en suis servi.
+          {t.heading}
         </h2>
         <p className="mt-5 text-lg text-text-muted max-w-xl">
-          Choisis une technologie : les projets où je l&apos;ai utilisée s&apos;allument.
+          {t.intro}
         </p>
 
         <div className="mt-14 grid lg:grid-cols-12 gap-12 lg:gap-16">
           <div className="lg:col-span-7 space-y-8 order-2 lg:order-1">
             {groups.map((group) => (
-              <div key={group.name}>
-                <h3 className="text-sm font-medium text-text-muted mb-3">{group.name}</h3>
+              <div key={group.key}>
+                <h3 className="text-sm font-medium text-text-muted mb-3">{t.groups[group.key]}</h3>
                 <div className="flex flex-wrap gap-2">
                   {group.skills.map((skill) => {
                     const isOn = skill.name === selected;
@@ -92,27 +96,27 @@ export default function Skills() {
                 </div>
               </div>
             ))}
-            <p className="text-sm text-text-muted">Aussi : JavaScript, MySQL, Git et GitHub.</p>
+            <p className="text-sm text-text-muted">{t.also}</p>
           </div>
 
           <div className="lg:col-span-5 order-1 lg:order-2">
             <ul className="grid grid-cols-2 gap-3" aria-live="polite">
-              {targets.map((t) => {
-                const on = used.includes(t.id);
+              {targets.map((tile) => {
+                const on = used.includes(tile.id);
                 return (
                   <li
-                    key={t.id}
+                    key={tile.id}
                     className="rounded-2xl p-4 sm:p-5 min-h-[6.5rem] sm:min-h-[8.5rem] flex flex-col justify-between transition-[background-color,color,box-shadow] duration-500"
                     style={
                       on
-                        ? { backgroundColor: t.bg, color: t.fg }
+                        ? { backgroundColor: tile.bg, color: tile.fg }
                         : { backgroundColor: 'var(--bg-alt)', color: 'var(--text-muted)', boxShadow: 'inset 0 0 0 1px var(--border)' }
                     }
                   >
-                    <span className="font-unbounded font-semibold text-base sm:text-lg leading-tight">{t.name}</span>
+                    <span className="font-unbounded font-semibold text-base sm:text-lg leading-tight">{tile.name}</span>
                     <span className="text-sm">
-                      {t.note}
-                      <span className="sr-only">{on ? `, utilise ${selected}` : ''}</span>
+                      {notes[tile.id]}
+                      <span className="sr-only">{on ? fill(usesSuffix, { skill: selected }) : ''}</span>
                     </span>
                   </li>
                 );

@@ -3,58 +3,13 @@
 import { useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import type { HomeText } from '@/content/types';
+import { fill } from '@/lib/format';
 
-interface Chapter {
-  year: string;
-  title: string;
-  text: string;
-}
+type Chapter = HomeText['story']['chapters'][number];
 
-// L'histoire, dans l'ordre. Chaque fait vient du CV : pas de date inventée.
-const chapters: Chapter[] = [
-  {
-    year: '2023',
-    title: 'Le point de départ',
-    text: "Baccalauréat Sciences mathématiques à Mamou, mention Bien. La même année, j'entre en Génie informatique à l'Université Gamal Abdel Nasser de Conakry.",
-  },
-  {
-    year: '2024',
-    title: 'Apprendre en transmettant',
-    text: "En juillet, je rejoins FATA Guinée comme bénévole, une école de programmation pour la jeunesse africaine. J'y donne mes premières formations : HTML, CSS et technologies du web.",
-  },
-  {
-    year: '2025',
-    title: 'Former, encore',
-    text: "Pendant plus de 6 mois, en alternance chez Asis tech, je forme plus de 30 personnes à l'informatique de base, de la bureautique à Internet.",
-  },
-  {
-    year: '2025',
-    title: "L'Orange Digital Center",
-    text: "De juillet à novembre, stage à l'Orange Digital Center pour l'Orange Summer Challenge. En équipe, on conçoit une application web et mobile, et je coordonne la partie technique. Nous finissons 2e, et ce prototype devient SoliBox.",
-  },
-  {
-    year: '2026',
-    title: 'SoliBox prend vie',
-    text: "SoliBox est incubée à Orange Fab Guinée. Avec une équipe de 5, on passe du prototype aux premières installations sur de vraies maisons. En parallèle, je rejoins NG Tech comme développeur mobile, d'abord en stage.",
-  },
-  {
-    year: '2026',
-    title: 'Trois premiers prix',
-    text: "SoliBox remporte le 1er prix national POESAM, le 1er prix du SADEN Fulbright Innovation Challenge et le 1er prix du Salon des Étudiants Entrepreneurs, catégorie Numérique. La même année, je deviens Responsable Masterclass & Formation chez FATA Guinée.",
-  },
-  {
-    year: '2026',
-    title: 'Construire seul',
-    text: "Je lance Lab Oratoire, une plateforme pour pratiquer la prise de parole en public, puis Sanni en septembre, la boutique en ligne des vendeurs WhatsApp. Deux produits que j'ai conçus, développés et mis en ligne moi-même.",
-  },
-  {
-    year: "Aujourd'hui",
-    title: 'La suite',
-    text: "En 4e année de génie logiciel, je continue à construire, à apprendre et à transmettre. Le prochain chapitre, on peut l'écrire ensemble.",
-  },
-];
-
-export default function Story() {
+export default function Story({ t }: { t: HomeText['story'] }) {
+  const chapters = t.chapters;
   const [active, setActive] = useState(0);
   const reduce = useReducedMotion() ?? false;
   const listRef = useRef<HTMLOListElement>(null);
@@ -93,10 +48,10 @@ export default function Story() {
           id="story-title"
           className="font-unbounded font-bold tracking-[-0.03em] leading-[1] text-text text-[clamp(2rem,4vw,3.25rem)] max-w-2xl"
         >
-          Mon histoire, jusqu&apos;ici.
+          {t.heading}
         </h2>
         <p className="mt-5 text-lg text-text-muted max-w-xl">
-          De Mamou à mes propres produits, en huit chapitres. Fais défiler.
+          {t.intro}
         </p>
 
         {/* Mobile : l'année et la progression restent visibles en haut pendant la lecture. */}
@@ -106,7 +61,7 @@ export default function Story() {
               {yearDisplay}
             </p>
             <p className="text-sm text-text-muted">
-              Chapitre {active + 1} sur {chapters.length}
+              {fill(t.chapterOf, { n: active + 1, total: chapters.length })}
             </p>
           </div>
           <div className="mt-3">{progressBar}</div>
@@ -118,15 +73,15 @@ export default function Story() {
             <div className="sticky top-[calc(50vh-6rem)]">
               <p
                 className={`font-unbounded font-extrabold tracking-[-0.04em] leading-none text-text overflow-hidden pb-2 ${
-                  // Une année (4 chiffres) en très grand ; un mot plus long (« Aujourd'hui ») plus petit pour tenir.
-                  chapter.year.length > 4 ? 'text-[clamp(2.25rem,4.2vw,3.75rem)]' : 'text-[clamp(4rem,8vw,7.5rem)]'
+                  // Une année (4 chiffres) en très grand ; un mot (« Aujourd'hui », « Today ») plus petit pour tenir.
+                  /^\d{4}$/.test(chapter.year) ? 'text-[clamp(4rem,8vw,7.5rem)]' : 'text-[clamp(2.25rem,4.2vw,3.75rem)]'
                 }`}
                 aria-live="polite"
               >
                 {yearDisplay}
               </p>
               <p className="mt-6 text-text-muted">
-                Chapitre {active + 1} sur {chapters.length}
+                {fill(t.chapterOf, { n: active + 1, total: chapters.length })}
               </p>
               <div className="mt-3 max-w-xs">{progressBar}</div>
             </div>
@@ -139,6 +94,7 @@ export default function Story() {
                 chapter={c}
                 isActive={i === active}
                 isLast={i === chapters.length - 1}
+                contactCta={t.contactCta}
                 reduce={reduce}
                 onEnter={() => setActive(i)}
               />
@@ -154,12 +110,14 @@ function ChapterItem({
   chapter,
   isActive,
   isLast,
+  contactCta,
   reduce,
   onEnter,
 }: {
   chapter: Chapter;
   isActive: boolean;
   isLast: boolean;
+  contactCta: string;
   reduce: boolean;
   onEnter: () => void;
 }) {
@@ -202,7 +160,7 @@ function ChapterItem({
           href="#contact"
           className="mt-8 self-start inline-flex items-center bg-accent hover:bg-accent-hover text-bg px-6 py-3.5 rounded-full font-medium transition-colors"
         >
-          Me contacter
+          {contactCta}
         </a>
       )}
     </li>
