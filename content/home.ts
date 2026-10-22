@@ -79,7 +79,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: '2024',
           title: 'Apprendre en transmettant',
-          text: "En juillet, je rejoins FATA Guinée comme bénévole, une école de programmation pour la jeunesse africaine. J'y donne mes premières formations : HTML, CSS et technologies du web.",
+          text: "En juillet, je deviens bénévole chez FATA Guinée, une association à but non lucratif qui accélère l'apprentissage du numérique chez les jeunes Africains. J'y donne mes premières formations : HTML, CSS et technologies du web.",
         },
         {
           year: '2025',
@@ -209,7 +209,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: '2024',
           title: 'Learning by teaching',
-          text: 'In July, I join FATA Guinée as a volunteer, a coding school for young Africans. There I give my first training sessions: HTML, CSS and web technologies.',
+          text: 'In July, I start volunteering at FATA Guinée, a non-profit that speeds up digital learning for young Africans. There I give my first training sessions: HTML, CSS and web technologies.',
         },
         {
           year: '2025',
