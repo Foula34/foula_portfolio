@@ -3,7 +3,7 @@ import type { UiText } from './types';
 
 export const ui: Record<Locale, UiText> = {
   fr: {
-    nav: { projects: 'Projets', story: 'Mon histoire', skills: 'Compétences', contact: 'Contact' },
+    nav: { projects: 'Projets', story: 'Mon histoire', skills: 'Compétences', blog: 'Blog', contact: 'Contact' },
     themeToggle: 'Changer de thème',
     menuToggle: 'Ouvrir ou fermer le menu',
     switchLanguage: { label: 'EN', aria: 'Read in English' },

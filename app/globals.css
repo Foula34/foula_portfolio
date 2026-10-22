@@ -147,3 +147,41 @@ body {
 .fade-in {
   animation: fade-in 0.6s ease both;
 }
+
+/* Articles du blog : typographie de lecture longue, ligne de 65 caractères environ. */
+.article-body {
+  font-size: 1.1875rem;
+  line-height: 1.75;
+  color: var(--text);
+}
+.article-body > * + * {
+  margin-top: 1.4em;
+}
+.article-body h2 {
+  font-family: var(--font-unbounded), var(--font-geist-sans), sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  font-size: 1.6rem;
+  margin-top: 2.4em;
+}
+.article-body h2 + * {
+  margin-top: 0.9em;
+}
+.article-body strong {
+  font-weight: 650;
+}
+.article-body ul {
+  list-style: disc;
+  padding-left: 1.4em;
+}
+.article-body li + li {
+  margin-top: 0.4em;
+}
+.article-body li::marker {
+  color: var(--accent);
+}
+.article-body a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

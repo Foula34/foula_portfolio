@@ -38,6 +38,7 @@ export default function Navbar({
     { name: ui.nav.projects, href: `${base}#projects` },
     { name: ui.nav.story, href: `${base}#story` },
     { name: ui.nav.skills, href: `${base}#skills` },
+    ...(ui.nav.blog ? [{ name: ui.nav.blog, href: '/blog' }] : []),
     { name: ui.nav.contact, href: `${base}#contact` },
   ];
   // Changer de langue recharge la page : chaque langue a sa propre mise en page (<html lang>).

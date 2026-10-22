@@ -2,7 +2,8 @@ import type { CaseSlug } from '@/lib/i18n';
 
 // Textes de l'interface commune (navigation, pied de page, études de cas).
 export interface UiText {
-  nav: { projects: string; story: string; skills: string; contact: string };
+  // blog : seulement dans les langues où des articles existent (le français pour l'instant).
+  nav: { projects: string; story: string; skills: string; contact: string; blog?: string };
   themeToggle: string;
   menuToggle: string;
   switchLanguage: { label: string; aria: string };
