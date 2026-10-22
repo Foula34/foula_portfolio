@@ -3,6 +3,7 @@ import type { HomeText } from './types';
 
 const photos = {
   osc: { src: '/images/prix-osc.jpg', width: 1000, height: 563 },
+  techleaders: { src: '/images/1000-techleaders.jpg', width: 960, height: 1100 },
   poesam: { src: '/images/prix-poesam.jpg', width: 1080, height: 810 },
   saden: { src: '/images/prix-saden.jpg', width: 1200, height: 800 },
   salon: { src: '/images/prix-salon.jpg', width: 960, height: 640 },
@@ -80,6 +81,7 @@ export const home: Record<Locale, HomeText> = {
           year: '2024',
           title: 'Apprendre en transmettant',
           text: "En juillet, je deviens bénévole chez FATA Guinée, une association à but non lucratif qui accélère l'apprentissage du numérique chez les jeunes Africains. J'y donne mes premières formations : HTML, CSS et technologies du web. En août, j'entre dans la toute première cohorte de 1000 TechLeaders, un programme gratuit de Nimba Hub : 9 mois de formation en développement mobile avec Flutter.",
+          images: [{ ...photos.techleaders, alt: 'Foula Fofana tenant son attestation 1000 TechLeaders, cursus Développement mobile, délivrée par Nimba Hub' }],
         },
         {
           year: '2025',
@@ -210,6 +212,7 @@ export const home: Record<Locale, HomeText> = {
           year: '2024',
           title: 'Learning by teaching',
           text: 'In July, I start volunteering at FATA Guinée, a non-profit that speeds up digital learning for young Africans. There I give my first training sessions: HTML, CSS and web technologies. In August, I join the very first cohort of 1000 TechLeaders, a free programme run by Nimba Hub: 9 months of training in mobile development with Flutter.',
+          images: [{ ...photos.techleaders, alt: 'Foula Fofana holding his 1000 TechLeaders certificate, Mobile Development track, issued by Nimba Hub' }],
         },
         {
           year: '2025',

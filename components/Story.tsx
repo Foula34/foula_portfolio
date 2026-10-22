@@ -170,7 +170,10 @@ function ChapterItem({
                 width={img.width}
                 height={img.height}
                 sizes={wide ? '(min-width: 1024px) 36rem, 100vw' : '(min-width: 1024px) 18rem, (min-width: 640px) 50vw, 100vw'}
-                className={`w-full rounded-2xl ${wide ? 'sm:col-span-2' : 'aspect-[3/2] object-cover'}`}
+                className={`w-full rounded-2xl ${wide ? 'sm:col-span-2' : 'aspect-[3/2] object-cover'} ${
+                  // Une photo en hauteur seule reste plus étroite, pour ne pas occuper tout l'écran.
+                  count === 1 && img.height > img.width ? 'max-w-sm' : ''
+                }`}
               />
             );
           })}
