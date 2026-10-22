@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
+import Image from 'next/image';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useSpring } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import type { HomeText } from '@/content/types';
@@ -155,6 +156,16 @@ function ChapterItem({
       >
         {chapter.text}
       </p>
+      {chapter.image && (
+        <Image
+          src={chapter.image.src}
+          alt={chapter.image.alt}
+          width={chapter.image.width}
+          height={chapter.image.height}
+          sizes="(min-width: 1024px) 36rem, 100vw"
+          className="mt-8 w-full max-w-xl rounded-2xl"
+        />
+      )}
       {isLast && (
         <a
           href="#contact"

@@ -1,6 +1,7 @@
 import type { Locale } from '@/lib/i18n';
 import type { CaseStudyContent } from '../types';
 
+const portraitAside = { src: '/images/foula-solibox.jpg', width: 382, height: 700, variant: 'photo' as const };
 const osAside = { src: '/images/solibox-os.jpg', width: 600, height: 1600 };
 
 export const solibox: Record<Locale, CaseStudyContent> = {
@@ -39,6 +40,7 @@ export const solibox: Record<Locale, CaseStudyContent> = {
       },
       {
         title: 'Ce que nous avons construit',
+        aside: { ...portraitAside, alt: 'Foula Fofana en polo et casquette SoliBox, bras croisés' },
         blocks: [
           {
             kind: 'p',
@@ -197,6 +199,7 @@ export const solibox: Record<Locale, CaseStudyContent> = {
       },
       {
         title: 'What we built',
+        aside: { ...portraitAside, alt: 'Foula Fofana in a SoliBox polo shirt and cap, arms crossed' },
         blocks: [
           {
             kind: 'p',

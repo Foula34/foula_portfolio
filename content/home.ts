@@ -1,6 +1,8 @@
 import type { Locale } from '@/lib/i18n';
 import type { HomeText } from './types';
 
+const sadenPhoto = { src: '/images/foula-saden.jpg', width: 960, height: 760 };
+
 // Textes de l'accueil. Chaque fait vient du CV ou de Foula : pas de chiffre ni de date inventés.
 export const home: Record<Locale, HomeText> = {
   fr: {
@@ -15,7 +17,7 @@ export const home: Record<Locale, HomeText> = {
       intro: 'Développeur et entrepreneur : je conçois, je code et je lance mes propres produits.',
       seeProjects: 'Voir mes projets',
       downloadCv: 'Télécharger mon CV',
-      photoAlt: 'Foula Fofana tenant son attestation 1000 TechLeaders',
+      photoAlt: 'Foula Fofana, bras croisés, dans un espace de coworking',
       now: 'En ce moment, je fais grandir Sanni.',
       prizesLabel: 'Distinctions',
       prizes: [
@@ -94,6 +96,7 @@ export const home: Record<Locale, HomeText> = {
           year: '2026',
           title: 'Trois premiers prix',
           text: 'SoliBox remporte le 1er prix national POESAM, le 1er prix du SADEN Fulbright Innovation Challenge et le 1er prix du Salon des Étudiants Entrepreneurs, catégorie Numérique. La même année, je deviens Responsable Masterclass & Formation chez FATA Guinée.',
+          image: { ...sadenPhoto, alt: 'Foula Fofana assis à côté de la plaque du prix SADEN Fulbright 2026 et du chèque remis à SoliBox' },
         },
         {
           year: '2026',
@@ -140,7 +143,7 @@ export const home: Record<Locale, HomeText> = {
       intro: 'Developer and entrepreneur: I design, build and launch my own products.',
       seeProjects: 'See my projects',
       downloadCv: 'Download my CV (French)',
-      photoAlt: 'Foula Fofana holding his 1000 TechLeaders certificate',
+      photoAlt: 'Foula Fofana, arms crossed, in a coworking space',
       now: 'Right now, I am growing Sanni.',
       prizesLabel: 'Awards',
       prizes: [
@@ -219,6 +222,7 @@ export const home: Record<Locale, HomeText> = {
           year: '2026',
           title: 'Three first prizes',
           text: 'SoliBox wins the 1st national prize at POESAM, 1st prize at the SADEN Fulbright Innovation Challenge and 1st prize at the Salon des Étudiants Entrepreneurs, Digital category. The same year, I become Head of Masterclasses & Training at FATA Guinée.',
+          image: { ...sadenPhoto, alt: 'Foula Fofana seated next to the SADEN Fulbright 2026 award plaque and the cheque presented to SoliBox' },
         },
         {
           year: '2026',

@@ -41,7 +41,7 @@ export interface HomeText {
     // Modèle : {n} et {total} sont remplacés (pas de fonction : le texte va vers un composant client).
     chapterOf: string;
     contactCta: string;
-    chapters: { year: string; title: string; text: string }[];
+    chapters: { year: string; title: string; text: string; image?: { src: string; width: number; height: number; alt: string } }[];
   };
   skills: {
     heading: string;
@@ -77,7 +77,8 @@ export interface CaseSection {
   title: string;
   blocks: CaseBlock[];
   // Capture d'écran affichée à côté du texte (format téléphone).
-  aside?: { src: string; width: number; height: number; alt: string };
+  // variant 'photo' : une photo simple ; par défaut, une capture d'écran dans un cadre de téléphone.
+  aside?: { src: string; width: number; height: number; alt: string; variant?: 'phone' | 'photo' };
 }
 
 export interface CaseStudyContent {

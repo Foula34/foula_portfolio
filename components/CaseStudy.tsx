@@ -54,7 +54,7 @@ function Section({ section, theme }: { section: CaseSection; theme: CaseTheme })
     </div>
   );
 
-  // Section avec capture d'écran : texte à gauche, téléphone à droite.
+  // Section avec visuel : texte à gauche, capture de téléphone ou photo à droite.
   if (section.aside) {
     const a = section.aside;
     return (
@@ -71,9 +71,13 @@ function Section({ section, theme }: { section: CaseSection; theme: CaseTheme })
             alt={a.alt}
             width={a.width}
             height={a.height}
-            sizes="260px"
-            className="w-[220px] sm:w-[260px] rounded-[1.75rem] ring-8 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.5)]"
-            style={{ '--tw-ring-color': theme.asideFrame } as React.CSSProperties}
+            sizes="280px"
+            className={
+              a.variant === 'photo'
+                ? 'w-[240px] sm:w-[280px] rounded-2xl'
+                : 'w-[220px] sm:w-[260px] rounded-[1.75rem] ring-8 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.5)]'
+            }
+            style={a.variant === 'photo' ? undefined : ({ '--tw-ring-color': theme.asideFrame } as React.CSSProperties)}
           />
         </div>
       </section>
