@@ -46,9 +46,28 @@ Puis ouvrir http://localhost:3000.
 app/(fr)/     pages françaises : accueil et /projets/[slug]
 app/(en)/en/  pages anglaises : /en et /en/projects/[slug]
 components/   sections de l'accueil, composant d'étude de cas, navigation
-content/      tous les textes : ui.ts, home.ts et cases/ (fr et en côte à côte)
+content/      tous les textes : ui.ts, home.ts, cases/ (fr et en côte à côte) et blog/ (articles en Markdown)
 lib/          langues, métadonnées, polices
 public/       images et CV
 ```
 
 Pour corriger un texte, il suffit de modifier le fichier de `content/` concerné, sans toucher aux composants.
+
+## Publier un article
+
+1. Créer un fichier Markdown dans `content/blog/`, par exemple `mon-article.md`. Son nom donne l'adresse : `/blog/mon-article`.
+2. Commencer le fichier par cet en-tête :
+
+```md
+---
+title: Le titre de l'article
+description: Une phrase qui résume l'article, pour Google et les aperçus de lien.
+date: 2026-10-22
+---
+```
+
+3. Écrire l'article en Markdown en dessous (`## Intertitre`, `**gras**`, listes avec `-`).
+   Pour insérer un visuel, une ligne seule :
+   - `[[illustration:iceberg]]` (aussi `parcours`, `methode`), des illustrations dessinées en composants ;
+   - `[[image:/images/sanni.jpg|Texte alternatif|Légende|wide]]`, avec `wide` (capture large) ou `phone` (écran de téléphone). Une nouvelle image doit être déclarée avec ses dimensions dans `components/blog/BlogImage.tsx`.
+4. Pousser sur `main` : l'article apparaît sur `/blog`, avec son image de partage générée automatiquement.
