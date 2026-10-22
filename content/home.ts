@@ -100,7 +100,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: '2026',
           title: 'Trois premiers prix',
-          text: 'SoliBox remporte le 1er prix national POESAM, le 1er prix du SADEN Fulbright Innovation Challenge et le 1er prix du Salon des Étudiants Entrepreneurs, catégorie Numérique. La même année, je deviens Responsable Masterclass & Formation chez FATA Guinée.',
+          text: 'SoliBox remporte le 1er prix national POESAM, le 1er prix du SADEN Fulbright Innovation Challenge et le 1er prix du Salon des Étudiants Entrepreneurs, catégorie Numérique. La même année, je deviens Responsable Opérations, Événements & Masterclass chez FATA Guinée.',
           images: [
             { ...photos.poesam, alt: "L'équipe SoliBox tient le chèque du 1er prix national du Prix Orange de l'Entrepreneur Social en Afrique et Moyen-Orient" },
             { ...photos.saden, alt: "Foula Fofana et une membre de l'équipe reçoivent le chèque du SADEN Fulbright Innovation Challenge 2026 remis à SoliBox" },
@@ -230,7 +230,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: '2026',
           title: 'Three first prizes',
-          text: 'SoliBox wins the 1st national prize at POESAM, 1st prize at the SADEN Fulbright Innovation Challenge and 1st prize at the Salon des Étudiants Entrepreneurs, Digital category. The same year, I become Head of Masterclasses & Training at FATA Guinée.',
+          text: 'SoliBox wins the 1st national prize at POESAM, 1st prize at the SADEN Fulbright Innovation Challenge and 1st prize at the Salon des Étudiants Entrepreneurs, Digital category. The same year, I become Head of Operations, Events & Masterclasses at FATA Guinée.',
           images: [
             { ...photos.poesam, alt: "The SoliBox team holding the 1st national prize cheque of the Orange Social Venture Prize in Africa and the Middle East" },
             { ...photos.saden, alt: 'Foula Fofana and a team member receive the SADEN Fulbright Innovation Challenge 2026 cheque presented to SoliBox' },
