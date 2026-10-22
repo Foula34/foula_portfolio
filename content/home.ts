@@ -5,14 +5,14 @@ import type { HomeText } from './types';
 export const home: Record<Locale, HomeText> = {
   fr: {
     meta: {
-      title: 'Foula Fofana · Développeur web & mobile · Cofondateur de SoliBox',
+      title: 'Foula Fofana · Développeur et entrepreneur',
       description:
-        'Développeur web et mobile basé à Conakry. Cofondateur et CEO de SoliBox, 1er prix national POESAM 2026. Créateur de Sanni et Lab Oratoire.',
+        'Développeur et entrepreneur à Conakry : je conçois, je code et je lance mes propres produits. Cofondateur et CEO de SoliBox, 1er prix national POESAM 2026, créateur de Sanni et Lab Oratoire.',
       ogLocale: 'fr_FR',
     },
     hero: {
       tagline: 'Je construis des produits que de vrais gens utilisent, à Conakry.',
-      intro: 'Développeur web et mobile, cofondateur et CEO de SoliBox, créateur de Sanni et de Lab Oratoire.',
+      intro: 'Développeur et entrepreneur : je conçois, je code et je lance mes propres produits.',
       seeProjects: 'Voir mes projets',
       downloadCv: 'Télécharger mon CV',
       photoAlt: 'Foula Fofana tenant son attestation 1000 TechLeaders',
@@ -130,14 +130,14 @@ export const home: Record<Locale, HomeText> = {
 
   en: {
     meta: {
-      title: 'Foula Fofana · Web & mobile developer · Co-founder of SoliBox',
+      title: 'Foula Fofana · Developer and entrepreneur',
       description:
-        'Web and mobile developer based in Conakry, Guinea. Co-founder and CEO of SoliBox, 1st national prize at POESAM 2026. Creator of Sanni and Lab Oratoire.',
+        'Developer and entrepreneur in Conakry, Guinea: I design, build and launch my own products. Co-founder and CEO of SoliBox, 1st national prize at POESAM 2026, creator of Sanni and Lab Oratoire.',
       ogLocale: 'en_US',
     },
     hero: {
       tagline: 'I build products that real people use, in Conakry.',
-      intro: 'Web and mobile developer, co-founder and CEO of SoliBox, creator of Sanni and Lab Oratoire.',
+      intro: 'Developer and entrepreneur: I design, build and launch my own products.',
       seeProjects: 'See my projects',
       downloadCv: 'Download my CV (French)',
       photoAlt: 'Foula Fofana holding his 1000 TechLeaders certificate',
