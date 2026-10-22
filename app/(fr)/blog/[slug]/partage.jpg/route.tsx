@@ -1,12 +1,15 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { ImageResponse } from 'next/og';
+import sharp from 'sharp';
 import { getPost, getPosts } from '@/lib/blog';
 
 // Image d'aperçu (1200 × 630) affichée quand le lien est partagé sur LinkedIn, Facebook ou WhatsApp.
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/png';
-export const alt = 'Article de Foula Fofana';
+// Servie en JPEG, à une adresse fixe (/blog/<slug>/partage.jpg) : WhatsApp affiche mal les PNG
+// générés à la volée, alors qu'un JPEG léger passe partout. Générée une fois, au build.
+export const dynamic = 'force-static';
+export const dynamicParams = false;
+const shareImageSize = { width: 1200, height: 630 };
 
 export function generateStaticParams() {
   return getPosts().map((p) => ({ slug: p.slug }));
@@ -14,18 +17,17 @@ export function generateStaticParams() {
 
 const fontDir = path.join(process.cwd(), 'node_modules', 'geist', 'dist', 'fonts', 'geist-sans');
 
-export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
+export async function GET(_req: Request, { params }: { params: Promise<{ slug: string }> }) {
   const post = getPost((await params).slug);
-  // Espace insécable entre les deux derniers mots : pas de mot seul sur la dernière ligne.
+  if (!post) return new Response('Not found', { status: 404 });
+
   // L'espace fine (avant « : ») n'existe pas dans Geist : on prend l'espace insécable classique.
   // Et une espace insécable entre les deux derniers mots : pas de mot seul sur la dernière ligne.
-  const title = (post?.title ?? 'Blog de Foula Fofana')
-    .replace(/\u202f/g, '\u00a0')
-    .replace(/ (\S+)$/, '\u00a0$1');
+  const title = post.title.replace(/ /g, ' ').replace(/ (\S+)$/, ' $1');
   const black = fs.readFileSync(path.join(fontDir, 'Geist-Black.ttf'));
   const medium = fs.readFileSync(path.join(fontDir, 'Geist-Medium.ttf'));
 
-  return new ImageResponse(
+  const png = new ImageResponse(
     (
       <div
         style={{
@@ -59,11 +61,23 @@ export default async function Image({ params }: { params: Promise<{ slug: string
       </div>
     ),
     {
-      ...size,
+      ...shareImageSize,
       fonts: [
         { name: 'Geist', data: black, weight: 900, style: 'normal' },
         { name: 'Geist', data: medium, weight: 500, style: 'normal' },
       ],
     }
   );
+
+  const jpeg = await sharp(Buffer.from(await png.arrayBuffer()))
+    .flatten({ background: '#DC2F02' })
+    .jpeg({ quality: 85, progressive: false, optimiseCoding: true })
+    .toBuffer();
+
+  return new Response(new Uint8Array(jpeg), {
+    headers: {
+      'Content-Type': 'image/jpeg',
+      'Cache-Control': 'public, max-age=86400, s-maxage=31536000',
+    },
+  });
 }

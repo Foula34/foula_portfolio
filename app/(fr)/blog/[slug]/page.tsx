@@ -43,7 +43,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPost((await params).slug);
   if (!post) return {};
   const url = `/blog/${post.slug}`;
-  // L'image de partage vient de opengraph-image.tsx, dans ce même dossier.
+  // L'image de partage est générée par partage.jpg/route.tsx, dans ce même dossier.
+  const image = {
+    url: `${SITE_URL}${url}/partage.jpg`,
+    width: 1200,
+    height: 630,
+    type: 'image/jpeg',
+    alt: post.title,
+  };
   return {
     metadataBase: new URL(SITE_URL),
     title: `${post.title} · Foula Fofana`,
@@ -58,8 +65,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: post.description,
       publishedTime: post.date,
       authors: ['Foula Fofana'],
+      images: [image],
     },
-    twitter: { card: 'summary_large_image', title: post.title, description: post.description },
+    twitter: { card: 'summary_large_image', title: post.title, description: post.description, images: [image.url] },
   };
 }
 
