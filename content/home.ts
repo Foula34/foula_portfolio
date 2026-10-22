@@ -79,7 +79,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: '2024',
           title: 'Apprendre en transmettant',
-          text: "En juillet, je deviens bénévole chez FATA Guinée, une association à but non lucratif qui accélère l'apprentissage du numérique chez les jeunes Africains. J'y donne mes premières formations : HTML, CSS et technologies du web.",
+          text: "En juillet, je deviens bénévole chez FATA Guinée, une association à but non lucratif qui accélère l'apprentissage du numérique chez les jeunes Africains. J'y donne mes premières formations : HTML, CSS et technologies du web. En août, j'entre dans la toute première cohorte de 1000 TechLeaders, un programme gratuit de Nimba Hub : 9 mois de formation en développement mobile avec Flutter.",
         },
         {
           year: '2025',
@@ -209,7 +209,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: '2024',
           title: 'Learning by teaching',
-          text: 'In July, I start volunteering at FATA Guinée, a non-profit that speeds up digital learning for young Africans. There I give my first training sessions: HTML, CSS and web technologies.',
+          text: 'In July, I start volunteering at FATA Guinée, a non-profit that speeds up digital learning for young Africans. There I give my first training sessions: HTML, CSS and web technologies. In August, I join the very first cohort of 1000 TechLeaders, a free programme run by Nimba Hub: 9 months of training in mobile development with Flutter.',
         },
         {
           year: '2025',
