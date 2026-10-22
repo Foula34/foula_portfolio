@@ -80,7 +80,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: '2024',
           title: 'Apprendre en transmettant',
-          text: "En juillet, je deviens bénévole chez FATA Guinée, une association à but non lucratif qui accélère l'apprentissage du numérique chez les jeunes Africains. J'y donne mes premières formations : HTML, CSS et technologies du web. En août, j'entre dans la toute première cohorte de 1000 TechLeaders, un programme gratuit de Nimba Hub : 9 mois de formation en développement mobile avec Flutter.",
+          text: "En juin, j'entre dans la toute première cohorte de 1000 TechLeaders, un programme gratuit de Nimba Hub : 10 mois de formation en développement mobile avec Flutter. En juillet, je deviens bénévole chez FATA Guinée, une association à but non lucratif qui accélère l'apprentissage du numérique chez les jeunes Africains. J'y donne mes premières formations : HTML, CSS et technologies du web.",
           images: [{ ...photos.techleaders, alt: 'Foula Fofana tenant son attestation 1000 TechLeaders, cursus Développement mobile, délivrée par Nimba Hub' }],
         },
         {
@@ -211,7 +211,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: '2024',
           title: 'Learning by teaching',
-          text: 'In July, I start volunteering at FATA Guinée, a non-profit that speeds up digital learning for young Africans. There I give my first training sessions: HTML, CSS and web technologies. In August, I join the very first cohort of 1000 TechLeaders, a free programme run by Nimba Hub: 9 months of training in mobile development with Flutter.',
+          text: 'In June, I join the very first cohort of 1000 TechLeaders, a free programme run by Nimba Hub: 10 months of training in mobile development with Flutter. In July, I start volunteering at FATA Guinée, a non-profit that speeds up digital learning for young Africans. There I give my first training sessions: HTML, CSS and web technologies.',
           images: [{ ...photos.techleaders, alt: 'Foula Fofana holding his 1000 TechLeaders certificate, Mobile Development track, issued by Nimba Hub' }],
         },
         {
