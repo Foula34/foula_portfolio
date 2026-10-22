@@ -117,7 +117,10 @@ export default function Story() {
           <div className="hidden lg:block lg:col-span-5">
             <div className="sticky top-[calc(50vh-6rem)]">
               <p
-                className="font-unbounded font-extrabold tracking-[-0.04em] leading-none text-text text-[clamp(4rem,8vw,7.5rem)] overflow-hidden pb-2"
+                className={`font-unbounded font-extrabold tracking-[-0.04em] leading-none text-text overflow-hidden pb-2 ${
+                  // Une année (4 chiffres) en très grand ; un mot plus long (« Aujourd'hui ») plus petit pour tenir.
+                  chapter.year.length > 4 ? 'text-[clamp(2.25rem,4.2vw,3.75rem)]' : 'text-[clamp(4rem,8vw,7.5rem)]'
+                }`}
                 aria-live="polite"
               >
                 {yearDisplay}
@@ -168,24 +171,36 @@ function ChapterItem({
     },
   });
 
-  const dimmed = !reduce && !isActive;
+  // Le chapitre actif ressort (texte plein, barre de couleur) ; les autres passent en gris,
+  // qui reste lisible : un contraste suffisant, même sur un téléphone en plein soleil.
+  const active = reduce || isActive;
 
   return (
     <li
       ref={ref}
-      className={`py-10 lg:py-12 lg:min-h-[40vh] flex flex-col justify-center transition-opacity duration-500 ${
-        dimmed ? 'opacity-25' : 'opacity-100'
+      className={`relative py-10 lg:py-12 lg:min-h-[40vh] flex flex-col justify-center pl-5 sm:pl-6 border-l-2 transition-colors duration-500 ${
+        active ? 'border-accent' : 'border-transparent'
       }`}
     >
       <p className="lg:hidden text-sm text-text-muted mb-2">{chapter.year}</p>
-      <h3 className="font-unbounded font-semibold tracking-[-0.02em] text-text text-2xl lg:text-3xl leading-tight">
+      <h3
+        className={`font-unbounded font-semibold tracking-[-0.02em] text-2xl lg:text-3xl leading-tight transition-colors duration-500 ${
+          active ? 'text-text' : 'text-text-muted'
+        }`}
+      >
         {chapter.title}
       </h3>
-      <p className="mt-4 text-lg text-text-muted leading-relaxed max-w-xl">{chapter.text}</p>
+      <p
+        className={`mt-4 text-lg leading-relaxed max-w-xl transition-colors duration-500 ${
+          active ? 'text-text' : 'text-text-muted'
+        }`}
+      >
+        {chapter.text}
+      </p>
       {isLast && (
         <a
           href="#contact"
-          className="mt-8 self-start inline-flex items-center bg-accent hover:bg-accent-hover text-white px-6 py-3.5 rounded-full font-medium transition-colors"
+          className="mt-8 self-start inline-flex items-center bg-accent hover:bg-accent-hover text-bg px-6 py-3.5 rounded-full font-medium transition-colors"
         >
           Me contacter
         </a>

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from 'next';
 import { GeistSans } from 'geist/font/sans';
-import { GeistMono } from 'geist/font/mono';
 import localFont from 'next/font/local';
 import './globals.css';
 
@@ -74,7 +73,7 @@ export default function RootLayout({
       lang="fr"
       data-theme="light"
       suppressHydrationWarning
-      className={`${GeistSans.variable} ${GeistMono.variable} ${unbounded.variable}`}
+      className={`${GeistSans.variable} ${unbounded.variable}`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

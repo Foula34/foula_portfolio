@@ -1,7 +1,4 @@
-'use client';
-
 import Image from 'next/image';
-import { motion, useReducedMotion } from 'framer-motion';
 import { Download, Mail } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './BrandIcons';
 
@@ -18,28 +15,20 @@ const socials = [
 ];
 
 // Le nom se dessine lettre par lettre : c'est le seul mouvement d'entrée de la page.
-function AnimatedWord({ word, delay, reduce }: { word: string; delay: number; reduce: boolean }) {
+// Animation en CSS pur (classe .rise) : aucun JavaScript à charger avant qu'elle démarre.
+function AnimatedWord({ word, delay }: { word: string; delay: number }) {
   return (
     <span className="block overflow-hidden pb-[0.06em]" aria-hidden="true">
       {word.split('').map((letter, i) => (
-        <motion.span
-          key={i}
-          className="inline-block"
-          initial={reduce ? false : { y: '105%' }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.8, delay: delay + i * 0.045, ease: [0.22, 1, 0.36, 1] }}
-        >
+        <span key={i} className="rise inline-block" style={{ animationDelay: `${delay + i * 0.045}s` }}>
           {letter}
-        </motion.span>
+        </span>
       ))}
     </span>
   );
 }
 
 export default function Hero() {
-  const reduce = useReducedMotion() ?? false;
-  const after = (d: number) => (reduce ? {} : { initial: { opacity: 0 }, animate: { opacity: 1 }, transition: { duration: 0.6, delay: d } });
-
   return (
     <section id="home" className="relative px-6 pt-28 pb-12 lg:pt-36 lg:pb-16">
       <div className="max-w-content mx-auto">
@@ -47,11 +36,11 @@ export default function Hero() {
           <div className="lg:col-span-8">
             <h1 className="font-unbounded font-extrabold uppercase text-text leading-[0.88] tracking-[-0.04em] text-[clamp(2.9rem,15vw,4.5rem)] sm:text-[clamp(4.5rem,11vw,6.25rem)] lg:text-[clamp(5rem,8.4vw,7.75rem)]">
               <span className="sr-only">Foula Fofana</span>
-              <AnimatedWord word="Foula" delay={0.1} reduce={reduce} />
-              <AnimatedWord word="Fofana" delay={0.3} reduce={reduce} />
+              <AnimatedWord word="Foula" delay={0.1} />
+              <AnimatedWord word="Fofana" delay={0.3} />
             </h1>
 
-            <motion.div {...after(0.9)} className="mt-10 max-w-[34rem]">
+            <div style={{ animationDelay: '0.9s' }} className="fade-in mt-10 max-w-[34rem]">
               <p className="text-2xl sm:text-3xl leading-snug text-text font-medium tracking-tight">
                 Je construis des produits que de vrais gens utilisent, à Conakry.
               </p>
@@ -62,7 +51,7 @@ export default function Hero() {
               <div className="mt-8 flex flex-wrap items-center gap-4">
                 <a
                   href="#projects"
-                  className="inline-flex items-center bg-accent hover:bg-accent-hover text-white px-6 py-3.5 rounded-full font-medium transition-colors"
+                  className="inline-flex items-center bg-accent hover:bg-accent-hover text-bg px-6 py-3.5 rounded-full font-medium transition-colors"
                 >
                   Voir mes projets
                 </a>
@@ -89,16 +78,11 @@ export default function Hero() {
                   ))}
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
           <div className="lg:col-span-4">
-            <motion.div
-              initial={reduce ? false : { clipPath: 'inset(100% 0% 0% 0%)' }}
-              animate={{ clipPath: 'inset(0% 0% 0% 0%)' }}
-              transition={{ duration: 1.1, delay: 0.25, ease: [0.65, 0, 0.35, 1] }}
-              className="relative max-w-xs sm:max-w-sm lg:max-w-none mx-auto overflow-hidden rounded-2xl"
-            >
+            <div className="relative max-w-xs sm:max-w-sm lg:max-w-none mx-auto overflow-hidden rounded-2xl">
               <Image
                 src="/images/foula.jpg"
                 alt="Foula Fofana tenant son attestation 1000 TechLeaders"
@@ -108,17 +92,15 @@ export default function Hero() {
                 sizes="(min-width: 1024px) 30vw, 384px"
                 className="w-full aspect-[4/5] object-cover"
               />
-            </motion.div>
-            <motion.p {...after(1.2)} className="mt-4 flex items-center gap-2 text-sm text-text-muted">
+            </div>
+            <p style={{ animationDelay: '1.2s' }} className="fade-in mt-4 flex items-center gap-2 text-sm text-text-muted">
               <span className="h-2 w-2 rounded-full bg-[#25D366] shrink-0" aria-hidden="true" />
               En ce moment, je fais grandir Sanni.
-            </motion.p>
+            </p>
           </div>
         </div>
 
-        <motion.ul
-          {...after(1.1)}
-          className="mt-16 lg:mt-20 grid sm:grid-cols-3 border-t border-border"
+        <ul style={{ animationDelay: '1.1s' }} className="fade-in mt-16 lg:mt-20 grid sm:grid-cols-3 border-t border-border"
           aria-label="Distinctions"
         >
           {prizes.map((prize) => (
@@ -127,7 +109,7 @@ export default function Hero() {
               <p className="mt-1 text-sm text-text-muted">{prize.detail}</p>
             </li>
           ))}
-        </motion.ul>
+        </ul>
       </div>
     </section>
   );

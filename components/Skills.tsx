@@ -102,11 +102,11 @@ export default function Skills() {
                 return (
                   <li
                     key={t.id}
-                    className="rounded-2xl p-4 sm:p-5 min-h-[6.5rem] sm:min-h-[8.5rem] flex flex-col justify-between transition-[background-color,color,opacity,transform] duration-500"
+                    className="rounded-2xl p-4 sm:p-5 min-h-[6.5rem] sm:min-h-[8.5rem] flex flex-col justify-between transition-[background-color,color,box-shadow] duration-500"
                     style={
                       on
                         ? { backgroundColor: t.bg, color: t.fg }
-                        : { backgroundColor: 'var(--bg-alt)', color: 'var(--text-muted)', opacity: 0.7 }
+                        : { backgroundColor: 'var(--bg-alt)', color: 'var(--text-muted)', boxShadow: 'inset 0 0 0 1px var(--border)' }
                     }
                   >
                     <span className="font-unbounded font-semibold text-base sm:text-lg leading-tight">{t.name}</span>
