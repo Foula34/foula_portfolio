@@ -6,6 +6,7 @@ const known: Record<string, { width: number; height: number }> = {
   '/images/sanni-campagne.jpg': { width: 720, height: 1320 },
   '/images/lab-oratoire.png': { width: 1348, height: 607 },
   '/images/solibox-app.png': { width: 1348, height: 607 },
+  '/images/foula-forum.jpg': { width: 650, height: 567 },
 };
 
 export default function BlogImage({

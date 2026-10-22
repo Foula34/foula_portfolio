@@ -70,6 +70,8 @@ Si les réponses ne sont pas claires, je n'ai pas encore de raison de coder.
 
 Nous avons les compétences pour construire des solutions utiles à notre pays. Je le vois tous les jours autour de moi. Ce qui nous manque souvent, ce n'est pas le talent technique : c'est le réflexe d'aller vers les gens.
 
+[[image:/images/foula-forum.jpg|Foula Fofana prend la parole devant d'autres jeunes, ordinateur ouvert devant lui|Au Forum de la Jeunesse Afrique de l'Ouest et du Centre, en juin 2026.|wide]]
+
 Alors la prochaine fois qu'une idée vous vient, avant d'ouvrir votre éditeur, essayez ceci : allez parler à dix personnes qui vivent le problème. Écoutez-les. Vous coderez ensuite, et vous coderez mieux.
 
 Et vous, comment faites-vous connaître vos produits ? Qu'est-ce qui a marché pour vous, et qu'est-ce qui n'a pas marché ? Je serais vraiment curieux de lire vos expériences.
