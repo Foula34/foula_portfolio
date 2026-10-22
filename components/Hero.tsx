@@ -88,10 +88,6 @@ export default function Hero({ t }: { t: HomeText['hero'] }) {
                 className="w-full aspect-[4/5] object-cover"
               />
             </div>
-            <p style={{ animationDelay: '1.2s' }} className="fade-in mt-4 flex items-center gap-2 text-sm text-text-muted">
-              <span className="h-2 w-2 rounded-full bg-[#25D366] shrink-0" aria-hidden="true" />
-              {t.now}
-            </p>
           </div>
         </div>
 

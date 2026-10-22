@@ -19,7 +19,6 @@ export interface HomeText {
     seeProjects: string;
     downloadCv: string;
     photoAlt: string;
-    now: string;
     prizesLabel: string;
     prizes: { name: string; detail: string }[];
   };

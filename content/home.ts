@@ -18,7 +18,6 @@ export const home: Record<Locale, HomeText> = {
       seeProjects: 'Voir mes projets',
       downloadCv: 'Télécharger mon CV',
       photoAlt: 'Foula Fofana, bras croisés, dans un espace de coworking',
-      now: 'En ce moment, je fais grandir Sanni.',
       prizesLabel: 'Distinctions',
       prizes: [
         { name: 'POESAM 2026', detail: '1er prix national' },
@@ -144,7 +143,6 @@ export const home: Record<Locale, HomeText> = {
       seeProjects: 'See my projects',
       downloadCv: 'Download my CV (French)',
       photoAlt: 'Foula Fofana, arms crossed, in a coworking space',
-      now: 'Right now, I am growing Sanni.',
       prizesLabel: 'Awards',
       prizes: [
         { name: 'POESAM 2026', detail: '1st national prize' },
