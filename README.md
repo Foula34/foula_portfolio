@@ -67,4 +67,7 @@ date: 2026-10-22
 ```
 
 3. Écrire l'article en Markdown en dessous (`## Intertitre`, `**gras**`, listes avec `-`).
+   Pour insérer un visuel, une ligne seule :
+   - `[[illustration:iceberg]]` (aussi `parcours`, `methode`), des illustrations dessinées en composants ;
+   - `[[image:/images/sanni.jpg|Texte alternatif|Légende|wide]]`, avec `wide` (capture large) ou `phone` (écran de téléphone). Une nouvelle image doit être déclarée avec ses dimensions dans `components/blog/BlogImage.tsx`.
 4. Pousser sur `main` : l'article apparaît sur `/blog`, avec son image de partage générée automatiquement.

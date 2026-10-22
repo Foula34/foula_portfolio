@@ -18,9 +18,15 @@ Ce n'est pas que le problème n'existe pas. Ce n'est pas non plus que la solutio
 
 Je l'ai vécu avec Sanni, la boutique en ligne que j'ai créée pour les vendeurs qui travaillent sur WhatsApp et Facebook. Les premiers vendeurs se sont inscrits très vite, sans aucune publicité. La preuve que le besoin est réel.
 
+[[image:/images/sanni.jpg|Page d'accueil de Sanni et une boutique de vendeur sur mobile|Sanni : une vraie boutique pour les vendeurs WhatsApp, que leurs clients ouvrent depuis un simple lien.|wide]]
+
 Mais j'ai compris une chose : s'inscrire ne suffit pas. Le vrai moment qui compte, c'est quand un vendeur publie sa boutique, la partage dans ses groupes et reçoit sa première commande. Et ce chemin-là, le code ne le fait pas à la place de l'utilisateur. Il faut l'accompagner.
 
+[[illustration:parcours]]
+
 Avec Lab Oratoire, la plateforme où notre club pratique la prise de parole en public, j'ai appris autre chose : les fonctionnalités dont je suis le plus fier ne sont pas forcément celles que les membres utilisent le plus. Regarder ce qu'ils font vraiment m'a davantage appris que n'importe quelle nouvelle fonctionnalité.
+
+[[image:/images/lab-oratoire.png|Page d'accueil de Lab Oratoire|Lab Oratoire, la plateforme de notre club de prise de parole.|wide]]
 
 ## Pourquoi nous tombons tous dans ce piège
 
@@ -34,9 +40,13 @@ Je vois trois raisons.
 
 Mon avis, c'est que le développement représente aujourd'hui une petite partie du travail. La plus grande partie, c'est de comprendre le problème, de faire connaître la solution et d'aider les gens à l'adopter. C'est exactement la partie que nous négligeons.
 
+[[illustration:iceberg]]
+
 ## Ce que je fais maintenant, différemment
 
 J'ai changé ma façon de travailler. Voici ce que je fais aujourd'hui, à chaque nouvelle idée.
+
+[[illustration:methode]]
 
 **1. J'enquête avant de coder.** Je vais voir les personnes qui vivent le problème et je leur pose des questions. Avant d'écrire une ligne de code, je cherche à répondre à trois questions :
 
@@ -51,6 +61,8 @@ Si les réponses ne sont pas claires, je n'ai pas encore de raison de coder.
 **3. Je ne la lance pas en silence.** Mettre un produit en ligne et attendre que les gens le trouvent ne marche pas. Je prépare un vrai moment de lancement : j'explique ce que fait le produit, à qui il s'adresse et comment l'utiliser.
 
 **4. J'accompagne moi-même mes premiers utilisateurs.** Pour Sanni, j'aide chaque nouveau vendeur de son inscription jusqu'à la publication et au partage de sa boutique. Cela ne passe pas à grande échelle, et ce n'est pas le but. Le but, c'est de comprendre exactement où les gens bloquent, pour améliorer le produit et la façon de le présenter.
+
+[[image:/images/sanni-campagne.jpg|Écran de campagne d'un vendeur Sanni, avec le bouton Partager sur WhatsApp|L'étape que j'accompagne de près : le moment où le vendeur partage sa boutique sur WhatsApp.|phone]]
 
 **5. Je montre le produit en action.** Je prépare des vidéos explicatives avec de vrais utilisateurs, pour montrer concrètement comment le produit fonctionne. Une démonstration de deux minutes convainc souvent mieux qu'une longue description.
 

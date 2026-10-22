@@ -14,13 +14,50 @@ import { marked } from 'marked';
 
 const BLOG_DIR = path.join(process.cwd(), 'content', 'blog');
 
+// Un article est une suite de morceaux : du texte (HTML produit depuis le Markdown)
+// et des visuels, insérés avec une ligne seule dans le Markdown :
+//   [[illustration:iceberg]]   (iceberg, parcours, methode)
+//   [[image:/images/sanni.jpg|Texte alternatif|Légende|wide]]   (wide ou phone)
+export type Segment =
+  | { kind: 'html'; html: string }
+  | { kind: 'illustration'; name: string }
+  | { kind: 'image'; src: string; alt: string; caption?: string; variant: 'wide' | 'phone' };
+
 export interface Post {
   slug: string;
   title: string;
   description: string;
   date: string;
   readingMinutes: number;
-  html: string;
+  segments: Segment[];
+}
+
+const DIRECTIVE = /^\[\[(illustration|image):(.+)\]\]$/;
+
+function toSegments(body: string): Segment[] {
+  const segments: Segment[] = [];
+  let buffer: string[] = [];
+  const flush = () => {
+    const text = buffer.join('\n').trim();
+    if (text) segments.push({ kind: 'html', html: marked.parse(text, { async: false }) });
+    buffer = [];
+  };
+  for (const line of body.split('\n')) {
+    const m = line.trim().match(DIRECTIVE);
+    if (!m) {
+      buffer.push(line);
+      continue;
+    }
+    flush();
+    if (m[1] === 'illustration') {
+      segments.push({ kind: 'illustration', name: m[2].trim() });
+    } else {
+      const [src, alt = '', caption, variant] = m[2].split('|').map((x) => x.trim());
+      segments.push({ kind: 'image', src, alt, caption: caption || undefined, variant: variant === 'phone' ? 'phone' : 'wide' });
+    }
+  }
+  flush();
+  return segments;
 }
 
 // Typographie française : une espace fine insécable avant « : ; ? ! », pour que le signe
@@ -42,7 +79,7 @@ function parse(file: string): Post {
     if (!meta[key]) throw new Error(`Champ « ${key} » manquant dans content/blog/${file}`);
   }
   const body = frenchSpacing(match[2].trim());
-  const words = body.split(/\s+/).length;
+  const words = body.replace(/^\[\[.*\]\]$/gm, '').split(/\s+/).length;
   return {
     slug: file.replace(/\.md$/, ''),
     title: frenchSpacing(meta.title),
@@ -50,7 +87,7 @@ function parse(file: string): Post {
     date: meta.date,
     // Environ 220 mots par minute en lecture à l'écran.
     readingMinutes: Math.max(1, Math.round(words / 220)),
-    html: marked.parse(body, { async: false }),
+    segments: toSegments(body),
   };
 }
 

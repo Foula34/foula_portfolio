@@ -5,7 +5,11 @@ import { ArrowLeft } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { ui } from '@/content/ui';
-import { formatDate, getPost, getPosts } from '@/lib/blog';
+import { formatDate, getPost, getPosts, type Segment } from '@/lib/blog';
+import Iceberg from '@/components/blog/Iceberg';
+import SellerJourney from '@/components/blog/SellerJourney';
+import Method from '@/components/blog/Method';
+import BlogImage from '@/components/blog/BlogImage';
 import { SITE_URL } from '@/lib/i18n';
 
 export const dynamicParams = false;
@@ -15,6 +19,25 @@ export function generateStaticParams() {
 }
 
 type Props = { params: Promise<{ slug: string }> };
+
+const illustrations: Record<string, () => React.JSX.Element> = {
+  iceberg: Iceberg,
+  parcours: SellerJourney,
+  methode: Method,
+};
+
+function SegmentView({ segment }: { segment: Segment }) {
+  if (segment.kind === 'html') {
+    // Contenu écrit par Foula dans content/blog : HTML produit au build, source de confiance.
+    return <div className="article-body" dangerouslySetInnerHTML={{ __html: segment.html }} />;
+  }
+  if (segment.kind === 'image') {
+    return <BlogImage src={segment.src} alt={segment.alt} caption={segment.caption} variant={segment.variant} />;
+  }
+  const Illustration = illustrations[segment.name];
+  if (!Illustration) throw new Error(`Illustration inconnue : ${segment.name}`);
+  return <Illustration />;
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPost((await params).slug);
@@ -67,8 +90,11 @@ export default async function BlogPost({ params }: Props) {
             Foula Fofana · {formatDate(post.date)} · {post.readingMinutes} min de lecture
           </p>
 
-          {/* Contenu écrit par Foula dans content/blog : HTML produit au build, source de confiance. */}
-          <div className="article-body mt-12" dangerouslySetInnerHTML={{ __html: post.html }} />
+          <div className="mt-12">
+            {post.segments.map((segment, i) => (
+              <SegmentView key={i} segment={segment} />
+            ))}
+          </div>
 
           <footer className="mt-16 pt-10 border-t border-border">
             <p className="text-sm text-text-muted">Partager cet article</p>
