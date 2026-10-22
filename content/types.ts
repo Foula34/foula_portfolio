@@ -40,7 +40,7 @@ export interface HomeText {
     // Modèle : {n} et {total} sont remplacés (pas de fonction : le texte va vers un composant client).
     chapterOf: string;
     contactCta: string;
-    chapters: { year: string; title: string; text: string; image?: { src: string; width: number; height: number; alt: string } }[];
+    chapters: { year: string; title: string; text: string; images?: { src: string; width: number; height: number; alt: string }[] }[];
   };
   skills: {
     heading: string;

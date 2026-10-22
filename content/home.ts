@@ -1,7 +1,11 @@
 import type { Locale } from '@/lib/i18n';
 import type { HomeText } from './types';
 
-const sadenPhoto = { src: '/images/foula-saden.jpg', width: 960, height: 760 };
+const photos = {
+  osc: { src: '/images/prix-osc.jpg', width: 1000, height: 563 },
+  saden: { src: '/images/prix-saden.jpg', width: 1200, height: 800 },
+  salon: { src: '/images/prix-salon.jpg', width: 960, height: 640 },
+};
 
 // Textes de l'accueil. Chaque fait vient du CV ou de Foula : pas de chiffre ni de date inventés.
 export const home: Record<Locale, HomeText> = {
@@ -85,6 +89,7 @@ export const home: Record<Locale, HomeText> = {
           year: '2025',
           title: "L'Orange Digital Center",
           text: "De juillet à novembre, stage à l'Orange Digital Center pour l'Orange Summer Challenge. En équipe, on conçoit une application web et mobile, et je coordonne la partie technique. Nous finissons 2e, et ce prototype devient SoliBox.",
+          images: [{ ...photos.osc, alt: "L'équipe, en t-shirts SoliBox, tient le panneau du 2e prix de l'Orange Summer Challenge 2025" }],
         },
         {
           year: '2026',
@@ -95,7 +100,10 @@ export const home: Record<Locale, HomeText> = {
           year: '2026',
           title: 'Trois premiers prix',
           text: 'SoliBox remporte le 1er prix national POESAM, le 1er prix du SADEN Fulbright Innovation Challenge et le 1er prix du Salon des Étudiants Entrepreneurs, catégorie Numérique. La même année, je deviens Responsable Masterclass & Formation chez FATA Guinée.',
-          image: { ...sadenPhoto, alt: 'Foula Fofana assis à côté de la plaque du prix SADEN Fulbright 2026 et du chèque remis à SoliBox' },
+          images: [
+            { ...photos.saden, alt: "Foula Fofana et une membre de l'équipe reçoivent le chèque du SADEN Fulbright Innovation Challenge 2026 remis à SoliBox" },
+            { ...photos.salon, alt: 'Foula Fofana, casquette SoliBox, enlace une personne au moment de la remise du prix du Salon des Étudiants Entrepreneurs' },
+          ],
         },
         {
           year: '2026',
@@ -210,6 +218,7 @@ export const home: Record<Locale, HomeText> = {
           year: '2025',
           title: 'Orange Digital Center',
           text: 'From July to November, I intern at Orange Digital Center for the Orange Summer Challenge. As a team, we design a web and mobile app, and I coordinate the technical side. We finish 2nd, and that prototype becomes SoliBox.',
+          images: [{ ...photos.osc, alt: 'The team, in SoliBox t-shirts, holding the Orange Summer Challenge 2025 2nd prize board' }],
         },
         {
           year: '2026',
@@ -220,7 +229,10 @@ export const home: Record<Locale, HomeText> = {
           year: '2026',
           title: 'Three first prizes',
           text: 'SoliBox wins the 1st national prize at POESAM, 1st prize at the SADEN Fulbright Innovation Challenge and 1st prize at the Salon des Étudiants Entrepreneurs, Digital category. The same year, I become Head of Masterclasses & Training at FATA Guinée.',
-          image: { ...sadenPhoto, alt: 'Foula Fofana seated next to the SADEN Fulbright 2026 award plaque and the cheque presented to SoliBox' },
+          images: [
+            { ...photos.saden, alt: 'Foula Fofana and a team member receive the SADEN Fulbright Innovation Challenge 2026 cheque presented to SoliBox' },
+            { ...photos.salon, alt: 'Foula Fofana, in a SoliBox cap, hugs someone as the Salon des Étudiants Entrepreneurs prize is announced' },
+          ],
         },
         {
           year: '2026',

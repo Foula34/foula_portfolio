@@ -156,15 +156,20 @@ function ChapterItem({
       >
         {chapter.text}
       </p>
-      {chapter.image && (
-        <Image
-          src={chapter.image.src}
-          alt={chapter.image.alt}
-          width={chapter.image.width}
-          height={chapter.image.height}
-          sizes="(min-width: 1024px) 36rem, 100vw"
-          className="mt-8 w-full max-w-xl rounded-2xl"
-        />
+      {chapter.images && (
+        <div className={`mt-8 grid gap-3 max-w-xl ${chapter.images.length > 1 ? 'sm:grid-cols-2' : ''}`}>
+          {chapter.images.map((img) => (
+            <Image
+              key={img.src}
+              src={img.src}
+              alt={img.alt}
+              width={img.width}
+              height={img.height}
+              sizes={chapter.images!.length > 1 ? '(min-width: 1024px) 18rem, (min-width: 640px) 50vw, 100vw' : '(min-width: 1024px) 36rem, 100vw'}
+              className={`w-full rounded-2xl ${chapter.images!.length > 1 ? 'aspect-[3/2] object-cover' : ''}`}
+            />
+          ))}
+        </div>
       )}
       {isLast && (
         <a
