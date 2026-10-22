@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Foula Fofana · CV 2026</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root { --accent: #1d4e89; --text: #1b1f24; --muted: #5b6573; --line: #d8dee6; --side: #eef2f7; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 210mm; height: 297mm; }
+  body { font-family: 'Inter', sans-serif; color: var(--text); font-size: 8.2pt; line-height: 1.32; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  header { padding: 9mm 13mm 4.5mm; border-bottom: 2.2pt solid var(--accent); }
+  h1 { font-size: 23pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; }
+  .role { margin-top: 1.2mm; font-size: 10.5pt; font-weight: 600; color: var(--accent); }
+  .contact { margin-top: 2.2mm; font-size: 7.4pt; color: var(--muted); white-space: nowrap; }
+  .contact span + span::before { content: '·'; margin: 0 2mm; color: #9aa3ae; }
+  body { display: flex; flex-direction: column; overflow: hidden; }
+  .cols { flex: 1; display: grid; grid-template-columns: 1fr 64mm; }
+  main { padding: 4.5mm 7mm 0 13mm; }
+  aside { background: var(--side); padding: 4.5mm 10mm 0 7mm; }
+  h2 { font-size: 7.6pt; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); padding-bottom: 1.4mm; border-bottom: 0.6pt solid var(--line); margin: 3.4mm 0 2mm; }
+  h2:first-child { margin-top: 0; }
+  .item { margin-bottom: 2.2mm; }
+  .item-head { display: flex; justify-content: space-between; align-items: baseline; gap: 3mm; }
+  .item-title { font-weight: 700; font-size: 9pt; }
+  .item-title b { color: var(--accent); font-weight: 700; }
+  .date { font-size: 7.6pt; color: var(--muted); white-space: nowrap; }
+  .sub { font-size: 7.6pt; color: var(--muted); margin-top: 0.3mm; }
+  .item p { margin-top: 0.7mm; }
+  ul { margin: 0.6mm 0 0 3.6mm; }
+  li { margin-top: 0.3mm; padding-left: 0.6mm; }
+  li::marker { color: var(--accent); }
+  .stack { margin-top: 0.7mm; font-size: 7.6pt; color: var(--muted); }
+  .stack strong { color: var(--text); font-weight: 600; }
+  aside .block { margin-bottom: 2.2mm; }
+  aside .t { font-weight: 700; font-size: 8.4pt; }
+  aside .d { color: var(--text); }
+  aside .m { color: var(--muted); font-size: 7.6pt; }
+  sup { font-size: 0.65em; line-height: 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Foula Fofana</h1>
+  <div class="role">Développeur web &amp; mobile · Entrepreneur</div>
+  <div class="contact">
+    <span>fofanafoula70@gmail.com</span>
+    <span>+224 624 36 68 97</span>
+    <span>Conakry, Guinée</span>
+    <span>foula-portfolio.vercel.app</span>
+    <span>linkedin.com/in/foula-fofana-1769782a5</span>
+  </div>
+</header>
+
+<div class="cols">
+<main>
+  <h2>Profil</h2>
+  <p>Développeur et entrepreneur : je conçois, je code et je lance mes propres produits. Cofondateur et CEO de SoliBox, startup IoT lauréate du 1<sup>er</sup> prix national POESAM 2026, et créateur de Sanni et de Lab Oratoire, deux produits que j'ai conçus, développés et mis en ligne seul.</p>
+
+  <h2>Projets &amp; entreprises</h2>
+
+  <div class="item">
+    <div class="item-head"><div class="item-title">Cofondateur &amp; CEO · <b>SoliBox</b></div><div class="date">2025 – aujourd'hui</div></div>
+    <div class="sub">Startup IoT · incubée à Orange Fab Guinée · soliboxgn.com</div>
+    <p>Boîtier connecté qui permet aux foyers équipés de panneaux solaires de vendre leur surplus d'énergie à leurs voisins.</p>
+    <ul>
+      <li>Direction d'une équipe de 5 personnes, du prototype aux premières installations sur de vraies maisons.</li>
+      <li>Développement de l'application mobile : suivi en temps réel de la production et de la consommation, contrôle à distance du boîtier via MQTT.</li>
+      <li><strong>1<sup>er</sup> prix national POESAM 2026</strong> · 1<sup>er</sup> prix SADEN Fulbright Innovation Challenge 2026 · 1<sup>er</sup> prix Salon des Étudiants Entrepreneurs 2026, catégorie Numérique · 2<sup>e</sup> place Orange Summer Challenge 2025.</li>
+    </ul>
+    <div class="stack"><strong>Stack :</strong> Flutter, ESP32, MQTT (HiveMQ), Supabase</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head"><div class="item-title">Fondateur &amp; développeur · <b>Sanni</b></div><div class="date">Sept. 2026 – aujourd'hui</div></div>
+    <div class="sub">sanniya.com</div>
+    <p>Boutique en ligne pour les commerçants qui vendent sur WhatsApp et Facebook : ils publient leurs articles une fois, partagent un lien, et leurs clients commandent eux-mêmes, sans rien installer.</p>
+    <ul>
+      <li><strong>32 vendeurs inscrits et 24 boutiques en ligne</strong> en 3 semaines, sans budget publicitaire.</li>
+      <li>Conception, développement, déploiement et support utilisateurs en autonomie.</li>
+    </ul>
+    <div class="stack"><strong>Stack :</strong> Next.js, TypeScript, Supabase (PostgreSQL, Auth, Storage), Tailwind CSS, PWA, Firebase Cloud Messaging, Resend, Vercel</div>
+  </div>
+
+  <div class="item">
+    <div class="item-head"><div class="item-title">Créateur &amp; développeur · <b>Lab Oratoire</b></div><div class="date">2026 – aujourd'hui</div></div>
+    <div class="sub">lab-oratoiregn.com</div>
+    <p>Plateforme communautaire pour pratiquer la prise de parole en public : défis vidéo, retours entre membres, classement et analyse d'improvisation par IA.</p>
+    <ul>
+      <li><strong>Plus de 40 membres, 10 défis lancés</strong> et 10 semaines de pratique continue.</li>
+    </ul>
+    <div class="stack"><strong>Stack :</strong> Next.js, Supabase (Auth, PostgreSQL, Storage, RLS), PWA, Gemini Flash, Firebase Cloud Messaging, Resend, Vercel</div>
+  </div>
+
+  <h2>Expérience professionnelle</h2>
+
+  <div class="item">
+    <div class="item-head"><div class="item-title">Développeur mobile · <b>NG Tech</b></div><div class="date">En cours</div></div>
+    <div class="sub">Conakry · stage, puis poste actuel</div>
+    <ul>
+      <li>Développement d'applications mobiles pour des clients professionnels (Kotlin Android, React Native / Expo).</li>
+      <li>Intégration fidèle de maquettes et collaboration avec les équipes front-end et back-end.</li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="item-head"><div class="item-title">Stagiaire développeur · <b>Orange Guinée</b></div><div class="date">07/2025 – 11/2025</div></div>
+    <div class="sub">Orange Digital Center, Conakry · Orange Summer Challenge 2025</div>
+    <ul>
+      <li>Conception et développement d'une application web et mobile au sein d'une équipe pluridisciplinaire.</li>
+      <li>Coordination technique de l'équipe, tests et présentation finale du prototype : <strong>2<sup>e</sup> place du challenge</strong>, prototype devenu SoliBox.</li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="item-head"><div class="item-title">Responsable Opérations, Événements &amp; Masterclass · <b>FATA Guinée</b></div><div class="date">2026 – aujourd'hui</div></div>
+    <div class="sub">Association à but non lucratif pour l'apprentissage du numérique des jeunes Africains · bénévole depuis 07/2024</div>
+    <ul>
+      <li>Encadrement des formations et des masterclass, et animation de sessions : HTML, CSS et technologies du web.</li>
+    </ul>
+  </div>
+
+  <div class="item">
+    <div class="item-head"><div class="item-title">Formateur en informatique · <b>Asis tech</b></div><div class="date">2025 · alternance, plus de 6 mois</div></div>
+    <ul>
+      <li>Plus de 30 personnes formées à l'informatique de base, de la bureautique à Internet.</li>
+    </ul>
+  </div>
+</main>
+
+<aside>
+  <h2>Formation</h2>
+  <div class="block">
+    <div class="t">Licence Génie informatique, 4<sup>e</sup> année</div>
+    <div class="d">Université Gamal Abdel Nasser de Conakry</div>
+    <div class="m">2023 – en cours · parcours génie logiciel</div>
+  </div>
+  <div class="block">
+    <div class="t">Baccalauréat Sciences mathématiques</div>
+    <div class="d">Mention Bien · Ducal, Mamou</div>
+    <div class="m">2023</div>
+  </div>
+
+  <h2>Certification</h2>
+  <div class="block">
+    <div class="t">1000 TechLeaders · Développement mobile (Flutter)</div>
+    <div class="d">Nimba Hub · 1<sup>re</sup> cohorte</div>
+    <div class="m">06/2024 – 04/2025</div>
+  </div>
+
+  <h2>Compétences</h2>
+  <div class="block"><div class="t">Mobile</div><div class="d">Flutter (Dart), Kotlin (Android), React Native / Expo</div></div>
+  <div class="block"><div class="t">Web</div><div class="d">Next.js, React, TypeScript, JavaScript, Tailwind CSS, PWA</div></div>
+  <div class="block"><div class="t">Back-end &amp; données</div><div class="d">Supabase (PostgreSQL, Auth, Storage, RLS), Firebase, MySQL</div></div>
+  <div class="block"><div class="t">IoT</div><div class="d">ESP32, MQTT, intégration capteurs / application</div></div>
+  <div class="block"><div class="t">Services &amp; IA</div><div class="d">Firebase Cloud Messaging, Resend, API Gemini</div></div>
+  <div class="block"><div class="t">Outils &amp; déploiement</div><div class="d">Git, GitHub, Vercel</div></div>
+
+  <h2>Langues</h2>
+  <div class="block"><div class="d"><strong>Français</strong> : courant</div></div>
+  <div class="block"><div class="d"><strong>Anglais</strong> : technique (documentation, tutoriels), en progression</div></div>
+</aside>
+</div>
+</body>
+</html>
