@@ -62,7 +62,7 @@ const projects: Project[] = [
     url: 'https://sanniya.com',
     caseStudy: '/projets/sanni',
     urlLabel: 'sanniya.com',
-    palette: { bg: '#1D1927', fg: '#F6F1E9', muted: '#A9A2B8', accent: '#E8650F', onAccent: '#FFFFFF' },
+    palette: { bg: '#1D1927', fg: '#F6F1E9', muted: '#A9A2B8', accent: '#E8650F', onAccent: '#1D1927' },
   },
   {
     id: 'lab-oratoire',

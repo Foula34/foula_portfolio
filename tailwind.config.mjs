@@ -17,7 +17,6 @@ const config = {
         sans: ['var(--font-geist-sans)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         display: ['var(--font-geist-sans)', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
         unbounded: ['var(--font-unbounded)', 'var(--font-geist-sans)', 'sans-serif'],
-        mono: ['var(--font-geist-mono)', 'ui-monospace', 'monospace'],
       },
       maxWidth: {
         prose: '65ch',

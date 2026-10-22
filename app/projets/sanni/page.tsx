@@ -159,7 +159,7 @@ export default function SanniCaseStudy() {
                 href="https://sanniya.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full bg-[#E8650F] text-white px-6 py-3.5 font-medium hover:-translate-y-0.5 transition-transform"
+                className="inline-flex items-center gap-2 rounded-full bg-[#E8650F] text-[#1D1927] px-6 py-3.5 font-medium hover:-translate-y-0.5 transition-transform"
               >
                 Visiter sanniya.com
                 <ArrowUpRight size={18} />

@@ -42,7 +42,9 @@ export default function FlowDiagram({
               }
             >
               <p className="font-semibold text-text">{node.label}</p>
-              {node.note && <p className="mt-0.5 text-sm text-text-muted">{node.note}</p>}
+              {node.note && (
+                <p className={`mt-0.5 text-sm ${node.highlight ? 'text-text' : 'text-text-muted'}`}>{node.note}</p>
+              )}
             </div>
             {i < links.length && (
               <div className="sm:w-28 shrink-0 flex sm:flex-col items-center justify-center gap-1 px-2 py-1 text-text-muted">
