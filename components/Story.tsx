@@ -158,17 +158,22 @@ function ChapterItem({
       </p>
       {chapter.images && (
         <div className={`mt-8 grid gap-3 max-w-xl ${chapter.images.length > 1 ? 'sm:grid-cols-2' : ''}`}>
-          {chapter.images.map((img) => (
-            <Image
-              key={img.src}
-              src={img.src}
-              alt={img.alt}
-              width={img.width}
-              height={img.height}
-              sizes={chapter.images!.length > 1 ? '(min-width: 1024px) 18rem, (min-width: 640px) 50vw, 100vw' : '(min-width: 1024px) 36rem, 100vw'}
-              className={`w-full rounded-2xl ${chapter.images!.length > 1 ? 'aspect-[3/2] object-cover' : ''}`}
-            />
-          ))}
+          {chapter.images.map((img, i) => {
+            const count = chapter.images!.length;
+            // Avec trois photos, la première prend toute la largeur ; les autres vont par deux.
+            const wide = count === 1 || (count === 3 && i === 0);
+            return (
+              <Image
+                key={img.src}
+                src={img.src}
+                alt={img.alt}
+                width={img.width}
+                height={img.height}
+                sizes={wide ? '(min-width: 1024px) 36rem, 100vw' : '(min-width: 1024px) 18rem, (min-width: 640px) 50vw, 100vw'}
+                className={`w-full rounded-2xl ${wide ? 'sm:col-span-2' : 'aspect-[3/2] object-cover'}`}
+              />
+            );
+          })}
         </div>
       )}
       {isLast && (

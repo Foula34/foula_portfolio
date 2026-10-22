@@ -3,6 +3,7 @@ import type { HomeText } from './types';
 
 const photos = {
   osc: { src: '/images/prix-osc.jpg', width: 1000, height: 563 },
+  poesam: { src: '/images/prix-poesam.jpg', width: 1080, height: 810 },
   saden: { src: '/images/prix-saden.jpg', width: 1200, height: 800 },
   salon: { src: '/images/prix-salon.jpg', width: 960, height: 640 },
 };
@@ -101,6 +102,7 @@ export const home: Record<Locale, HomeText> = {
           title: 'Trois premiers prix',
           text: 'SoliBox remporte le 1er prix national POESAM, le 1er prix du SADEN Fulbright Innovation Challenge et le 1er prix du Salon des Étudiants Entrepreneurs, catégorie Numérique. La même année, je deviens Responsable Masterclass & Formation chez FATA Guinée.',
           images: [
+            { ...photos.poesam, alt: "L'équipe SoliBox tient le chèque du 1er prix national du Prix Orange de l'Entrepreneur Social en Afrique et Moyen-Orient" },
             { ...photos.saden, alt: "Foula Fofana et une membre de l'équipe reçoivent le chèque du SADEN Fulbright Innovation Challenge 2026 remis à SoliBox" },
             { ...photos.salon, alt: 'Foula Fofana, casquette SoliBox, enlace une personne au moment de la remise du prix du Salon des Étudiants Entrepreneurs' },
           ],
@@ -230,6 +232,7 @@ export const home: Record<Locale, HomeText> = {
           title: 'Three first prizes',
           text: 'SoliBox wins the 1st national prize at POESAM, 1st prize at the SADEN Fulbright Innovation Challenge and 1st prize at the Salon des Étudiants Entrepreneurs, Digital category. The same year, I become Head of Masterclasses & Training at FATA Guinée.',
           images: [
+            { ...photos.poesam, alt: "The SoliBox team holding the 1st national prize cheque of the Orange Social Venture Prize in Africa and the Middle East" },
             { ...photos.saden, alt: 'Foula Fofana and a team member receive the SADEN Fulbright Innovation Challenge 2026 cheque presented to SoliBox' },
             { ...photos.salon, alt: 'Foula Fofana, in a SoliBox cap, hugs someone as the Salon des Étudiants Entrepreneurs prize is announced' },
           ],
