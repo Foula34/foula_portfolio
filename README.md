@@ -1,6 +1,8 @@
 # Portfolio de Foula Fofana
 
-Site personnel de Foula Fofana, développeur web et mobile à Conakry, cofondateur et CEO de SoliBox.
+Site personnel de **Foula Fofana**, développeur et entrepreneur à Conakry, cofondateur et CEO de SoliBox.
+
+Le site présente mes produits (SoliBox, Sanni, Lab Oratoire) avec une étude de cas pour chacun, mon parcours, ce que je propose (applications web et mobiles, formations, prise de parole) et un blog. Il existe en français et en anglais.
 
 En ligne : https://foula-portfolio.vercel.app
 
@@ -8,7 +10,8 @@ En ligne : https://foula-portfolio.vercel.app
 
 - **Next.js** (App Router) et **TypeScript**
 - **Tailwind CSS** pour le style
-- **Framer Motion** pour les animations
+- **Framer Motion** pour les animations de la section projets et du parcours ; le reste est en CSS
+- **Simple Icons** pour les logos des technologies
 - Déploiement sur **Vercel**
 
 ## Choix techniques
@@ -28,6 +31,12 @@ Si l'appareil demande de réduire les mouvements, les animations sont désactiv�
 **Deux langues, sans dupliquer le code.**
 Le français reste à la racine (`/`, `/projets/sanni`) pour que les liens déjà partagés continuent de marcher ; l'anglais vit sous `/en`. Chaque langue a sa propre mise en page racine (groupes de routes `app/(fr)` et `app/(en)`), pour que la balise `<html lang>` soit juste. Les textes sont dans `content/`, une page d'étude de cas est un seul composant qui reçoit la langue, et chaque page déclare sa version dans l'autre langue (`hreflang`) pour Google.
 
+**Des illustrations dessinées en code.**
+Les visuels de la section « Ce que je peux faire pour vous » sont des SVG écrits à la main (`components/ServiceIllustrations.tsx`). Leurs couleurs passent par des variables CSS : ils suivent le thème clair ou sombre. Leurs animations sont en CSS, et le contenu reste visible même sans JavaScript.
+
+**Une image de partage par article.**
+Chaque article du blog a son image d'aperçu, générée au build en JPEG (`app/(fr)/blog/[slug]/partage.jpg`). WhatsApp affiche mal les PNG générés à la volée ; un JPEG léger à une adresse fixe passe partout.
+
 **Polices et images servies par le site.**
 Les polices (Geist, Unbounded) sont embarquées dans le projet : aucune requête vers Google. Les images passent par `next/image`, qui les redimensionne et les convertit en formats modernes.
 
@@ -43,9 +52,10 @@ Puis ouvrir http://localhost:3000.
 ## Structure
 
 ```
-app/(fr)/     pages françaises : accueil et /projets/[slug]
+app/(fr)/     pages françaises : accueil, /projets/[slug] et /blog
 app/(en)/en/  pages anglaises : /en et /en/projects/[slug]
-components/   sections de l'accueil, composant d'étude de cas, navigation
+components/   sections de l'accueil (dont Services et Dernier article), étude de cas, navigation
+documents-source/  source HTML du CV (le PDF est dans public/documents)
 content/      tous les textes : ui.ts, home.ts, cases/ (fr et en côte à côte) et blog/ (articles en Markdown)
 lib/          langues, métadonnées, polices
 public/       images et CV
