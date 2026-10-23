@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import {
-  siFirebase, siFlutter, siKotlin, siMqtt, siNextdotjs, siPostgresql, siPwa, siReact,
+  siFirebase, siFlutter, siGit, siGithub, siJavascript, siKotlin, siLinux, siMqtt, siNextdotjs, siPostgresql, siPwa, siReact,
   siResend, siSupabase, siTailwindcss, siTypescript, siVercel, type SimpleIcon,
 } from 'simple-icons';
 import type { HomeText } from '@/content/types';
@@ -10,8 +10,8 @@ import { fill } from '@/lib/format';
 
 type Target = 'solibox' | 'sanni' | 'lab' | 'ngtech';
 
-// Où chaque compétence a réellement servi. MySQL n'apparaît
-// dans aucun des projets présentés : il est listé à part, sans lien inventé.
+// Où chaque compétence a réellement servi.
+// Git, GitHub et Linux (mon poste de travail sous Ubuntu) servent sur tous les projets.
 const targets: { id: Target; name: string; bg: string; fg: string }[] = [
   { id: 'solibox', name: 'SoliBox', bg: '#F88300', fg: '#1E1200' },
   { id: 'sanni', name: 'Sanni', bg: '#1D1927', fg: '#F6F1E9' },
@@ -33,6 +33,7 @@ const groups: { key: keyof HomeText['skills']['groups']; skills: { name: string;
     skills: [
       { name: 'Next.js', icon: siNextdotjs, used: ['sanni', 'lab'] },
       { name: 'React', icon: siReact, used: ['sanni', 'lab'] },
+      { name: 'JavaScript', icon: siJavascript, used: ['sanni', 'lab'] },
       { name: 'TypeScript', icon: siTypescript, used: ['sanni'] },
       { name: 'Tailwind CSS', icon: siTailwindcss, used: ['sanni'] },
       { name: 'PWA', icon: siPwa, used: ['sanni', 'lab'] },
@@ -47,6 +48,14 @@ const groups: { key: keyof HomeText['skills']['groups']; skills: { name: string;
       { name: 'MQTT', icon: siMqtt, used: ['solibox'] },
       { name: 'Firebase', icon: siFirebase, used: ['sanni', 'lab'] },
       { name: 'Resend', icon: siResend, used: ['sanni', 'lab'] },
+    ],
+  },
+  {
+    key: 'tools',
+    skills: [
+      { name: 'Git', icon: siGit, used: ['solibox', 'sanni', 'lab', 'ngtech'] },
+      { name: 'GitHub', icon: siGithub, used: ['solibox', 'sanni', 'lab', 'ngtech'] },
+      { name: 'Linux', icon: siLinux, used: ['solibox', 'sanni', 'lab', 'ngtech'] },
     ],
   },
 ];
@@ -128,7 +137,6 @@ export default function Skills({ t }: { t: HomeText['skills'] }) {
                 </div>
               </div>
             ))}
-            <p className="text-sm text-text-muted">{t.also}</p>
           </div>
 
           <div className="lg:col-span-5 order-1 lg:order-2">

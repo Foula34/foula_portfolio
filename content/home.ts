@@ -124,8 +124,7 @@ export const home: Record<Locale, HomeText> = {
     skills: {
       heading: "Mes outils, et où je m'en suis servi.",
       intro: "Choisis une technologie : les projets où je l'ai utilisée s'allument.",
-      groups: { mobile: 'Mobile', web: 'Web', backend: 'Back-end' },
-      also: 'Aussi : JavaScript, MySQL, Git et GitHub.',
+      groups: { mobile: 'Mobile', web: 'Web', backend: 'Back-end', tools: 'Outils' },
       targets: {
         solibox: 'Application mobile IoT',
         sanni: 'Boutique en ligne',
@@ -255,8 +254,7 @@ export const home: Record<Locale, HomeText> = {
     skills: {
       heading: 'My tools, and where I used them.',
       intro: 'Pick a technology: the projects where I used it light up.',
-      groups: { mobile: 'Mobile', web: 'Web', backend: 'Back end' },
-      also: 'Also: JavaScript, MySQL, Git and GitHub.',
+      groups: { mobile: 'Mobile', web: 'Web', backend: 'Back end', tools: 'Tools' },
       targets: {
         solibox: 'IoT mobile app',
         sanni: 'Online shop',

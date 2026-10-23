@@ -4,6 +4,7 @@ import Projects from './Projects';
 import Story from './Story';
 import Skills from './Skills';
 import Contact from './Contact';
+import LatestPost from './LatestPost';
 import Footer from './Footer';
 import { home } from '@/content/home';
 import { ui } from '@/content/ui';
@@ -20,6 +21,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         <Projects t={t.projects} locale={locale} />
         <Story t={t.story} />
         <Skills t={t.skills} />
+        {locale === 'fr' && <LatestPost />}
         <Contact t={t.contact} />
       </main>
       <Footer ui={ui[locale].footer} />

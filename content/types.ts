@@ -45,8 +45,7 @@ export interface HomeText {
   skills: {
     heading: string;
     intro: string;
-    groups: { mobile: string; web: string; backend: string };
-    also: string;
+    groups: { mobile: string; web: string; backend: string; tools: string };
     targets: Record<'solibox' | 'sanni' | 'lab' | 'ngtech', string>;
     // Modèle lu par les lecteurs d'écran : {skill} est remplacé.
     usesSuffix: string;
