@@ -75,7 +75,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: '2023',
           title: 'Le point de départ',
-          text: "Baccalauréat Sciences mathématiques à Mamou, mention Bien. La même année, j'entre en Génie informatique à l'Université Gamal Abdel Nasser de Conakry.",
+          text: "Baccalauréat Sciences mathématiques à Mamou, mention Bien. La même année, j'entre en Génie informatique à l'Université Gamal Abdel Nasser de Conakry, où je choisirai plus tard le parcours génie logiciel.",
         },
         {
           year: '2024',
@@ -117,7 +117,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: "Aujourd'hui",
           title: 'La suite',
-          text: "En 4e année de génie logiciel, je continue à construire, à apprendre et à transmettre. Le prochain chapitre, on peut l'écrire ensemble.",
+          text: "En 4e année de Génie informatique, parcours génie logiciel, je continue à construire, à apprendre et à transmettre. Le prochain chapitre, on peut l'écrire ensemble.",
         },
       ],
     },
@@ -206,7 +206,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: '2023',
           title: 'Where it starts',
-          text: 'I graduate from high school in Mamou with a science and maths baccalaureate, with honours. The same year, I start a degree in Computer Engineering at Gamal Abdel Nasser University of Conakry.',
+          text: 'I graduate from high school in Mamou with a science and maths baccalaureate, with honours. The same year, I start a degree in Computer Engineering at Gamal Abdel Nasser University of Conakry, where I later choose the software engineering track.',
         },
         {
           year: '2024',
@@ -248,7 +248,7 @@ export const home: Record<Locale, HomeText> = {
         {
           year: 'Today',
           title: 'What comes next',
-          text: 'In my 4th year of software engineering, I keep building, learning and teaching. The next chapter, we can write together.',
+          text: 'In my 4th year of Computer Engineering, on the software engineering track, I keep building, learning and teaching. The next chapter, we can write together.',
         },
       ],
     },

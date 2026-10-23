@@ -11,9 +11,10 @@ const socials = [
 
 // Le nom se dessine lettre par lettre : c'est le seul mouvement d'entrée de la page.
 // Animation en CSS pur (classe .rise) : aucun JavaScript à charger avant qu'elle démarre.
+// Les lettres restent du vrai texte : Google, les lecteurs d'écran et les aperçus lisent « Foula Fofana », une seule fois.
 function AnimatedWord({ word, delay }: { word: string; delay: number }) {
   return (
-    <span className="block overflow-hidden pb-[0.06em]" aria-hidden="true">
+    <span className="block overflow-hidden pb-[0.06em]">
       {word.split('').map((letter, i) => (
         <span key={i} className="rise inline-block" style={{ animationDelay: `${delay + i * 0.045}s` }}>
           {letter}
@@ -30,8 +31,7 @@ export default function Hero({ t }: { t: HomeText['hero'] }) {
         <div className="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           <div className="lg:col-span-8">
             <h1 className="font-unbounded font-extrabold uppercase text-text leading-[0.88] tracking-[-0.04em] text-[clamp(2.9rem,15vw,4.5rem)] sm:text-[clamp(4.5rem,11vw,6.25rem)] lg:text-[clamp(5rem,8.4vw,7.75rem)]">
-              <span className="sr-only">Foula Fofana</span>
-              <AnimatedWord word="Foula" delay={0.1} />
+              <AnimatedWord word="Foula" delay={0.1} />{' '}
               <AnimatedWord word="Fofana" delay={0.3} />
             </h1>
 
