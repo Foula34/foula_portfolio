@@ -157,6 +157,11 @@ export const home: Record<Locale, HomeText> = {
           text: "Conférences, sessions d'orientation ou de sensibilisation, animation d'événements. Parler en public, je le pratique et je le fais pratiquer : j'ai fondé Lab Oratoire pour ça.",
           proof: 'Mon club, Lab Oratoire',
           tags: ['Conférences', 'Maître de cérémonie', 'Orientation', 'Sensibilisation'],
+          recent: {
+            label: 'Récemment\u202f:',
+            text: "Prise de parole au Forum de la Jeunesse Afrique de l'Ouest et du Centre, le 22 juin 2026.",
+            alt: "Foula Fofana prend la parole au Forum de la Jeunesse Afrique de l'Ouest et du Centre",
+          },
         },
       },
     },
@@ -314,6 +319,11 @@ export const home: Record<Locale, HomeText> = {
           text: 'Talks, career guidance or awareness sessions, hosting events. I practise public speaking and help others practise it: that is why I founded Lab Oratoire.',
           proof: 'My club, Lab Oratoire',
           tags: ['Talks', 'Master of ceremonies', 'Career guidance', 'Awareness'],
+          recent: {
+            label: 'Recently:',
+            text: 'Speaking at the West and Central Africa Youth Forum, on 22 June 2026.',
+            alt: 'Foula Fofana speaking at the West and Central Africa Youth Forum',
+          },
         },
       },
     },

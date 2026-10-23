@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { ArrowUpRight } from 'lucide-react';
@@ -136,6 +137,22 @@ export default function Services({ t, locale }: { t: HomeText['services']; local
                           </li>
                         ))}
                       </ul>
+                    )}
+                    {item.recent && (
+                      <div className="mt-6 flex items-center gap-3">
+                        <Image
+                          src="/images/forum-parole.jpg"
+                          alt={item.recent.alt}
+                          width={400}
+                          height={400}
+                          sizes="56px"
+                          className="h-14 w-14 shrink-0 rounded-xl object-cover"
+                        />
+                        <p className="service-muted text-sm leading-snug text-text-muted">
+                          <span className="service-fg font-medium text-text">{item.recent.label} </span>
+                          {item.recent.text}
+                        </p>
+                      </div>
                     )}
                     {/* Le lien couvre toute la ligne : on peut cliquer n'importe où. */}
                     <Link
