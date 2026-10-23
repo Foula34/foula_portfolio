@@ -185,3 +185,9 @@ body {
   text-decoration: underline;
   text-underline-offset: 3px;
 }
+
+/* Logos des compétences : couleur de marque, sauf sur la puce choisie
+   (inversée) et pour les logos sombres en thème sombre. */
+.skill-logo { color: var(--brand); transition: color 0.2s; }
+.skill-chip[aria-pressed='true'] .skill-logo,
+[data-theme='dark'] .skill-logo[data-dim] { color: inherit; }

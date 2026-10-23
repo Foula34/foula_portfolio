@@ -1,6 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import {
+  siFirebase, siFlutter, siKotlin, siMqtt, siNextdotjs, siPostgresql, siPwa, siReact,
+  siResend, siSupabase, siTailwindcss, siTypescript, siVercel, type SimpleIcon,
+} from 'simple-icons';
 import type { HomeText } from '@/content/types';
 import { fill } from '@/lib/format';
 
@@ -15,39 +19,66 @@ const targets: { id: Target; name: string; bg: string; fg: string }[] = [
   { id: 'ngtech', name: 'NG Tech', bg: '#3A3F47', fg: '#F5F5F4' },
 ];
 
-const groups: { key: keyof HomeText['skills']['groups']; skills: { name: string; used: Target[] }[] }[] = [
+const groups: { key: keyof HomeText['skills']['groups']; skills: { name: string; icon: SimpleIcon; used: Target[] }[] }[] = [
   {
     key: 'mobile',
     skills: [
-      { name: 'Flutter', used: ['solibox'] },
-      { name: 'Kotlin', used: ['ngtech'] },
-      { name: 'React Native', used: ['ngtech'] },
+      { name: 'Flutter', icon: siFlutter, used: ['solibox'] },
+      { name: 'Kotlin', icon: siKotlin, used: ['ngtech'] },
+      { name: 'React Native', icon: siReact, used: ['ngtech'] },
     ],
   },
   {
     key: 'web',
     skills: [
-      { name: 'Next.js', used: ['sanni', 'lab'] },
-      { name: 'React', used: ['sanni', 'lab'] },
-      { name: 'TypeScript', used: ['sanni'] },
-      { name: 'Tailwind CSS', used: ['sanni'] },
-      { name: 'PWA', used: ['sanni', 'lab'] },
-      { name: 'Vercel', used: ['sanni', 'lab'] },
+      { name: 'Next.js', icon: siNextdotjs, used: ['sanni', 'lab'] },
+      { name: 'React', icon: siReact, used: ['sanni', 'lab'] },
+      { name: 'TypeScript', icon: siTypescript, used: ['sanni'] },
+      { name: 'Tailwind CSS', icon: siTailwindcss, used: ['sanni'] },
+      { name: 'PWA', icon: siPwa, used: ['sanni', 'lab'] },
+      { name: 'Vercel', icon: siVercel, used: ['sanni', 'lab'] },
     ],
   },
   {
     key: 'backend',
     skills: [
-      { name: 'Supabase', used: ['solibox', 'sanni', 'lab'] },
-      { name: 'PostgreSQL', used: ['solibox', 'sanni', 'lab'] },
-      { name: 'MQTT', used: ['solibox'] },
-      { name: 'Firebase', used: ['sanni', 'lab'] },
-      { name: 'Resend', used: ['sanni', 'lab'] },
+      { name: 'Supabase', icon: siSupabase, used: ['solibox', 'sanni', 'lab'] },
+      { name: 'PostgreSQL', icon: siPostgresql, used: ['solibox', 'sanni', 'lab'] },
+      { name: 'MQTT', icon: siMqtt, used: ['solibox'] },
+      { name: 'Firebase', icon: siFirebase, used: ['sanni', 'lab'] },
+      { name: 'Resend', icon: siResend, used: ['sanni', 'lab'] },
     ],
   },
 ];
 
 const allSkills = groups.flatMap((g) => g.skills);
+
+// Les logos sombres (Next.js, Vercel, Flutter…) disparaîtraient sur fond sombre :
+// en thème sombre, ils prennent la couleur du texte au lieu de leur couleur de marque.
+function isDark(hex: string) {
+  const [r, g, b] = [0, 2, 4].map((i) => {
+    const c = parseInt(hex.slice(i, i + 2), 16) / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * r + 0.7152 * g + 0.0722 * b < 0.2;
+}
+
+function SkillLogo({ icon }: { icon: SimpleIcon }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="18"
+      height="18"
+      aria-hidden="true"
+      focusable="false"
+      className="skill-logo shrink-0"
+      data-dim={isDark(icon.hex) ? '' : undefined}
+      style={{ '--brand': `#${icon.hex}` } as React.CSSProperties}
+    >
+      <path d={icon.path} fill="currentColor" />
+    </svg>
+  );
+}
 
 export default function Skills({ t }: { t: HomeText['skills'] }) {
   const [selected, setSelected] = useState('Supabase');
@@ -83,12 +114,13 @@ export default function Skills({ t }: { t: HomeText['skills'] }) {
                         aria-pressed={isOn}
                         onClick={() => setSelected(skill.name)}
                         onMouseEnter={() => setSelected(skill.name)}
-                        className={`rounded-full border px-4 py-2 text-base transition-colors ${
+                        className={`skill-chip inline-flex items-center gap-2 rounded-full border pl-3 pr-4 py-2 text-base transition-colors ${
                           isOn
                             ? 'bg-text text-bg border-text'
                             : 'border-border text-text hover:border-text'
                         }`}
                       >
+                        <SkillLogo icon={skill.icon} />
                         {skill.name}
                       </button>
                     );
