@@ -2,7 +2,7 @@ import type { Locale } from '@/lib/i18n';
 import { fontVariables } from '@/lib/fonts';
 
 // Appliqué avant l'affichage pour éviter un flash de mauvais thème.
-const themeScript = `(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
+const themeScript = `(function(){document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
 
 // Squelette HTML commun aux deux langues : seule la valeur de lang change.
 export default function RootDocument({ locale, children }: { locale: Locale; children: React.ReactNode }) {

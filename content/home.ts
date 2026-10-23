@@ -133,6 +133,27 @@ export const home: Record<Locale, HomeText> = {
       },
       usesSuffix: ', utilise {skill}',
     },
+    services: {
+      heading: 'Ce que je peux faire pour vous.',
+      intro: 'Trois façons de travailler ensemble.',
+      items: {
+        web: {
+          title: 'Applications web',
+          text: 'Des sites et des plateformes rapides, installables sur téléphone, avec comptes utilisateurs, base de données et notifications.',
+          proof: 'Comme Sanni',
+        },
+        mobile: {
+          title: 'Applications mobiles',
+          text: 'Des applications Flutter, de la maquette à la mise en ligne, connectées à vos données en temps réel, et même à des objets.',
+          proof: 'Comme SoliBox',
+        },
+        training: {
+          title: 'Formations',
+          text: 'Des formations pratiques en développement web, mobile et initiation au numérique, pour débutants et étudiants.',
+          proof: 'Mon parcours de formateur',
+        },
+      },
+    },
     contact: {
       heading: 'Travaillons ensemble.',
       intro: 'Un projet, une mission ou un poste ? Écris-moi, je lis tout.',
@@ -262,6 +283,27 @@ export const home: Record<Locale, HomeText> = {
         ngtech: 'Mobile developer',
       },
       usesSuffix: ', uses {skill}',
+    },
+    services: {
+      heading: 'What I can do for you.',
+      intro: 'Three ways to work together.',
+      items: {
+        web: {
+          title: 'Web apps',
+          text: 'Fast websites and platforms that install on a phone, with user accounts, a database and notifications.',
+          proof: 'Like Sanni',
+        },
+        mobile: {
+          title: 'Mobile apps',
+          text: 'Flutter apps, from mock-up to launch, connected to your data in real time, and even to devices.',
+          proof: 'Like SoliBox',
+        },
+        training: {
+          title: 'Training',
+          text: 'Hands-on training in web and mobile development and digital basics, for beginners and students.',
+          proof: 'My path as a trainer',
+        },
+      },
     },
     contact: {
       heading: "Let's work together.",

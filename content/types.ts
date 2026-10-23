@@ -50,6 +50,11 @@ export interface HomeText {
     // Modèle lu par les lecteurs d'écran : {skill} est remplacé.
     usesSuffix: string;
   };
+  services: {
+    heading: string;
+    intro: string;
+    items: Record<'web' | 'mobile' | 'training', { title: string; text: string; proof: string }>;
+  };
   contact: {
     heading: string;
     intro: string;

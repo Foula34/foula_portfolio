@@ -191,3 +191,41 @@ body {
 .skill-logo { color: var(--brand); transition: color 0.2s; }
 .skill-chip[aria-pressed='true'] .skill-logo,
 [data-theme='dark'] .skill-logo[data-dim] { color: inherit; }
+
+/* Section « Ce que je peux faire pour vous » : au survol ou au focus clavier,
+   la couleur du projet remplit la ligne de gauche à droite, et le texte s'y adapte. */
+.service-fill {
+  background: var(--s-bg);
+  transform: scaleX(0);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.service-row :is(.service-fg, .service-muted) { transition: color 0.35s ease; }
+@media (hover: hover) {
+  .service-row:hover .service-fill { transform: scaleX(1); }
+  .service-row:hover .service-fg { color: var(--s-fg); }
+  .service-row:hover .service-muted { color: var(--s-muted); }
+}
+.service-row:focus-within .service-fill { transform: scaleX(1); }
+.service-row:focus-within .service-fg { color: var(--s-fg); }
+.service-row:focus-within .service-muted { color: var(--s-muted); }
+@media (prefers-reduced-motion: reduce) {
+  .service-fill { transition: none; }
+}
+
+/* Apparition des lignes de services (seulement si le JavaScript tourne). */
+.js .service-row {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i) * 120ms);
+}
+.js .service-line {
+  transform: scaleX(0);
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i) * 120ms + 100ms);
+}
+.js .service-row.is-in { opacity: 1; transform: none; }
+.js .service-row.is-in .service-line { transform: scaleX(1); }
+@media (prefers-reduced-motion: reduce) {
+  .js .service-row, .js .service-line { opacity: 1; transform: none; transition: none; }
+}
