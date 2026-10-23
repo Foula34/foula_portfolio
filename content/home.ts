@@ -135,7 +135,7 @@ export const home: Record<Locale, HomeText> = {
     },
     services: {
       heading: 'Ce que je peux faire pour vous.',
-      intro: 'Trois façons de travailler ensemble.',
+      intro: 'Quatre façons de travailler ensemble.',
       items: {
         web: {
           title: 'Applications web',
@@ -144,13 +144,19 @@ export const home: Record<Locale, HomeText> = {
         },
         mobile: {
           title: 'Applications mobiles',
-          text: 'Des applications Flutter, de la maquette à la mise en ligne, connectées à vos données en temps réel, et même à des objets.',
+          text: 'Des applications Flutter ou React Native (Expo), de la maquette à la mise en ligne, connectées à vos données en temps réel, et même à des objets.',
           proof: 'Comme SoliBox',
         },
         training: {
           title: 'Formations',
           text: 'Des formations pratiques en développement web, mobile et initiation au numérique, pour débutants et étudiants.',
           proof: 'Mon parcours de formateur',
+        },
+        speaking: {
+          title: 'Prise de parole',
+          text: "Conférences, sessions d'orientation ou de sensibilisation, animation d'événements. Parler en public, je le pratique et je le fais pratiquer : j'ai fondé Lab Oratoire pour ça.",
+          proof: 'Mon club, Lab Oratoire',
+          tags: ['Conférences', 'Maître de cérémonie', 'Orientation', 'Sensibilisation'],
         },
       },
     },
@@ -286,7 +292,7 @@ export const home: Record<Locale, HomeText> = {
     },
     services: {
       heading: 'What I can do for you.',
-      intro: 'Three ways to work together.',
+      intro: 'Four ways to work together.',
       items: {
         web: {
           title: 'Web apps',
@@ -295,13 +301,19 @@ export const home: Record<Locale, HomeText> = {
         },
         mobile: {
           title: 'Mobile apps',
-          text: 'Flutter apps, from mock-up to launch, connected to your data in real time, and even to devices.',
+          text: 'Flutter or React Native (Expo) apps, from mock-up to launch, connected to your data in real time, and even to devices.',
           proof: 'Like SoliBox',
         },
         training: {
           title: 'Training',
           text: 'Hands-on training in web and mobile development and digital basics, for beginners and students.',
           proof: 'My path as a trainer',
+        },
+        speaking: {
+          title: 'Public speaking',
+          text: 'Talks, career guidance or awareness sessions, hosting events. I practise public speaking and help others practise it: that is why I founded Lab Oratoire.',
+          proof: 'My club, Lab Oratoire',
+          tags: ['Talks', 'Master of ceremonies', 'Career guidance', 'Awareness'],
         },
       },
     },

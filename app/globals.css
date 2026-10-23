@@ -229,3 +229,46 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .js .service-row, .js .service-line { opacity: 1; transform: none; transition: none; }
 }
+
+/* Illustrations des offres. */
+.ill-card { transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s; }
+.service-tag { transition: border-color 0.35s, color 0.35s; }
+@media (hover: hover) {
+  .service-row:hover .ill-card { transform: translateY(-4px) rotate(-0.6deg); box-shadow: 0 24px 50px -28px rgba(0, 0, 0, 0.45); }
+  .service-row:hover .service-tag { border-color: color-mix(in srgb, var(--s-fg) 45%, transparent); }
+}
+.ill-bar, .ill-code { transform-box: fill-box; }
+.ill-cursor { transform: translate(34px, 26px); }
+.ill-bar { transform-origin: bottom; }
+.ill-code { transform-origin: left; }
+.ill-cursor, .ill-notif, .ill-switch, .ill-knob, .ill-bubble, .ill-hand { transform-box: fill-box; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s; }
+
+/* À l'arrivée de la ligne : les barres poussent, le code s'écrit, les éléments se posent. */
+.js .service-row .ill-bar { transform: scaleY(0); transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); transition-delay: calc(var(--i) * 120ms + 250ms + var(--d)); }
+.js .service-row .ill-code { transform: scaleX(0); transition: transform 0.5s ease-out; transition-delay: calc(var(--i) * 120ms + 250ms + var(--d)); }
+.js .service-row .ill-notif { opacity: 0; transform: translateX(14px); }
+.js .service-row .ill-bubble { opacity: 0; transform: translateY(10px) scale(0.92); transform-origin: left bottom; }
+.js .service-row.is-in :is(.ill-bar, .ill-code) { transform: none; }
+.js .service-row.is-in :is(.ill-notif, .ill-bubble) { opacity: 1; transform: none; transition-delay: calc(var(--i) * 120ms + 500ms); }
+
+/* Au survol : le curseur va cliquer, la notification arrive, l'interrupteur bascule,
+   la main se lève, le micro émet. */
+@keyframes ill-blink { 50% { opacity: 0; } }
+@keyframes ill-wave { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+@media (hover: hover) {
+  .service-row:hover .ill-cursor { transform: none; }
+  .service-row:hover .ill-notif { transform: translateY(-6px); transition-delay: 0s; }
+  .service-row:hover .ill-switch { transform: translateY(4px); }
+  .service-row:hover .ill-knob { transform: translateX(-16px); }
+  .service-row:hover .ill-hand { transform: translateY(-6px); }
+  .service-row:hover .ill-caret { animation: ill-blink 0.9s steps(1) infinite; }
+  .service-row:hover .ill-wave { animation: ill-wave 1.2s ease-in-out infinite; animation-delay: var(--d); }
+  .service-row:hover .ill-bubble { transform: translateY(-4px); transition-delay: 0s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ill-card, .ill-cursor, .ill-notif, .ill-switch, .ill-knob, .ill-bubble, .ill-hand { transition: none; }
+  .js .service-row :is(.ill-bar, .ill-code, .ill-notif, .ill-bubble) { opacity: 1; transform: none; transition: none; }
+  .service-row:hover :is(.ill-card, .ill-cursor, .ill-notif, .ill-switch, .ill-knob, .ill-hand, .ill-bubble) { transform: none; }
+  .service-row:hover :is(.ill-caret, .ill-wave) { animation: none; }
+}

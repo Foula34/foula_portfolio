@@ -53,7 +53,8 @@ export interface HomeText {
   services: {
     heading: string;
     intro: string;
-    items: Record<'web' | 'mobile' | 'training', { title: string; text: string; proof: string }>;
+    // tags : pour une offre sans outils techniques (la prise de parole), des mots-clés à la place des logos.
+    items: Record<'web' | 'mobile' | 'training' | 'speaking', { title: string; text: string; proof: string; tags?: string[] }>;
   };
   contact: {
     heading: string;
